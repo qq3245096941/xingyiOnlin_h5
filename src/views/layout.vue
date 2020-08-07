@@ -2,7 +2,7 @@
   <div id="tabContent">
     <myTitle id="tabMyTitle"></myTitle>
 
-    <div class="container" :style="{'height':bodyHeight+'px'}">
+    <div class="container" :style="{'height':bodyHeight+'px','margin-bottom':fHeight+'px'}">
       <router-view/>
     </div>
 
@@ -21,16 +21,15 @@ export default {
   data() {
     return {
       bodyHeight: 0,
+      fHeight:0
     }
   },
   mounted() {
     let cHeight = document.getElementById('tabContent').offsetHeight;  //总高度
     let tHeight = document.getElementById('tabMyTitle').offsetHeight;  //标题高度
-    let fHeight = document.getElementById('footer').offsetHeight;
+    this.fHeight = document.getElementById('footer').offsetHeight;
 
-    console.log(fHeight)
-
-    this.bodyHeight = cHeight - tHeight - fHeight;
+    this.bodyHeight = cHeight - tHeight - this.fHeight;
   }
 }
 </script>

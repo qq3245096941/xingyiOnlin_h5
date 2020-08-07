@@ -128,7 +128,7 @@ export default {
   }
 
   .btn{
-    margin: 0 50px 60px 50px;
+    margin: 0 50px;
   }
 }
 </style>
