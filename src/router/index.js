@@ -1,28 +1,43 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+import layout from '../views/layout.vue'
+import layoutJs from './layout.js'
+
+import layoutNoTab from "@/views/layoutNoTab";
+import layoutNoTabJs from './layoutNoJs/layoutNoJs'
+
+import login from './login.js'
+
 Vue.use(VueRouter)
 
 const routes = [
-    {
-        path: '/',
-        name: 'index',
-        component: () => import('../views/index.vue')
-    },
-    {
-        path: '/notice',
-        name: 'notice',
-        component: () => import('../views/notice.vue')
-    },
-    {
-        path: '/my',
-        name: 'my',
-        component: () => import('../views/my.vue')
-    }
+	{
+		path:'/',
+		redirect:'/layout/main'
+	},
+	/*这个是有底部栏的页面*/
+	{
+		path: '/layout',
+		component: layout,
+		children: [
+			...layoutJs
+		]
+	},
+	/*这个是没有底部栏的页面*/
+	{
+		path: '/layoutNoTab',
+		component: layoutNoTab,
+		children: [
+			...layoutNoTabJs
+		]
+	},
+	/* 这是全局页面 */
+	...login
 ]
 
 const router = new VueRouter({
-    routes
+	routes
 })
 
 export default router

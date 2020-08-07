@@ -1,10 +1,24 @@
 <template>
-  <div class="tab">
-    <div :class="['item',item.value===tab.value?'active':'']" @click="itemClick(item)" v-for="(item,index) in tab.list"
-         :key="index">
-      {{item.title}}
-    </div>
-  </div>
+  <van-tabbar v-model="value" route fixed placeholder>
+    <van-tabbar-item to="/layout/main" name="main">
+      <span>首页</span>
+      <template #icon="props">
+        <img :src="props.active ? require('../assets/img/tabIcon/shouye2.svg') : require('../assets/img/tabIcon/shouye1.svg')" />
+      </template>
+    </van-tabbar-item>
+    <van-tabbar-item to="/layout/notice" name="notice" icon="search">
+      <span>公告</span>
+      <template #icon="props">
+        <img :src="props.active ? require('../assets/img/tabIcon/gonggao2.svg') : require('../assets/img/tabIcon/gonggao1.svg')" />
+      </template>
+    </van-tabbar-item>
+    <van-tabbar-item to="/layout/my" name="my" icon="setting-o">
+      <span>我的</span>
+      <template #icon="props">
+        <img :src="props.active ? require('../assets/img/tabIcon/wode2.svg') : require('../assets/img/tabIcon/gonggao2.svg')" />
+      </template>
+    </van-tabbar-item>
+  </van-tabbar>
 </template>
 
 <script>
@@ -12,60 +26,20 @@ export default {
   name: "tab",
   data() {
     return {
-      tab: {
-        value: 0,
-        list: [
-          {
-            title: '首页',
-            value: 0,
-            url: '/'
-          },
-          {
-            title: '公告',
-            value: 1,
-            url: '/notice'
-          },
-          {
-            title: '我的',
-            value: 2,
-            url: '/my'
-          }
-        ]
-      }
+      value:''
     }
   },
   methods: {
-    itemClick(res) {
-      if (this.tab.value === res.value) return;
-      this.tab.value = res.value;
-      this.$router.push({
-        path: res.url
-      })
+    change(res){
+      console.log(res);
     }
+  },
+  mounted() {
+
   }
 }
 </script>
 
 <style scoped lang="scss">
-.tab {
-  width: 100%;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  border-top: 1px solid #d2d2d2;
-  z-index: 1000;
-  background: #fff;
 
-  .item {
-    flex: 1;
-    height: 100%;
-    line-height: 50px;
-  }
-
-  .active {
-    background: red;
-    color: #fff;
-
-  }
-}
 </style>

@@ -1,0 +1,14 @@
+<svg id="yinhangka" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="21.517" height="17.766" viewBox="0 0 21.517 17.766">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="矩形_66" data-name="矩形 66" width="21.517" height="17.766" fill="none"/>
+    </clipPath>
+  </defs>
+  <path id="路径_168" data-name="路径 168" d="M59.465,77.764l-4.05,17.718h8.606l4.05-17.718Zm0,0" transform="translate(-51.621 -77.743)" fill="#2f8ad0"/>
+  <g id="组_71" data-name="组 71" transform="translate(0 0)">
+    <g id="组_70" data-name="组 70" clip-path="url(#clip-path)">
+      <path id="路径_169" data-name="路径 169" d="M416.412,77.764H414.45L410.4,95.482h6.012a1.836,1.836,0,0,0,1.835-1.835V79.6a1.836,1.836,0,0,0-1.835-1.835Zm0,0" transform="translate(-396.735 -77.743)" fill="#1ac0d0"/>
+      <path id="路径_170" data-name="路径 170" d="M-79.285,77.764A1.836,1.836,0,0,0-81.12,79.6V93.647a1.836,1.836,0,0,0,1.835,1.835h.759l4.05-17.718Zm0,0" transform="translate(81.117 -77.743)" fill="#fe5656"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="23" height="23" viewBox="0 0 23 23">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="矩形_98" data-name="矩形 98" width="23" height="23" transform="translate(312 295)" fill="none" stroke="#707070" stroke-width="0.1"/>
+    </clipPath>
+  </defs>
+  <g id="fahuodingdan" transform="translate(-312 -295)" clip-path="url(#clip-path)">
+    <g id="组_20" data-name="组 20" transform="translate(315 298)">
+      <path id="路径_61" data-name="路径 61" d="M1591.8,195.4h-15.915a.663.663,0,0,1,0-1.326H1591.8a.663.663,0,0,1,0,1.326Z" transform="translate(-1575.226 -189.432)" fill="#750202"/>
+      <path id="路径_62" data-name="路径 62" d="M1590.478,187.114h-13.262a2,2,0,0,1-1.989-1.989v-12.6a2,2,0,0,1,1.989-1.989.663.663,0,0,1,0,1.326.665.665,0,0,0-.663.663v12.6a.665.665,0,0,0,.663.663h13.262a.665.665,0,0,0,.663-.663v-12.6a.665.665,0,0,0-.663-.663.663.663,0,1,1,0-1.326,2,2,0,0,1,1.989,1.989v12.6a2,2,0,0,1-1.989,1.989Z" transform="translate(-1575.226 -169.873)" fill="#750202"/>
+      <path id="路径_63" data-name="路径 63" d="M1599.428,169.265a.665.665,0,0,1-.663-.663v-1.326a.663.663,0,0,1,1.326,0V168.6a.665.665,0,0,1-.663.663Z" transform="translate(-1594.786 -166.613)" fill="#750202"/>
+      <path id="路径_64" data-name="路径 64" d="M1617.772,171.862h-2.652a.663.663,0,1,1,0-1.326h2.652a.663.663,0,1,1,0,1.326Z" transform="translate(-1607.826 -169.873)" fill="#750202"/>
+      <path id="路径_65" data-name="路径 65" d="M1646.5,169.265a.665.665,0,0,1-.663-.663v-1.326a.663.663,0,1,1,1.326,0V168.6a.665.665,0,0,1-.663.663Z" transform="translate(-1633.905 -166.613)" fill="#750202"/>
+    </g>
+  </g>
+</svg>
