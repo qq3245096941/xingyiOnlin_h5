@@ -1,34 +1,48 @@
 <template>
-  <div class="content">
-    <van-nav-bar z-index="1000" :title="$route.meta.title" style="background: #ffffff00" left-arrow/>
+  <div id="tabContent">
+    <myTitle id="tabMyTitle"></myTitle>
 
-    <div class="container">
+    <div class="container" :style="{'height':bodyHeight+'px'}">
       <router-view/>
     </div>
 
-    <tab></tab>
+    <tab id="footer"></tab>
   </div>
 </template>
 
 <script>
-import tab from "@/components/tab";
+import tab from "@/components/tab"
+import myTitle from "@/components/myTitle";
 
 export default {
   components: {
-    tab
+    tab, myTitle
+  },
+  data() {
+    return {
+      bodyHeight: 0,
+    }
+  },
+  mounted() {
+    let cHeight = document.getElementById('tabContent').offsetHeight;  //总高度
+    let tHeight = document.getElementById('tabMyTitle').offsetHeight;  //标题高度
+    let fHeight = document.getElementById('footer').offsetHeight;
+
+    console.log(fHeight)
+
+    this.bodyHeight = cHeight - tHeight - fHeight;
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.content {
+#tabContent {
   position: absolute;
   width: 100%;
   height: 100%;
 
   .container {
     background: #f8f8f9;
-    height: 88%;
     width: 100%;
     overflow-x: hidden;
     overflow-y: auto;

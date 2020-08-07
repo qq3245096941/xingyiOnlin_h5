@@ -24,7 +24,7 @@ export default [
         name: 'my',
         component: my,
         meta: {
-            title: '我的'
+            title: ''
         }
     }
 ]

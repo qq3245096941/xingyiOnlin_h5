@@ -1,5 +1,5 @@
 <template>
-  <van-tabbar v-model="value" route fixed placeholder>
+  <van-tabbar v-model="value" route>
     <van-tabbar-item to="/layout/main" name="main">
       <span>首页</span>
       <template #icon="props">

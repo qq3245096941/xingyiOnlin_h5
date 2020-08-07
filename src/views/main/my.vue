@@ -73,7 +73,7 @@ export default {
   position: absolute;
   top: 0;
   width: 100%;
-  height: 500px;
+  height: 100%;
   overflow: auto;
 
   .userInfo {
@@ -128,7 +128,7 @@ export default {
   }
 
   .btn{
-    margin: 0 50px;
+    margin: 0 50px 60px 50px;
   }
 }
 </style>

@@ -24,7 +24,7 @@
     <van-button class="btn" block type="danger" @click="purchase">立刻抢购</van-button>
 
     <!--购买协议-->
-    <agreement :isShow.sync="isShow"></agreement>
+    <agreement :isShow.sync="isShow" @look="submitOrder"></agreement>
   </div>
 </template>
 
@@ -33,12 +33,17 @@ export default {
   name: "commodityDetails",
   data(){
     return {
-      isShow:true
+      isShow:false
     }
   },
   methods:{
     purchase(){
       this.isShow = true;
+    },
+    submitOrder(){
+      this.$router.push({
+        path:'/layoutNoTab/submitOrder'
+      })
     }
   }
 }
@@ -77,7 +82,7 @@ export default {
       align-items: center;
 
       .describe {
-        font-size: 12px;
+        font-size: 15px;
       }
     }
   }

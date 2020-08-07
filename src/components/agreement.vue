@@ -1,5 +1,5 @@
 <template>
-  <van-popup :value="isShow" position="bottom" @close="close" round closeable :close-on-click-overlay="false">
+  <van-popup v-model="isPopShow" position="bottom" @close="close" round closeable>
     <div class="box">
       <div class="title">
         购买协议
@@ -9,10 +9,8 @@
         买协议购买协议购买协议购买协议购买协议购买协议购买协议购买协议购买协议购买协议购买协议购买协议购买协议购买协议购买协议购买协议购
       </div>
 
-      <van-button block type="danger">我已阅读该协议</van-button>
+      <van-button block type="danger" @click="submitOrder">我已阅读该协议</van-button>
     </div>
-
-
   </van-popup>
 </template>
 
@@ -25,9 +23,24 @@ export default {
       default: false
     }
   },
+  data() {
+    return {
+      isPopShow: false
+    }
+  },
+  watch: {
+    isShow(newValue) {
+      this.isPopShow = newValue;
+    }
+  },
   methods: {
     close() {
+      this.isPopShow = false;
       this.$emit('update:isShow', false)
+    },
+    /*提交订单*/
+    submitOrder(){
+      this.$emit('look');
     }
   }
 }
@@ -45,7 +58,7 @@ export default {
   }
 
   .body {
-    padding: 10px;
+    padding: 0 20px 40px 20px;
     font-size: 13px;
   }
 }
