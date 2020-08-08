@@ -20,7 +20,7 @@
     </div>
 
     <!--公告-->
-    <div class="notice">
+    <div class="notice" v-if="isPreparePay===false">
       <p>公告</p>
       <p>请务必阅读并理解本协议</p>
       <p>
@@ -31,14 +31,42 @@
         请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议
         请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议
       </p>
-      <van-button style="position: sticky;bottom: 0" block round type="danger">提交订单</van-button>
     </div>
+
+    <!--支付情况-->
+    <div v-else class="pay">
+      <van-tabs>
+        <van-tab title="微信">微信</van-tab>
+        <van-tab title="支付宝">支付宝</van-tab>
+        <van-tab title="银行卡">银行卡</van-tab>
+      </van-tabs>
+    </div>
+
+    <van-button v-show="isPreparePay===false" style="position: sticky;bottom: 0" block type="danger" @click="submitOrder">提交订单</van-button>
+
+    <agreement :is-show.sync="isShow" @look="look"></agreement>
   </div>
 </template>
 
 <script>
 export default {
-  name: "submitOrder"
+  name: "submitOrder",
+  data(){
+    return{
+      isShow:false,
+      isPreparePay:false, //是否准备开始支付
+    }
+  },
+  methods:{
+    submitOrder(){
+      this.isShow = true;
+    },
+    /*已经查看完毕*/
+    look(){
+      this.isShow = false;
+      this.isPreparePay = true;
+    }
+  }
 }
 </script>
 
@@ -98,5 +126,11 @@ export default {
     margin: 20px;
   }
 
+  .pay{
+    overflow: hidden;
+    margin: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    border-radius: 5px;
+  }
 }
 </style>

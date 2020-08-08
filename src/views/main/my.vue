@@ -41,15 +41,15 @@
         <img class="icon" src="../../assets/img/my/fans/wodefensi.svg" alt="">
         <p class="title">我的粉丝</p>
       </div>
-      <div class="order">
+      <div class="order" @click="$router.push({path:'/layoutNoTab/myPromotion'})">
         <img class="icon" src="../../assets/img/my/fans/wodetuiguang.svg" alt="">
         <p class="title">我的推广</p>
       </div>
     </div>
 
     <van-cell-group class="people">
-      <van-cell icon="location-o" title="收款中心"  is-link/>
-      <van-cell icon="location-o" title="我的地址" is-link/>
+      <van-cell icon="location-o" title="收款中心" to="/layoutNoTab/gatheringManager" is-link/>
+      <van-cell icon="location-o" title="我的地址" to="/layoutNoTab/addressManager" is-link/>
       <van-cell icon="location-o" title="客服中心" to="/layoutNoTab/service" is-link/>
       <van-cell icon="location-o" title="个人中心" is-link/>
     </van-cell-group>
@@ -122,13 +122,14 @@ export default {
   }
 
   .people {
+    overflow: hidden;
     margin: 10px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
   }
 
   .btn{
-    margin: 0 50px;
+    margin: 0 50px 60px 50px;
   }
 }
 </style>

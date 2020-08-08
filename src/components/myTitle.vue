@@ -16,8 +16,6 @@ export default {
 <style scoped>
 .title {
   background: #ffffff00;
-  position: sticky;
-  top: 0;
 }
 
 [class*=van-hairline]::after{

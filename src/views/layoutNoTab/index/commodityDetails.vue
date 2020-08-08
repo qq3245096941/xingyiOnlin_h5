@@ -21,7 +21,13 @@
       </div>
     </div>
 
-    <van-button class="btn" block type="danger" @click="purchase">立刻抢购</van-button>
+    <van-button class="btn" block type="danger" v-if="isStart===false">
+      还未开始(
+      <van-count-down style="color: #fff;display: inline" :time="timeRemaining" @finish="finish"/>  <!--//默认毫秒-->
+      )
+    </van-button>
+
+    <van-button v-else class="btn" block type="danger" @click="purchase">立即抢购</van-button>
 
     <!--购买协议-->
     <agreement :isShow.sync="isShow" @look="submitOrder"></agreement>
@@ -31,20 +37,29 @@
 <script>
 export default {
   name: "commodityDetails",
-  data(){
+  data() {
     return {
-      isShow:false
+      isShow: false,
+      timeRemaining: 0,
+      isStart: false  //是否开始抢购
     }
   },
-  methods:{
-    purchase(){
+  methods: {
+    purchase() {
       this.isShow = true;
     },
-    submitOrder(){
+    submitOrder() {
       this.$router.push({
-        path:'/layoutNoTab/submitOrder'
+        path: '/layoutNoTab/submitOrder'
       })
+    },
+    /*倒计时结束时*/
+    finish() {
+      this.isStart = true;
     }
+  },
+  mounted() {
+    this.timeRemaining = 2 * 1000;
   }
 }
 </script>
@@ -87,7 +102,8 @@ export default {
     }
   }
 
-  .btn{
+  .btn {
+    z-index: 1000;
     position: sticky;
     bottom: 0;
     width: 100%;
