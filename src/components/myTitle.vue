@@ -1,5 +1,8 @@
 <template>
-  <van-nav-bar class="title" :title="$route.meta.title" left-arrow @click-left="clickLeft"/>
+  <van-nav-bar
+      class="title"
+      :title="$route.meta.title" left-arrow @click-left="clickLeft""
+  />
 </template>
 
 <script>
@@ -18,7 +21,7 @@ export default {
   background: #ffffff00;
 }
 
-[class*=van-hairline]::after{
+[class*=van-hairline]::after {
   border: none;
 }
 </style>

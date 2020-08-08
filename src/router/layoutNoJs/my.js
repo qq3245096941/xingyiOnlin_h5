@@ -3,6 +3,8 @@ import addressManager from "@/views/layoutNoTab/my/addressManager";
 import addAddress from "@/views/layoutNoTab/my/addAddress";
 import gatheringManager from "@/views/layoutNoTab/my/gatheringManager";
 import myPromotion from "@/views/layoutNoTab/my/extension/myPromotion";
+import businessCard from "@/views/layoutNoTab/my/extension/businessCard";
+import listOfPromoters from "@/views/layoutNoTab/my/extension/listOfPromoters";
 
 export default [
     {
@@ -50,7 +52,24 @@ export default [
         name: 'myPromotion',
         component: myPromotion,
         meta: {
-            title: '我的推广'
+            title: '我的推广',
+            color:'#ffffff'
+        }
+    },
+    {
+        path: 'businessCard',
+        name: 'businessCard',
+        component: businessCard,
+        meta: {
+            title: '推广名片'
+        }
+    },
+    {
+        path: 'listOfPromoters',
+        name: 'listOfPromoters',
+        component: listOfPromoters,
+        meta: {
+            title: ''
         }
     },
 ]
