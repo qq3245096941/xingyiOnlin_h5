@@ -27,12 +27,12 @@ export default {
   data() {
     return {
       loading: true,
-      finished: false
+      finished: false,
+
     }
   },
   watch: {
     currLength(newValue) {
-
       this.finished = newValue >= this.total;
       this.loading = false;
     }

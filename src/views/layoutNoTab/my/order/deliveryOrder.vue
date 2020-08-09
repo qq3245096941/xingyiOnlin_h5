@@ -1,11 +1,11 @@
-<!--订单-->
+<!--发货订单-->
 <template>
 
 </template>
 
 <script>
 export default {
-name: "order"
+  name: "deliveryOrder"
 }
 </script>
 

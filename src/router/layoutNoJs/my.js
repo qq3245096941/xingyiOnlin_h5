@@ -8,6 +8,7 @@ import listOfPromoters from "@/views/layoutNoTab/my/extension/listOfPromoters";
 import promoterStatistics from "@/views/layoutNoTab/my/extension/promoterStatistics";
 import withdrawDeposit from "@/views/layoutNoTab/my/extension/withdrawDeposit";
 import personalCenter from "@/views/layoutNoTab/my/personalCenter";
+import orderAll from "@/views/layoutNoTab/my/order/orderAll";
 
 export default [
     {
@@ -96,4 +97,12 @@ export default [
             title:'立刻提现'
         }
     },
+    {
+        path: 'orderAll',
+        name: 'orderAll',
+        component: orderAll,  //立刻提现
+        meta: {
+            title:'全部订单'
+        }
+    }
 ]

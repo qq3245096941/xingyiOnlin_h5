@@ -10,19 +10,19 @@
     </div>
 
     <div class="orderTab">
-      <div class="order">
+      <div class="order" @click="$router.push({path:'/layoutNoTab/orderAll'})">
         <img class="icon" src="../../assets/img/my/orderList/quanbudingdan.svg" alt="">
         <p class="title">全部订单</p>
       </div>
-      <div class="order">
+      <div class="order" @click="$router.push({path:'/layoutNoTab/orderAll',query:{index:1}})">
         <img class="icon" src="../../assets/img/my/orderList/fahuodingdan.svg" alt="">
         <p class="title">支付确认</p>
       </div>
-      <div class="order">
+      <div class="order" @click="$router.push({path:'/layoutNoTab/orderAll',query:{index:2}})">
         <img class="icon" src="../../assets/img/my/orderList/shoukuanqueren.svg" alt="">
         <p class="title">收款确认</p>
       </div>
-      <div class="order">
+      <div class="order" @click="$router.push({path:'/layoutNoTab/orderAll',query:{index:1}})">
         <img class="icon" src="../../assets/img/my/orderList/fahuodingdan.svg" alt="">
         <p class="title">发货订单</p>
       </div>
@@ -128,7 +128,7 @@ export default {
     box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
   }
 
-  .btn{
+  .btn {
     margin: 0 50px 60px 50px;
   }
 }
