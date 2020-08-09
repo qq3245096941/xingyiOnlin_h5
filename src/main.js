@@ -8,6 +8,7 @@ import moment from 'moment'
 import { ImagePreview } from 'vant';
 
 import agreement from "@/components/agreement";
+import List from "@/components/List";
 
 Vue.config.productionTip = false
 
@@ -25,6 +26,8 @@ Vue.mixin({
 
 /*购买协议*/
 Vue.component('agreement', agreement);
+/*加载组件*/
+Vue.component('List', List);
 
 new Vue({
     router,

@@ -51,11 +51,11 @@
       <van-cell icon="location-o" title="收款中心" to="/layoutNoTab/gatheringManager" is-link/>
       <van-cell icon="location-o" title="我的地址" to="/layoutNoTab/addressManager" is-link/>
       <van-cell icon="location-o" title="客服中心" to="/layoutNoTab/service" is-link/>
-      <van-cell icon="location-o" title="个人中心" is-link/>
+      <van-cell icon="location-o" title="个人中心" to="/layoutNoTab/personalCenter" is-link/>
     </van-cell-group>
 
     <div class="btn">
-      <van-button block type="danger" round>登录/注册</van-button>
+      <van-button block type="danger" round @click="$router.push({path:'/login'})">登录/注册</van-button>
     </div>
 
   </div>

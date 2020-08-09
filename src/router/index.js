@@ -7,7 +7,7 @@ import layoutJs from './layout.js'
 import layoutNoTab from "@/views/layoutNoTab";
 import layoutNoTabJs from './layoutNoJs/layoutNoJs'
 
-import login from './login.js'
+import layoutNoAll from './layoutNoAll.js'
 
 Vue.use(VueRouter)
 
@@ -33,7 +33,7 @@ const routes = [
 		]
 	},
 	/* 这是全局页面 */
-	...login
+	...layoutNoAll
 ]
 
 const router = new VueRouter({

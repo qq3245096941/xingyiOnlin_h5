@@ -5,6 +5,9 @@ import gatheringManager from "@/views/layoutNoTab/my/gatheringManager";
 import myPromotion from "@/views/layoutNoTab/my/extension/myPromotion";
 import businessCard from "@/views/layoutNoTab/my/extension/businessCard";
 import listOfPromoters from "@/views/layoutNoTab/my/extension/listOfPromoters";
+import promoterStatistics from "@/views/layoutNoTab/my/extension/promoterStatistics";
+import withdrawDeposit from "@/views/layoutNoTab/my/extension/withdrawDeposit";
+import personalCenter from "@/views/layoutNoTab/my/personalCenter";
 
 export default [
     {
@@ -13,6 +16,14 @@ export default [
         component: service,
         meta: {
             title: '客服'
+        }
+    },
+    {
+        path: 'personalCenter',
+        name: 'personalCenter',
+        component: personalCenter,
+        meta: {
+            title: '个人中心'
         }
     },
     {
@@ -67,9 +78,22 @@ export default [
     {
         path: 'listOfPromoters',
         name: 'listOfPromoters',
-        component: listOfPromoters,
+        component: listOfPromoters,  //推广人排行
+    },
+    {
+        path: 'promoterStatistics',
+        name: 'promoterStatistics',
+        component: promoterStatistics,  //推广人统计
         meta: {
-            title: ''
+            title: '推广人统计'
+        }
+    },
+    {
+        path: 'withdrawDeposit',
+        name: 'withdrawDeposit',
+        component: withdrawDeposit,  //立刻提现
+        meta: {
+            title:'立刻提现'
         }
     },
 ]

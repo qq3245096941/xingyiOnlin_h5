@@ -28,5 +28,12 @@
     padding: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
     border-radius: 5px;
+    background: #fff;
+  }
+
+  .hen{
+    width: 100%;
+    background: #f8f8f9;
+    height: 6px;
   }
 </style>

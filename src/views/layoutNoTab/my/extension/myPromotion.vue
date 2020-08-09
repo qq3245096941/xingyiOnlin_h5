@@ -16,7 +16,7 @@
           <p class="ziP">累计提现：<span style="color: #ff9900">￥00.00</span></p>
         </div>
 
-        <div class="withdraw">立刻提现</div>
+        <div class="withdraw" @click="$router.push({path:'/layoutNoTab/withdrawDeposit'})">立刻提现</div>
       </div>
 
       <!--tab-->
@@ -51,7 +51,7 @@ export default {
         {
           title: '推广人统计',
           icon: tuiguangrentongji,
-          url:'/layoutNoTab/businessCard'
+          url:'/layoutNoTab/promoterStatistics'
         },
         {
           title: '推广人排行',
