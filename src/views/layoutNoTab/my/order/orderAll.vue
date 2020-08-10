@@ -1,6 +1,6 @@
 <!--全部订单-->
 <template>
-  <van-tabs v-model="active">
+  <van-tabs v-model="active" sticky>
     <van-tab title="仓库">
       <warehouse></warehouse>
     </van-tab>
@@ -26,10 +26,11 @@ import gathering from "@/views/layoutNoTab/my/order/gathering";//收款
 import sale from "@/views/layoutNoTab/my/order/sale";  //卖出
 import putaway from "@/views/layoutNoTab/my/order/putaway";  //已上架
 
+
 export default {
   name: "order",
   components: {
-    warehouse,payment,gathering,sale,putaway
+    warehouse, payment, gathering, sale, putaway
   },
   data() {
     return {

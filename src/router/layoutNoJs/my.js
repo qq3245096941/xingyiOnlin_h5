@@ -9,6 +9,7 @@ import promoterStatistics from "@/views/layoutNoTab/my/extension/promoterStatist
 import withdrawDeposit from "@/views/layoutNoTab/my/extension/withdrawDeposit";
 import personalCenter from "@/views/layoutNoTab/my/personalCenter";
 import orderAll from "@/views/layoutNoTab/my/order/orderAll";
+import deliverOrder from "@/views/layoutNoTab/my/deliverOrder";
 
 export default [
     {
@@ -65,7 +66,7 @@ export default [
         component: myPromotion,
         meta: {
             title: '我的推广',
-            color:'#ffffff'
+            color: '#ffffff'
         }
     },
     {
@@ -73,20 +74,26 @@ export default [
         name: 'businessCard',
         component: businessCard,
         meta: {
-            title: '推广名片'
+            title: '推广名片',
+            color: '#ffffff'
         }
     },
     {
         path: 'listOfPromoters',
         name: 'listOfPromoters',
         component: listOfPromoters,  //推广人排行
+        meta: {
+            title: '推广人统计',
+            color:'#ffffff'
+        }
     },
     {
         path: 'promoterStatistics',
         name: 'promoterStatistics',
         component: promoterStatistics,  //推广人统计
         meta: {
-            title: '推广人统计'
+            title: '推广人统计',
+            color:'#ffffff'
         }
     },
     {
@@ -94,7 +101,7 @@ export default [
         name: 'withdrawDeposit',
         component: withdrawDeposit,  //立刻提现
         meta: {
-            title:'立刻提现'
+            title: '立刻提现'
         }
     },
     {
@@ -102,7 +109,15 @@ export default [
         name: 'orderAll',
         component: orderAll,  //立刻提现
         meta: {
-            title:'全部订单'
+            title: '全部订单'
+        }
+    },
+    {
+        path: 'deliverOrder',
+        name: 'deliverOrder',
+        component: deliverOrder,  //立刻提现
+        meta: {
+            title: '发货订单'
         }
     }
 ]

@@ -35,11 +35,7 @@
 
     <!--支付情况-->
     <div v-else class="pay">
-      <van-tabs>
-        <van-tab title="微信">微信</van-tab>
-        <van-tab title="支付宝">支付宝</van-tab>
-        <van-tab title="银行卡">银行卡</van-tab>
-      </van-tabs>
+      <paymentComponent></paymentComponent>
     </div>
 
     <van-button v-show="isPreparePay===false" style="position: sticky;bottom: 0" block type="danger" @click="submitOrder">提交订单</van-button>

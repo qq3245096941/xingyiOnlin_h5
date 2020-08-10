@@ -10,7 +10,12 @@ export default {
     },
     methods:{
       getListHeight(){
-          this.contentHeight = this.$refs.content.clientHeight;
+          let contentEle = this.$refs.content;
+
+          contentEle.style.width = '100%';
+          contentEle.style.height = '100%';
+
+          this.contentHeight = contentEle.clientHeight;
           this.headerHeight = this.$refs.header.clientHeight;
           this.listHeight = `${this.contentHeight - this.headerHeight}px`;
       }

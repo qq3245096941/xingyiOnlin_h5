@@ -2,7 +2,7 @@
 <template>
   <div ref="content">
     <div ref="header"></div>
-    <List :curr-length="list.length" :total="total" :style="{height:listHeight}" @getData="getList">
+    <List :curr-length="list.length" :total="total" style="height:100%" @getData="getList">
       <div class="card" v-for="item in list">
         <commodity :comm="item">
           <van-button type="warning" size="mini" round>取消订单</van-button>

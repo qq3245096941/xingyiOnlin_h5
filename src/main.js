@@ -9,6 +9,7 @@ import { ImagePreview } from 'vant';
 
 import agreement from "@/components/agreement";
 import List from "@/components/List";
+import paymentComponent from "@/components/paymentComponent";
 
 Vue.config.productionTip = false
 
@@ -28,6 +29,8 @@ Vue.mixin({
 Vue.component('agreement', agreement);
 /*加载组件*/
 Vue.component('List', List);
+/*支付组件*/
+Vue.component('paymentComponent', paymentComponent);
 
 new Vue({
     router,

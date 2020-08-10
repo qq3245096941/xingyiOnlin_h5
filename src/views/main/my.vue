@@ -22,7 +22,7 @@
         <img class="icon" src="../../assets/img/my/orderList/shoukuanqueren.svg" alt="">
         <p class="title">收款确认</p>
       </div>
-      <div class="order" @click="$router.push({path:'/layoutNoTab/orderAll',query:{index:1}})">
+      <div class="order" @click="$router.push({path:'/layoutNoTab/deliverOrder'})">
         <img class="icon" src="../../assets/img/my/orderList/fahuodingdan.svg" alt="">
         <p class="title">发货订单</p>
       </div>
@@ -48,10 +48,10 @@
     </div>
 
     <van-cell-group class="people">
-      <van-cell icon="location-o" title="收款中心" to="/layoutNoTab/gatheringManager" is-link/>
-      <van-cell icon="location-o" title="我的地址" to="/layoutNoTab/addressManager" is-link/>
-      <van-cell icon="location-o" title="客服中心" to="/layoutNoTab/service" is-link/>
-      <van-cell icon="location-o" title="个人中心" to="/layoutNoTab/personalCenter" is-link/>
+      <van-cell :icon="require('@/assets/img/my/geern/shoukuanqueren.svg')" title="收款中心" to="/layoutNoTab/gatheringManager" is-link/>
+      <van-cell :icon="require('@/assets/img/my/geern/wodedizhi.svg')" title="我的地址" to="/layoutNoTab/addressManager" is-link/>
+      <van-cell :icon="require('@/assets/img/my/geern/kefuzhongxin.svg')" title="客服中心" to="/layoutNoTab/service" is-link/>
+      <van-cell :icon="require('@/assets/img/my/geern/gerenzhongxin.svg')" title="个人中心" to="/layoutNoTab/personalCenter" is-link/>
     </van-cell-group>
 
     <div class="btn">

@@ -1,6 +1,6 @@
 <!--特惠区等-->
 <template>
-  <div ref="content">
+  <div class="content" ref="content">
     <div ref="header">
       <p class="time">开启时间：10:00:00 ~ 11:00:00</p>
       <p class="title" style="text-align: center">特惠区</p>
@@ -42,7 +42,7 @@ export default {
     },
     getList() {
       setTimeout(() => {
-        let list = Array.from({length: 5}).map(item => {
+        let list = Array.from({length: 20}).map(item => {
           return {
             price: '1.00',
             commodityName: '红木家具鸡翅木...',
@@ -51,69 +51,75 @@ export default {
         })
         this.list = [...this.list, ...list];
       }, 1000)
-
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
-.commodityBox {
-  display: flex;
+
+.content {
+  position: relative;
   width: 100%;
-  flex-wrap: wrap;
+  height: 100%;
 
-  .commodity {
-    position: relative;
-    border-radius: 10px;
-    margin: 10px 0 0 10px;
-    width: 45%;
+  .commodityBox {
     display: flex;
-    align-items: center;
-    flex-direction: column;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    width: 100%;
+    flex-wrap: wrap;
 
-    .price {
-      margin: 5px 0 0 0;
-      color: #ed4014;
-      font-weight: bold;
+    .commodity {
+      position: relative;
+      border-radius: 10px;
+      margin: 10px 0 0 10px;
+      width: 45%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+
+      .price {
+        margin: 5px 0 0 0;
+        color: #ed4014;
+        font-weight: bold;
+      }
+
+      .commodityName {
+        font-size: 13px;
+        margin: 5px 0 5px 0;
+      }
+
+      .isNo {
+        top: 40px;
+        position: absolute;
+        width: 100%;
+      }
+
+      .img {
+        width: 100%;
+        display: block;
+      }
     }
 
-    .commodityName {
-      font-size: 13px;
-      margin: 5px 0 5px 0;
-    }
-
-    .isNo {
-      top: 40px;
-      position: absolute;
-      width: 100%;
-    }
-
-    .img {
-      width: 100%;
-      display: block;
-    }
   }
 
-}
+  .page {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
 
-.page {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
+  .time {
+    padding: 10px;
+    margin: 0;
+    font-size: 12px;
+  }
 
-.time {
-  padding: 10px;
-  margin: 0;
-  font-size: 12px;
-}
-
-.title {
-  margin: 0;
-  font-size: 18px;
-  font-weight: bold;
-  padding: 10px;
+  .title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+  }
 }
 </style>

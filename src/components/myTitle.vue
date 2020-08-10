@@ -1,7 +1,7 @@
 <template>
   <van-nav-bar
       class="title"
-      :title="$route.meta.title" left-arrow @click-left="clickLeft""
+      :title="$route.meta.title" left-arrow @click-left="clickLeft"
   />
 </template>
 
@@ -12,7 +12,13 @@ export default {
     clickLeft() {
       this.$router.go(-1);
     }
-  }
+  },
+  watch:{
+    '$route.path'(){
+      document.getElementsByClassName('van-nav-bar__title')[0].style.color = this.$route.meta.color?this.$route.meta.color:'#000';
+    }
+  },
+
 }
 </script>
 
