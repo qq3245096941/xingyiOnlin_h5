@@ -5,13 +5,13 @@
 </template>
 
 <script>
-import fenxianghaibao from "@/assets/img/fenxianghaibao.svg"
+import businessCard from "@/static/img/businessCard.png"
 
 export default {
   name: "businessCard",
   data(){
     return{
-      haibao:fenxianghaibao
+      haibao:businessCard
     }
   }
 }
@@ -26,6 +26,5 @@ export default {
       display: block;
       width: 100%;
     }
-
   }
 </style>

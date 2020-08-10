@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <div class="userInfo">
-      <img class="back" src="../../assets/img/my/back.svg" alt="">
+      <img class="back" :src="require('@/static/img/myBack.png')" alt="">
 
       <div class="user">
         <van-image width="60" round height="60" :src="require('../../assets/img/my/avatar.jpg')"/>

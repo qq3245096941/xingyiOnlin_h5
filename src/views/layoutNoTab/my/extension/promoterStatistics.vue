@@ -7,7 +7,7 @@
     </div>
 
     <div class="header" ref="header">
-      <img class="back" :src="require('@/assets/img/my/hongsebeijing.svg')" alt="">
+      <img class="back" :src="require('@/static/img/redBack.png')" alt="">
       <van-search clearable shape="round" background="#f2f2f200" class="search" v-model="search" placeholder="搜索会员名称"/>
       <div class="hen"></div>
       <div class="sort">

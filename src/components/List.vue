@@ -1,5 +1,6 @@
 <template>
   <van-list
+      class="list"
       @load="load"
       v-model="loading"
       :finished="finished"
@@ -49,5 +50,9 @@ export default {
 </script>
 
 <style scoped>
-
+  .list{
+    overflow: auto;
+    position: relative;
+    z-index: 1000;
+  }
 </style>

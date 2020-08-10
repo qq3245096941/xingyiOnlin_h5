@@ -1,101 +1,124 @@
 <!--推广人排行-->
 <template>
-  <div class="content">
-
-    <div class="topBody">
-      <img :src="require('@/static/img/tuiguangTop.png')" alt="">
+  <div class="content" ref="content">
+    <div class="topBody" ref="header">
+      <img :src="require('@/static/img/promoter.png')" alt="">
       <p class="time">截止日期：2020年11月1日</p>
     </div>
 
     <div class="bottomBody">
-      <img :src="require('@/static/img/tuiguangBottom.png')" alt="">
-      <div class="box">
-        <div class="list">
+
+
+      <img :src="require('@/static/img/bottom.png')" alt="">
+      <List :style="{height:this.listHeight}" :curr-length="list.length" :total="40" @getData="getList">
+        <div class="list" >
           <div class="item" v-for="item in list">
-            <p>{{item.rankIng}}</p>
-            <p><van-image round width="15" height="15" :src="item.icon" />{{item.nickname}}</p>
-            <p></p>
+
+            <p>
+              {{item.ranking}}
+            </p>
+
+            <p class="userInfo">
+              <van-image round width="18" height="18" :src="item.icon"/>
+              {{item.nickname}}
+            </p>
+
+            <p>
+              {{item.peopleNumber}}人
+            </p>
           </div>
         </div>
-      </div>
+      </List>
     </div>
+
   </div>
 </template>
 
 <script>
 import avatar from '@/assets/img/my/avatar.jpg';
+import page from "@/mixin/page";
 
 export default {
   name: "ListOfPromoters",
-  data(){
-    return{
-      list:[]
+  mixins: [page],
+  data() {
+    return {
+      list: []
     }
   },
   mounted() {
-    this.list = Array.from({length:8}).map((item,index)=>{
-      return {
-        ranking:index,
-        icon:avatar,
-        nickname:'张三'
-      }
-    })
+
+  },
+  methods: {
+    getList() {
+      setTimeout(() => {
+        let list = Array.from({length: 20}).map((item, index) => {
+          return {
+            ranking: index,
+            icon: avatar,
+            nickname: '张三',
+            peopleNumber:1523
+          }
+        })
+
+        this.list = [...this.list, ...list];
+      }, 1000)
+    }
   }
 }
 </script>
 
 <style scoped lang="scss">
-  .content{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
+.content {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
 
-    .topBody{
-      position: relative;
+  .topBody {
+    position: relative;
 
-      img{
-        display: block;
-        width: 100%;
-      }
-
-      p{
-        position: absolute;
-        bottom: 17px;
-        text-align: center;
-        width: 100%;
-        font-size: 13px;
-        color: #fff;
-      }
+    img {
+      display: block;
+      width: 100%;
     }
 
-    .bottomBody{
+    p {
+      position: absolute;
+      bottom: 17px;
+      text-align: center;
+      width: 100%;
+      font-size: 13px;
+      color: #fff;
+    }
+  }
+
+  .bottomBody {
+    position: relative;
+    top: -5px;
+
+    img {
+      display: block;
+      width: 100%;
+      position: absolute;
+    }
+
+    .list{
       position: relative;
-      top: -5px;
+      z-index: 1000;
 
-      img{
-        display: block;
-        width: 100%;
-      }
+      .item {
+        display: flex;
+        align-items: center;
+        margin: 15px 0;
 
-      .box{
-        position: absolute;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        padding: 4px 20px 20px 20px;
-
-        .list{
-          background: #fff;
-          height: 250px;
-          overflow: auto;
-
-          .item{
-            display: flex;
-            align-items: center;
-          }
+        p{
+          flex: 1;
+          text-align: center;
         }
+
       }
     }
   }
+}
 </style>

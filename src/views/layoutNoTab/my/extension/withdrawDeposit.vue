@@ -1,7 +1,7 @@
 <!--立刻提现-->
 <template>
   <div class="content">
-    <img class="back" :src="require('@/assets/img/my/hongsebeijing.svg')" alt="">
+    <img class="back" :src="require('@/static/img/redBack.png')" alt="">
     <div class="moneyList">
       <div class="card">
         可提现金额：&nbsp;&nbsp;<span class="money">￥{{aggregateMoney}}</span>

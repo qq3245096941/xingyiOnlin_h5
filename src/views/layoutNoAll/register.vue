@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <img class="back" :src="require('@/assets/img/zhucedenglubeijing.svg')" alt="">
+    <img class="back" :src="require('@/static/img/loginBack.png')" alt="">
 
     <div class="login">
       <van-form class="form" @submit="onSubmit">
@@ -74,7 +74,7 @@ export default {
   .login {
     width: 279px;
     height: 421px;
-    background: url("../../assets/img/denglushuru.svg");
+    background: url("../../static/img/login.png");
     background-size: 100% 100%;
     position: relative;
     z-index: 1000;

@@ -1,7 +1,7 @@
 <!--我的推广-->
 <template>
   <div class="content">
-    <img class="back" :src="require('@/assets/img/my/hongsebeijing.svg')" alt="">
+    <img class="back" :src="require('@/static/img/redBack.png')" alt="">
     <!--提现记录-->
     <div class="body">
       <div class="withdrawalRecord">提现记录
