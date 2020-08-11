@@ -11,43 +11,57 @@
 </template>
 
 <script>
-import {insertAddress,updateAddress} from '@/api/address'
+import {insertAddress, updateAddress, addressInfo} from '@/api/address'
 import area from '@/uitls/area'
 
 export default {
   name: "addAddress",
-  data(){
-    return{
-      addressInfo:{
-        name:'',
-        tel:'',
-        province:'',
-        city:'',
-        county:'',
-        addressDetail:'',
-        isDefault:false
+  data() {
+    return {
+      addressInfo: {
+        name: '',
+        tel: '',
+        province: '',
+        city: '',
+        county: '',
+        addressDetail: '',
+        isDefault: false
       },
       area
     }
   },
   created() {
-    if(this.$route.query.addressId){
+    if (this.$route.query.addressId) {
+      addressInfo({
+        addressId: this.$route.query.addressId
+      }).then(data => {
+        let obj = data.data;
 
+        this.addressInfo = {
+          name: obj.userName,
+          tel: obj.userTel,
+          province: obj.provice,
+          city: obj.city,
+          county: obj.county,
+          addressDetail: obj.addDesc,
+          isDefault: obj.def === '0'
+        }
+      })
     }
   },
-  methods:{
-    onSave(res){
+  methods: {
+    onSave(res) {
       insertAddress({
-        provice:res.province,
-        city:res.city,
-        county:res.county,
-        addDesc:res.addressDetail,
-        userName:res.name,
-        userTel:res.tel,
-        isDefault:res.isDefault,
-        addressId:res.areaCode,
-        userId:this.userInfo.userId
-      }).then(data=>{
+        provice: res.province,
+        city: res.city,
+        county: res.county,
+        addDesc: res.addressDetail,
+        userName: res.name,
+        userTel: res.tel,
+        isDefault: res.isDefault,
+        addressId: res.areaCode,
+        userId: this.userInfo.userId
+      }).then(data => {
         this.$router.go(-1);
       })
     }

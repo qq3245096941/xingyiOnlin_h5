@@ -16,6 +16,13 @@ export function addressList(data) {
 }
 
 /*地址详情*/
+export function addressInfo(data) {
+    return request({
+        url: `/address/${data.addressId}/addressInfo`,
+    })
+}
+
+/*地址详情*/
 export function updateAddress(data) {
     return request({
         url: `/address/upAddress`,
