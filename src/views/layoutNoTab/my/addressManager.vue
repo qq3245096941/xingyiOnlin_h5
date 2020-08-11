@@ -42,7 +42,7 @@ export default {
           name: item.userName,
           tel: item.userTel,
           address: item.provice + item.city + item.county + item.addDesc,
-          isDefault: item.def === "1"
+          isDefault: item.def === "0"
         }
       });
     })

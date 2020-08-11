@@ -1,14 +1,27 @@
 <template>
   <van-tabs>
-    <van-tab title="微信">微信</van-tab>
-    <van-tab title="支付宝">支付宝</van-tab>
-    <van-tab title="银行卡">银行卡</van-tab>
+    <van-tab v-for="item in list" :title="item.payName">
+      <img :src="imgPrefixUrl+item.payUrl" alt="">
+      123
+    </van-tab>
   </van-tabs>
 </template>
 
 <script>
+import {payList} from "@/api/pay";
+
 export default {
-  name: "payment"
+  name: "payment",
+  data() {
+    return {
+      list: []
+    }
+  },
+  created() {
+    payList({userId: this.userInfo.userId}).then(data => {
+      this.list = data.data;
+    })
+  }
 }
 </script>
 

@@ -31,6 +31,16 @@ Vue.mixin({
         userInfo(){
             return localStorage('get','userInfo');
         }
+    },
+    methods:{
+        /*过滤头像*/
+        filterAvatar(url){
+            if (url.indexOf('http://')===0 || url.indexOf('https://')===0) {
+                return url;
+            } else {
+                return this.imgPrefixUrl + url;
+            }
+        }
     }
 })
 

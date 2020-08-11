@@ -10,8 +10,17 @@ import withdrawDeposit from "@/views/layoutNoTab/my/extension/withdrawDeposit";
 import personalCenter from "@/views/layoutNoTab/my/personalCenter";
 import orderAll from "@/views/layoutNoTab/my/order/orderAll";
 import deliverOrder from "@/views/layoutNoTab/my/deliverOrder";
+import editUserInfo from "@/views/layoutNoTab/my/user/editUserInfo";
 
 export default [
+    {
+        path: 'editUserInfo',
+        name: 'editUserInfo',
+        component: editUserInfo,
+        meta: {
+            title: '修改信息'
+        }
+    },
     {
         path: 'service',
         name: 'service',
@@ -84,7 +93,7 @@ export default [
         component: listOfPromoters,  //推广人排行
         meta: {
             title: '推广人统计',
-            color:'#ffffff'
+            color: '#ffffff'
         }
     },
     {
@@ -93,7 +102,7 @@ export default [
         component: promoterStatistics,  //推广人统计
         meta: {
             title: '推广人统计',
-            color:'#ffffff'
+            color: '#ffffff'
         }
     },
     {
@@ -107,7 +116,7 @@ export default [
     {
         path: 'orderAll',
         name: 'orderAll',
-        component: orderAll,  //立刻提现
+        component: orderAll,
         meta: {
             title: '全部订单'
         }
@@ -115,7 +124,7 @@ export default [
     {
         path: 'deliverOrder',
         name: 'deliverOrder',
-        component: deliverOrder,  //立刻提现
+        component: deliverOrder,
         meta: {
             title: '发货订单'
         }

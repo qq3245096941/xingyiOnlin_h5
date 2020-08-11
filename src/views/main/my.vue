@@ -4,7 +4,7 @@
       <img class="back" :src="require('@/static/img/myBack.png')" alt="">
 
       <div class="user">
-        <van-image width="60" round height="60" :src="userInfo.usertx"/>
+        <van-image width="60" round height="60" :src="filterAvatar(userInfo.usertx)"/>
         <p class="nickname">{{userInfo.nickName}}</p>
       </div>
     </div>
@@ -61,10 +61,16 @@
   </div>
 </template>
 
-
 <script>
 export default {
-  name: "my"
+  name: "my",
+  mounted() {
+    if(!this.userInfo){
+      this.$router.push({
+        path:'/login'
+      })
+    }
+  }
 }
 </script>
 

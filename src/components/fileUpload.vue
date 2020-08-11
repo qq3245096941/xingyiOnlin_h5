@@ -1,29 +1,30 @@
 <template>
-  <van-uploader :before-read="beforeRead" :after-read="afterRead">
+  <van-uploader :after-read="afterRead">
     <slot></slot>
   </van-uploader>
 </template>
 
 <script>
-import request from "@/uitls/request";
+import axios from 'axios'
 
 export default {
   name: "fileUpload",
-  methods:{
-    beforeRead(file){
-      if (file.type !== 'image/jpeg') {
-        this.Toast('请上传 jpg 格式图片');
-        return false;
+  methods: {
+    afterRead(file) {
+
+      let param = new FormData()  // 创建form对象
+      param.append('image', file.file)  // 通过append向form对象添加数据
+      param.append('name', 'image') // 添加form表单中其他数据
+
+      let config = {
+        headers: {'Content-Type': 'multipart/form-data'},
+
       }
-      return true;
-    },
-    afterRead(file){
-      console.log(file);
-
-      request({
-        method:'post',
-
-      })
+      // 添加请求头
+      axios.post('http://39.99.138.150:8083/famous/file/uploadPicAjax', param, config)
+          .then(res => {
+            this.$emit('change',res.data.data.picPath.split('images/')[1]);
+          })
     }
   }
 }

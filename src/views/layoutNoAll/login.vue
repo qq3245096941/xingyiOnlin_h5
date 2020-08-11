@@ -62,7 +62,7 @@ export default {
         //将用户信息保存在本地
         handleLocalStorage('set','userInfo',data.user);
 
-        Toast('登录成功');
+        this.Toast('登录成功');
 
         this.$router.push({
           path:'/layout/main'
