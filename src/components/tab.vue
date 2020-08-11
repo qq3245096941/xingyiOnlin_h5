@@ -1,5 +1,5 @@
 <template>
-  <van-tabbar v-model="value" route>
+  <van-tabbar route>
     <van-tabbar-item to="/layout/main" name="main">
       <span>首页</span>
       <template #icon="props">
@@ -23,20 +23,7 @@
 
 <script>
 export default {
-  name: "tab",
-  data() {
-    return {
-      value:''
-    }
-  },
-  methods: {
-    change(res){
-      console.log(res);
-    }
-  },
-  mounted() {
-
-  }
+  name: "tab"
 }
 </script>
 

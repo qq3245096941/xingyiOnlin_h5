@@ -7,7 +7,7 @@
       <van-pagination class="page" :total-items="24" :items-per-page="5"/>
     </div>
 
-    <List :style="{height: this.listHeight}" @getData="getList" :total="40"
+    <List :style="{height: this.listHeight}" @getData="getList" :total="total"
           :curr-length="list.length">
 
       <div class="commodityBox">
@@ -25,6 +25,7 @@
 
 <script>
 import page from "@/mixin/page";
+import {getShopAll} from '@/api/type'
 
 export default {
   name: "district",
@@ -41,16 +42,16 @@ export default {
       })
     },
     getList() {
-      setTimeout(() => {
-        let list = Array.from({length: 20}).map(item => {
-          return {
-            price: '1.00',
-            commodityName: '红木家具鸡翅木...',
-            isNo: true
-          }
-        })
-        this.list = [...this.list, ...list];
-      }, 1000)
+      getShopAll({
+        commdityType: this.$route.query.commdityType,
+        isRecommed:0,
+        page:this.currPage,
+        size:this.pageSize
+      }).then(data => {
+        this.total = data.totalCount;
+        this.list = [...this.list, ...data.shopList];
+
+      })
     }
   }
 }

@@ -16,29 +16,39 @@
     <div class="shopping">
       <p>热门推荐</p>
       <div class="imgs">
-        <img :src="require('../../assets/img/main/tehuiqu.svg')" alt="" @click="goDisTrict">
-        <img :src="require('../../assets/img/main/yushiqu.svg')" alt="">
-        <img :src="require('../../assets/img/main/shoufaqu.svg')" alt="">
-        <img :src="require('../../assets/img/main/gaojiaqu.svg')" alt="">
+        <div v-for="(item,index) in list" :key="index" @click="goDisTrict(item)">
+          <p>{{item.name}}</p>
+          <img :src="imgPrefixUrl + item.path" alt="">
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import {getTypeList} from "@/api/type";
+
 export default {
   name: "index",
   data() {
     return {
-
+      list: []
     }
   },
-  methods:{
-    goDisTrict(){
+  methods: {
+    goDisTrict(item) {
       this.$router.push({
-        path:'/layoutNoTab/district'
+        path: '/layoutNoTab/district',
+        query:{
+          commdityType:item.name
+        }
       })
     }
+  },
+  created() {
+    getTypeList().then(data => {
+      this.list = data.cmTypeList;
+    })
   }
 }
 </script>
@@ -62,7 +72,7 @@ export default {
     display: flex;
     flex-direction: column;
 
-    img{
+    img {
       display: block;
       width: 100%;
       margin-top: 10px;

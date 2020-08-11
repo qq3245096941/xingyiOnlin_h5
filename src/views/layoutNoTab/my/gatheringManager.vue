@@ -5,9 +5,9 @@
       <div class="item">
         <img :src="item.icon" alt="">
         <div class="btns">
-          <van-uploader v-if="index===2">
+          <fileUpload v-if="index===2">
             <span @click="edit(index)">修改</span>
-          </van-uploader >
+          </fileUpload >
 
           <span v-else @click="edit(index)">修改</span>
           <span @click="look">查看</span>
@@ -15,8 +15,6 @@
       </div>
       <van-divider v-if="index<2"/>
     </template>
-
-
   </div>
 </template>
 
@@ -45,7 +43,6 @@ export default {
   },
   methods: {
     look() {
-
       this.ImagePreview([
         'https://img.yzcdn.cn/vant/apple-1.jpg'
       ]);

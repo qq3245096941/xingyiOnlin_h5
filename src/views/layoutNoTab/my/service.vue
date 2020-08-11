@@ -1,6 +1,6 @@
 <template>
-  <div>
-
+  <div class="content">
+    <img :src="require('@/assets/img/my/serve.jpg')" alt="">
   </div>
 </template>
 
@@ -10,6 +10,18 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.content {
+  width: 100%;
+  height: 100%;
+
+  img {
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+
+  }
+}
+
 
 </style>

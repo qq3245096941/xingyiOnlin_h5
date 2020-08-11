@@ -5,7 +5,8 @@ export default {
             headerHeight: 0,
             listHeight: 0,
             pageSize:20,
-            currPage:1
+            currPage:1,
+            total:0
         }
     },
     methods:{

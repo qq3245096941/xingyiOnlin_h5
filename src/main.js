@@ -5,11 +5,12 @@ import store from './store'
 import Vant from 'vant';
 import 'vant/lib/index.css';
 import moment from 'moment'
-import { ImagePreview } from 'vant';
+import { ImagePreview,Toast } from 'vant';
 
 import agreement from "@/components/agreement";
 import List from "@/components/List";
 import paymentComponent from "@/components/paymentComponent";
+import fileUpload from "@/components/fileUpload";
 
 Vue.config.productionTip = false
 
@@ -19,7 +20,9 @@ Vue.mixin({
     data() {
         return {
             Moment: moment,
-            ImagePreview
+            ImagePreview,  //图片查看器
+            Toast,   //轻量提示工具
+            imgPrefixUrl:'http://39.99.138.150/images/'
         }
     }
 })
@@ -31,6 +34,8 @@ Vue.component('agreement', agreement);
 Vue.component('List', List);
 /*支付组件*/
 Vue.component('paymentComponent', paymentComponent);
+/*文件上传组件*/
+Vue.component('fileUpload',fileUpload);
 
 new Vue({
     router,

@@ -14,32 +14,49 @@
             type="password"
             placeholder="请输入密码"/>
 
-        <p class="register" @click="$router.push({path:'/register'})">注册</p>
+        <p class="register" ></p>
 
-        <div style="margin: 16px;">
-          <van-button round block type="danger" native-type="onSubmit">
+        <div class="btns">
+          <van-button block type="danger" native-type="onSubmit">
             提交
           </van-button>
+          <van-button style="margin-top: 10px" block type="warning" @click="$router.push({path:'/register'})">
+            注册
+          </van-button>
+          <img style="margin-top: 10px" @click="authorization" :src="require('@/assets/img/weixinLogo.svg')" alt="">
+          <p style="text-align: center;font-size: 11px">授权登录</p>
         </div>
       </van-form>
-
     </div>
   </div>
 </template>
 
 <script>
+import {userLogin} from '@/api/user'
+
 export default {
   name: 'login',
   data() {
     return {
-      username: '',
-      password: ''
+      username: '18322171989',
+      password: '123'
     }
   },
-  methods:{
-    /* onSubmit(res){
-       console.log(res);
-     }*/
+  methods: {
+    onSubmit(res) {
+      userLogin({
+        tel:this.username,
+        userPwd: this.password
+      }).then(data=>{
+        console.log(data);
+      })
+    },
+    authorization() {
+      window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxd71848e1ce66dcd6&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect`
+      /* userLogin().then(data=>{
+
+       })*/
+    }
   }
 }
 </script>
@@ -66,7 +83,7 @@ export default {
     margin: 20% auto;
     padding: 30px;
 
-    .register{
+    .register {
       text-align: right;
       margin: 10px;
       font-size: 12px;
@@ -74,6 +91,12 @@ export default {
 
     .form {
       margin-top: 45px;
+    }
+
+    .btns{
+      display: flex;
+      flex-direction: column;
+      align-content: center;
     }
   }
 }
