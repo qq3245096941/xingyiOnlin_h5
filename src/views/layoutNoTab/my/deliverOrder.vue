@@ -4,7 +4,7 @@
     <div ref="header"></div>
 
     <List :total="total" :curr-length="list.length" @getData="getList">
-      <commodity class="card" v-for="item in list" :comm="item"></commodity>
+      <commodity class="card" v-for="(item,index) in list" :comm="item" :key="index"></commodity>
     </List>
   </div>
 </template>
