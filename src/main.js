@@ -12,6 +12,8 @@ import List from "@/components/List";
 import paymentComponent from "@/components/paymentComponent";
 import fileUpload from "@/components/fileUpload";
 
+import localStorage from "@/uitls/localStorage";
+
 Vue.config.productionTip = false
 
 Vue.use(Vant);
@@ -23,6 +25,11 @@ Vue.mixin({
             ImagePreview,  //图片查看器
             Toast,   //轻量提示工具
             imgPrefixUrl:'http://39.99.138.150/images/'
+        }
+    },
+    computed:{
+        userInfo(){
+            return localStorage('get','userInfo');
         }
     }
 })

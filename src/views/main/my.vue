@@ -4,8 +4,8 @@
       <img class="back" :src="require('@/static/img/myBack.png')" alt="">
 
       <div class="user">
-        <van-image width="60" round height="60" :src="require('../../assets/img/my/avatar.jpg')"/>
-        <p class="nickname">追风的牧羊人</p>
+        <van-image width="60" round height="60" :src="userInfo.usertx"/>
+        <p class="nickname">{{userInfo.nickName}}</p>
       </div>
     </div>
 

@@ -8,11 +8,17 @@ export default function ({url, data, method = 'post'}) {
         message: '加载中...',
         forbidClick: true,
     })
+
+    let formData = new FormData();
+    for (let i in data){
+        formData.append(i,data[i]);
+    }
+
     return new Promise(resolve => {
         axios({
             url: baseUrl + url,
             method,
-            data
+            data:formData
         }).then(data => {
             if (data.status === 200) {
                 Toast.clear();

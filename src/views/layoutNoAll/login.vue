@@ -32,7 +32,8 @@
 </template>
 
 <script>
-import {userLogin} from '@/api/user'
+import {userLogin,sendCode} from '@/api/user'
+import handleLocalStorage from '@/uitls/localStorage'
 
 export default {
   name: 'login',
@@ -43,12 +44,29 @@ export default {
     }
   },
   methods: {
-    onSubmit(res) {
+    async onSubmit(res) {
+      //获取短信
+     /* let data = await sendCode({telephone:this.username})
+      console.log(data);
+      return;*/
+
       userLogin({
         tel:this.username,
         userPwd: this.password
       }).then(data=>{
-        console.log(data);
+        if(data.code==='1'){
+          this.Toast(data.message);
+          return;
+        }
+
+        //将用户信息保存在本地
+        handleLocalStorage('set','userInfo',data.user);
+
+        Toast('登录成功');
+
+        this.$router.push({
+          path:'/layout/main'
+        })
       })
     },
     authorization() {

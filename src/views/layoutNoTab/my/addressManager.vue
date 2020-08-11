@@ -8,32 +8,43 @@
 </template>
 
 <script>
+import {addressList} from '@/api/address'
+
 export default {
   name: "addressManager",
-  data(){
-    return{
-      list:[]
+  data() {
+    return {
+      list: []
     }
   },
-  methods:{
-    onAdd(){
+  methods: {
+    onAdd() {
       this.$router.push({
-        path:'/layoutNoTab/addAddress'
+        path: '/layoutNoTab/addAddress'
       })
     },
-    onEdit(){
-
+    onEdit(res) {
+      this.$router.push({
+        path: '/layoutNoTab/addAddress',
+        query:{
+          addressId:res.id
+        }
+      })
     }
   },
   mounted() {
-    this.list = Array.from({length:5}).map((item,index)=>{
-      return {
-        id:index,
-        name:'张三',
-        tel:'15623554858',
-        address:'武汉市洪山区关山大道关山春晓',
-        isDefault:true
-      }
+    addressList({
+      userId: this.userInfo.userId
+    }).then(data => {
+      this.list = data.list.map(item => {
+        return {
+          id: item.addressId,
+          name: item.userName,
+          tel: item.userTel,
+          address: item.provice + item.city + item.county + item.addDesc,
+          isDefault: item.def === "1"
+        }
+      });
     })
   }
 }
