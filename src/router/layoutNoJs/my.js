@@ -13,8 +13,28 @@ import deliverOrder from "@/views/layoutNoTab/my/deliverOrder";
 import editUserInfo from "@/views/layoutNoTab/my/user/editUserInfo";
 import bankCardEdit from "@/views/layoutNoTab/my/bankCardEdit";
 import myWallet from "@/views/layoutNoTab/my/myWallet";
+import myFans from "@/views/layoutNoTab/my/myFans";
+import fansOrder from "@/views/layoutNoTab/my/fansOrder";
 
 export default [
+    {
+        path: 'fansOrder',
+        name: 'fansOrder',
+        component: fansOrder,
+        meta: {
+            title: '粉丝订单',
+            color:'#ffffff'
+        }
+    },
+    {
+        path: 'myFans',
+        name: 'myFans',
+        component: myFans,
+        meta: {
+            title: '我的粉丝',
+            color:'#ffffff'
+        }
+    },
     {
         path: 'myWallet',
         name: 'myWallet',

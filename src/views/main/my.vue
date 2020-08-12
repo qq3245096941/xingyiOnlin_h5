@@ -33,11 +33,11 @@
         <img class="icon" src="../../assets/img/my/fans/wodeqianbao.svg" alt="">
         <p class="title">我的钱包</p>
       </div>
-      <div class="order">
+      <div class="order" @click="$router.push({path:'/layoutNoTab/fansOrder'})">
         <img class="icon" src="../../assets/img/my/fans/fensidingdan.svg" alt="">
         <p class="title">粉丝订单</p>
       </div>
-      <div class="order">
+      <div class="order" @click="$router.push({path:'/layoutNoTab/myFans'})">
         <img class="icon" src="../../assets/img/my/fans/wodefensi.svg" alt="">
         <p class="title">我的粉丝</p>
       </div>

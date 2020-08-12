@@ -7,14 +7,15 @@
     </div>
 
     <div class="card">
+
       <div class="title">
         <p>日期</p>
         <p>佣金</p>
         <p>佣金来源</p>
       </div>
+
       <List class="list" :style="{height:contentHeight-headerHeight-40+'px'}" :total="40" :curr-length="list.length"
             @getData="getList">
-
         <div v-for="item in list">
           <div  class="item" @click="item.isShow = !item.isShow">
             <p>{{item.time}}</p>
@@ -29,9 +30,12 @@
             <p>{{childrenItem.source}}</p>
           </div>
         </div>
-
-
       </List>
+    </div>
+
+    <div class="detail">
+      <p>佣金明细</p>
+      <p>￥00.00</p>
     </div>
 
 
@@ -86,6 +90,20 @@ export default {
   top: 0;
   width: 100%;
   height: 100%;
+
+  .detail{
+    position: absolute;
+    top: 13%;
+    color: #fff;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    p{
+      font-size: 15px;
+    }
+  }
 
   .back {
     display: block;
