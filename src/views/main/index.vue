@@ -10,7 +10,8 @@
         background="#c5c8ce"
         :left-icon="require('../../assets/img/gonggao.svg')"
         text="这是通告栏。"
-        mode="link"/>
+        mode="link"
+    @click="$router.push({path:'/layout/notice'})"/>
 
     <!--商品区-->
     <div class="shopping">
@@ -47,7 +48,7 @@ export default {
       this.$router.push({
         path: '/layoutNoTab/district',
         query: {
-          commdityType: item.name
+          commdityType: item.cid
         }
       })
     }

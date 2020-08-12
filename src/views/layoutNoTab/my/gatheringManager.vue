@@ -6,14 +6,14 @@
       <div class="item" v-for="(item,index) in payList">
         <img :src="item.icon" alt="">
         <div class="btns">
-          <span @click="look(item.payUrl)" v-show="item.payUrl">查看</span>
+          <span @click="look(item.payUrl)" v-show="item.payUrl!=='null'">查看</span>
 
           <fileUpload v-if="item.payType===1||item.payType===0" @change="edit($event,item)">
             <span>修改</span>
           </fileUpload>
 
           <!--编辑银行卡-->
-          <span v-else @click="edit('',item)">修改</span>
+          <span v-else @click="edit('',item)">{{item.payUrl==='null'?'查看':'修改'}}</span>
 
           <span @click="deleteItem(item)">删除</span>
         </div>
@@ -47,11 +47,13 @@
 import zhifubao from '../../../assets/img/my/zhifubao.svg';
 import weiixn from '../../../assets/img/my/weiixn.svg';
 import yinhangka from '../../../assets/img/my/yinhangka.svg';
+import BankCard from "@/components/BankCard";
 
 import {addPay, payList, deletePay, updatePay} from '@/api/pay'
 
 export default {
   name: "gatheringManager",
+  components:{BankCard},
   data() {
     return {
       list: [],
@@ -159,7 +161,6 @@ export default {
     },
     /*删除支付方式*/
     deleteItem(item) {
-
       this.Dialog.confirm({
         title: '确定删除吗'
       }).then(() => {
@@ -169,7 +170,6 @@ export default {
           this.getList();
         })
       })
-
     }
   }
 }

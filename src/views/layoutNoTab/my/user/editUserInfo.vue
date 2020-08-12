@@ -29,7 +29,7 @@ export default {
       case 'nickName':
         this.label = '昵称'
         break;
-      case 'name':
+      case 'realName':
         this.label = '姓名'
         break;
       case 'userTel':

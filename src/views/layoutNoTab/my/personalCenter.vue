@@ -16,12 +16,12 @@
                         type:'nickName'
                       }
                     })"/>
-      <van-cell title="姓名" :value="name" @click="$router.push(
+      <van-cell title="姓名" :value="realName" @click="$router.push(
                     {
                       path:'/layoutNoTab/editUserInfo',
                       query:{
-                        value:name,
-                        type:'name'
+                        value:realName,
+                        type:'realName'
                       }
                     })"/>
       <van-cell title="手机号" :value="phone" @click="$router.push(
@@ -46,7 +46,7 @@ export default {
     return {
       avatar: '',
       nickname: '',
-      name: '张三',
+      realName: '',
       phone: '',
     }
   },
@@ -71,6 +71,7 @@ export default {
         let user = data.user;
 
         this.avatar = this.filterAvatar(user.usertx);
+        this.realName = user.realName;
 
         this.nickname = user.nickName;
         this.phone = user.userTel;

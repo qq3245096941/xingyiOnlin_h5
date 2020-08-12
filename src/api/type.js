@@ -7,10 +7,3 @@ export function getTypeList() {
     })
 }
 
-/*获取分类的详细商品*/
-export function getShopAll(data) {
-    return request({
-        url: '/maShop/shopAll',
-        data
-    })
-}

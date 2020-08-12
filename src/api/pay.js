@@ -29,3 +29,12 @@ export function updatePay(data) {
         data
     })
 }
+
+/*支付详情*/
+export function payInfo(data) {
+    return request({
+        url: `/mapay/${data.payId}/payInfo`
+    })
+}
+
+

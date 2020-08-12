@@ -11,11 +11,11 @@
           :curr-length="list.length">
 
       <div class="commodityBox">
-        <div class="commodity" v-for="(item,index) in list" :key="index" @click="toCommodityDetails">
+        <div class="commodity" v-for="(item,index) in list" :key="index" @click="toCommodityDetails(item)">
           <img class="isNo" src="../../../assets/img/main/yishouqin2.svg" alt="">
           <img class="img" src="../../../assets/img/main/chanpintu.svg" alt="">
-          <p class="price">￥{{item.price}}</p>
-          <p class="commodityName">{{item.commodityName}}</p>
+          <p class="price">￥{{item.shopPrice}}</p>
+          <p class="commodityName">{{item.shopName}}</p>
         </div>
       </div>
 
@@ -25,7 +25,7 @@
 
 <script>
 import page from "@/mixin/page";
-import {getShopAll} from '@/api/type'
+import {getShopAll} from '@/api/shop'
 
 export default {
   name: "district",
@@ -36,21 +36,25 @@ export default {
     }
   },
   methods: {
-    toCommodityDetails() {
+    toCommodityDetails(item) {
       this.$router.push({
-        path: '/layoutNoTab/commodityDetails'
+        path: '/layoutNoTab/commodityDetails',
+        query: {
+          shopId:item.shopId
+        }
       })
     },
     getList() {
       getShopAll({
         commdityType: this.$route.query.commdityType,
-        isRecommed:0,
-        page:this.currPage,
-        size:this.pageSize
+        isRecommed: 0,
+        page: this.currPage,
+        rows: this.pageSize
       }).then(data => {
+        this.currPage++;
+
         this.total = data.totalCount;
         this.list = [...this.list, ...data.shopList];
-
       })
     }
   }
