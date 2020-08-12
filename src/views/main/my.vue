@@ -29,7 +29,7 @@
     </div>
 
     <div class="orderTab">
-      <div class="order">
+      <div class="order" @click="$router.push({path:'/layoutNoTab/myWallet'})">
         <img class="icon" src="../../assets/img/my/fans/wodeqianbao.svg" alt="">
         <p class="title">我的钱包</p>
       </div>
@@ -62,8 +62,6 @@
 </template>
 
 <script>
-import localStorage from "@/uitls/localStorage";
-
 export default {
   name: "my",
   methods:{

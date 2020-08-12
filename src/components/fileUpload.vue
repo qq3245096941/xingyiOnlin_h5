@@ -11,6 +11,10 @@ export default {
   name: "fileUpload",
   methods: {
     afterRead(file) {
+      this.Toast.loading({
+        message: '上传中...',
+        forbidClick: true,
+      });
 
       let param = new FormData()  // 创建form对象
       param.append('image', file.file)  // 通过append向form对象添加数据
@@ -18,13 +22,13 @@ export default {
 
       let config = {
         headers: {'Content-Type': 'multipart/form-data'},
-
       }
       // 添加请求头
-      axios.post('http://39.99.138.150:8083/famous/file/uploadPicAjax', param, config)
-          .then(res => {
-            this.$emit('change',res.data.data.picPath.split('images/')[1]);
-          })
+      axios.post('http://39.99.138.150:8083/famous/file/uploadPicAjax', param, config).then(res => {
+        this.$emit('change', res.data.data.picPath.split('images/')[1]);
+
+        this.Toast.clear();
+      })
     }
   }
 }

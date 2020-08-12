@@ -12,12 +12,22 @@ import orderAll from "@/views/layoutNoTab/my/order/orderAll";
 import deliverOrder from "@/views/layoutNoTab/my/deliverOrder";
 import editUserInfo from "@/views/layoutNoTab/my/user/editUserInfo";
 import bankCardEdit from "@/views/layoutNoTab/my/bankCardEdit";
+import myWallet from "@/views/layoutNoTab/my/myWallet";
 
 export default [
     {
+        path: 'myWallet',
+        name: 'myWallet',
+        component: myWallet,
+        meta: {
+            title: '我的钱包',
+            color:'#ffffff'
+        }
+    },
+    {
         path: 'editUserInfo',
         name: 'editUserInfo',
-        component: editUserInfo,
+        component: editUserInfo,  //修改用户信息
         meta: {
             title: '修改信息'
         }
