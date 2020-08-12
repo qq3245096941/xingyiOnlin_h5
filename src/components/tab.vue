@@ -15,7 +15,7 @@
     <van-tabbar-item to="/layout/my" name="my" icon="setting-o">
       <span>我的</span>
       <template #icon="props">
-        <img :src="props.active ? require('../assets/img/tabIcon/wode2.svg') : require('../assets/img/tabIcon/gonggao2.svg')" />
+        <img :src="props.active ? require('../assets/img/tabIcon/wode2.svg') : require('../assets/img/tabIcon/wode1.svg')" />
       </template>
     </van-tabbar-item>
   </van-tabbar>

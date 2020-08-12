@@ -1,6 +1,6 @@
 <!--主页-->
 <template>
-  <div>
+  <div style="background: #fff">
     <div class="lunbo">
       <img src="../../assets/img/main/lunbo.svg" alt="">
     </div>
@@ -15,10 +15,16 @@
     <!--商品区-->
     <div class="shopping">
       <p>热门推荐</p>
-      <div class="imgs">
-        <div v-for="(item,index) in list" :key="index" @click="goDisTrict(item)">
-          <p>{{item.name}}</p>
+      <div class="typeList">
+        <div class="item" v-for="(item,index) in list" :key="index" @click="goDisTrict(item)">
+
           <img :src="imgPrefixUrl + item.path" alt="">
+
+          <div class="body">
+            <p class="title">[{{item.name}}]</p>
+            <p class="time">开启时间：{{item.openDate}} ~ {{item.closeDate}}</p>
+          </div>
+
         </div>
       </div>
     </div>
@@ -27,6 +33,7 @@
 
 <script>
 import {getTypeList} from "@/api/type";
+import {bannerAll} from '@/api/banner'
 
 export default {
   name: "index",
@@ -39,13 +46,20 @@ export default {
     goDisTrict(item) {
       this.$router.push({
         path: '/layoutNoTab/district',
-        query:{
-          commdityType:item.name
+        query: {
+          commdityType: item.name
         }
       })
     }
   },
   created() {
+    /*获取banner*/
+    bannerAll({
+      type:'index'
+    }).then(data=>{
+      console.log(data);
+    })
+
     getTypeList().then(data => {
       this.list = data.cmTypeList;
     })
@@ -68,15 +82,40 @@ export default {
 .shopping {
   padding: 10px;
 
-  .imgs {
-    display: flex;
-    flex-direction: column;
+  .item {
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.3);
+    position: relative;
+    width: 100%;
+    height: 130px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    padding: 70px 0 0 15px;
+  }
 
-    img {
-      display: block;
-      width: 100%;
-      margin-top: 10px;
+  .body{
+    position: relative;
+    z-index: 1000;
+
+    .title{
+      font-size: 13px;
+      font-weight: bold;
+      color: #fff;
     }
+
+    .time{
+      font-size: 13px;
+      color: #fff;
+      font-weight: bold;
+    }
+  }
+
+  img {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

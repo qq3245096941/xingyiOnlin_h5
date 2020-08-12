@@ -22,13 +22,23 @@ export function addressInfo(data) {
     })
 }
 
-/*地址详情*/
+/*更新地址*/
 export function updateAddress(data) {
     return request({
         url: `/address/upAddress`,
         data
     })
 }
+
+/*删除地址*/
+export function deleteAddress(data) {
+    return request({
+        url: `/address/${data.addressId}/delAddress`
+    })
+}
+
+
+
 
 
 

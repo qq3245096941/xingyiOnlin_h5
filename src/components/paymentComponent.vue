@@ -2,7 +2,6 @@
   <van-tabs>
     <van-tab v-for="item in list" :title="item.payName">
       <img :src="imgPrefixUrl+item.payUrl" alt="">
-      123
     </van-tab>
   </van-tabs>
 </template>
@@ -26,5 +25,8 @@ export default {
 </script>
 
 <style scoped>
-
+  img{
+    display: block;
+    width: 100%;
+  }
 </style>

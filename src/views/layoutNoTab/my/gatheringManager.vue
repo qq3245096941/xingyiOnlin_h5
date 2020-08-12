@@ -21,9 +21,8 @@
         <van-divider/>
       </div>
 
-      <div v-show="payList.length===0" style="text-align: center;padding: 20px">
-        请添加一个支付方式
-      </div>
+      <!-- 通用错误 -->
+      <van-empty v-show="payList.length===0" description="请选择一个付款方式" />
     </div>
 
     <van-button style="position: fixed;width: 100%;bottom: 0;left: 0" type="danger" @click="isShow=true">添加支付方式
