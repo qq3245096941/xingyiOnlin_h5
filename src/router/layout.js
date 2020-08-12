@@ -24,7 +24,8 @@ export default [
         name: 'my',
         component: my,
         meta: {
-            title: ''
+            title: '',
+            needUser:true
         }
     }
 ]

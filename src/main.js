@@ -5,7 +5,7 @@ import store from './store'
 import Vant from 'vant';
 import 'vant/lib/index.css';
 import moment from 'moment'
-import { ImagePreview,Toast } from 'vant';
+import { ImagePreview,Toast,Dialog } from 'vant';
 
 import agreement from "@/components/agreement";
 import List from "@/components/List";
@@ -24,6 +24,7 @@ Vue.mixin({
             Moment: moment,
             ImagePreview,  //图片查看器
             Toast,   //轻量提示工具
+            Dialog,
             imgPrefixUrl:'http://39.99.138.150/images/'
         }
     },

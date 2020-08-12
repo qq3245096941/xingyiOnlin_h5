@@ -55,20 +55,21 @@
     </van-cell-group>
 
     <div class="btn">
-      <van-button block type="danger" round @click="$router.push({path:'/login'})">登录/注册</van-button>
+      <van-button block type="danger" round @click="exitLogin">退出登录</van-button>
     </div>
 
   </div>
 </template>
 
 <script>
+import localStorage from "@/uitls/localStorage";
+
 export default {
   name: "my",
-  mounted() {
-    if(!this.userInfo){
-      this.$router.push({
-        path:'/login'
-      })
+  methods:{
+    exitLogin(){
+      window.localStorage.removeItem('userInfo');
+      this.$router.push({path:'/login'})
     }
   }
 }

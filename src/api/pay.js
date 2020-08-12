@@ -14,3 +14,18 @@ export function payList(data) {
         data
     })
 }
+
+/*删除*/
+export function deletePay(data) {
+    return request({
+        url: `/mapay/${data.payId}/delPay`,
+    })
+}
+
+/*更新支付*/
+export function updatePay(data) {
+    return request({
+        url: `/mapay/upPay`,
+        data
+    })
+}

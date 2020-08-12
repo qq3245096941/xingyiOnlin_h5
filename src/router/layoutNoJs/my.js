@@ -11,6 +11,7 @@ import personalCenter from "@/views/layoutNoTab/my/personalCenter";
 import orderAll from "@/views/layoutNoTab/my/order/orderAll";
 import deliverOrder from "@/views/layoutNoTab/my/deliverOrder";
 import editUserInfo from "@/views/layoutNoTab/my/user/editUserInfo";
+import bankCardEdit from "@/views/layoutNoTab/my/bankCardEdit";
 
 export default [
     {
@@ -19,6 +20,14 @@ export default [
         component: editUserInfo,
         meta: {
             title: '修改信息'
+        }
+    },
+    {
+        path: 'bankCardEdit',
+        name: 'bankCardEdit',
+        component: bankCardEdit,
+        meta: {
+            title: '编辑银行卡'
         }
     },
     {

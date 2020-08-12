@@ -16,6 +16,14 @@ export default {
   watch:{
     '$route.path'(){
       document.getElementsByClassName('van-nav-bar__title')[0].style.color = this.$route.meta.color?this.$route.meta.color:'#000';
+
+      if(this.$route.meta.needUser){
+        if(!this.userInfo){
+          this.$router.push({
+            path:'/login'
+          })
+        }
+      }
     }
   },
 

@@ -24,14 +24,14 @@
                         type:'name'
                       }
                     })"/>
-      <van-cell title="手机号" :value="phone"/> <!--@click="$router.push(
+      <van-cell title="手机号" :value="phone" @click="$router.push(
                     {
                       path:'/layoutNoTab/editUserInfo',
                       query:{
                         value:phone,
                         type:'userTel'
                       }
-                    })"-->
+                    })"/>
     </van-cell-group>
   </div>
 </template>
