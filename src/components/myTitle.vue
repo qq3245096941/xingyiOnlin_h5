@@ -15,8 +15,6 @@ export default {
   },
   watch:{
     $route(){
-      console.log(this.$route.meta);
-
       document.getElementsByClassName('van-nav-bar__title')[0].style.color = this.$route.meta.color?this.$route.meta.color:'#000';
 
       if(this.$route.meta.needUser){
@@ -27,8 +25,7 @@ export default {
         }
       }
     }
-  },
-
+  }
 }
 </script>
 

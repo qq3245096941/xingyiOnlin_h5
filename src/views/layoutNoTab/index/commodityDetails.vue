@@ -68,9 +68,9 @@ export default {
       this.info.shopCover = this.info.shopCover.split(',');
 
       //倒计时
-      this.Moment(this.info.openDate);  //开始时间
-
-      console.log(this.info);
+      this.info.openData = this.Moment(this.info.openDate);  //商品开始时间
+      this.info.closeData = this.Moment(this.info.closeData); //商品结束时间
+      
     })
   },
   mounted() {
