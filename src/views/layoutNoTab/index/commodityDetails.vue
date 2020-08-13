@@ -1,14 +1,11 @@
 <!--商品详情-->
 <template>
   <div class="content">
-
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
       <van-swipe-item v-for="item in info.shopCover">
         <img :src="imgPrefixUrl+item" alt="">
       </van-swipe-item>
     </van-swipe>
-
-
 
     <div class="body">
       <p>{{info.shopName}}</p>
@@ -46,9 +43,7 @@ export default {
       isShow: false,  //展示购买协议
       timeRemaining: 0,  //倒计时
       isStart: false,  //是否开始抢购
-
       info:{}  //商品详情
-
     }
   },
   methods: {
@@ -71,6 +66,9 @@ export default {
     }).then(data=>{
       this.info = data.data;
       this.info.shopCover = this.info.shopCover.split(',');
+
+      //倒计时
+      this.Moment(this.info.openDate);  //开始时间
 
       console.log(this.info);
     })

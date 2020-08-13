@@ -61,7 +61,7 @@ export default {
       console.log(data);
     })
 
-    getTypeList().then(data => {
+    getTypeList({page:1,rows:9999}).then(data => {
       this.list = data.cmTypeList;
     })
   }

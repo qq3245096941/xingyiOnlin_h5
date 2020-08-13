@@ -1,9 +1,10 @@
 import request from "@/uitls/request";
 
 /*获取分类列表*/
-export function getTypeList() {
+export function getTypeList(data) {
     return request({
         url: '/commditytype/typeParam',
+        data
     })
 }
 
