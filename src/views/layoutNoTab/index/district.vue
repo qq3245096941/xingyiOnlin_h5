@@ -2,9 +2,9 @@
 <template>
   <div class="content" ref="content">
     <div ref="header">
-      <p class="time">开启时间：10:00:00 ~ 11:00:00</p>
-      <p class="title" style="text-align: center">特惠区</p>
-      <van-pagination class="page" :total-items="24" :items-per-page="5"/>
+      <p class="time">开启时间：{{commdityTypeInfo.openDate}} ~ {{commdityTypeInfo.closeDate}}</p>
+      <p class="title" style="text-align: center">{{commdityTypeInfo.name}}</p>
+<!--      <van-pagination class="page" :total-items="24" :items-per-page="5"/>-->
     </div>
 
     <List :style="{height: this.listHeight}" @getData="getList" :total="total"
@@ -26,13 +26,15 @@
 <script>
 import page from "@/mixin/page";
 import {getShopAll} from '@/api/shop'
+import {typeInfo} from '@/api/type'
 
 export default {
   name: "district",
   mixins: [page],
   data() {
     return {
-      list: []
+      list: [],
+      commdityTypeInfo:{}
     }
   },
   methods: {
@@ -56,6 +58,13 @@ export default {
         this.list = [...this.list, ...data.shopList];
       })
     }
+  },
+  mounted() {
+    typeInfo({
+      commdityTypeId:this.$route.query.commdityType
+    }).then(data=>{
+      this.commdityTypeInfo = data.data;
+    })
   }
 }
 </script>

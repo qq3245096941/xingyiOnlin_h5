@@ -7,3 +7,9 @@ export function getTypeList() {
     })
 }
 
+export function typeInfo(data) {
+    return request({
+        url: `/commditytype/${data.commdityTypeId}/commdityTypeInfo`,
+    })
+}
+
