@@ -4,7 +4,7 @@
     <div ref="header">
       <p class="time">开启时间：{{commdityTypeInfo.openDate}} ~ {{commdityTypeInfo.closeDate}}</p>
       <p class="title" style="text-align: center">{{commdityTypeInfo.name}}</p>
-<!--      <van-pagination class="page" :total-items="24" :items-per-page="5"/>-->
+      <!--      <van-pagination class="page" :total-items="24" :items-per-page="5"/>-->
     </div>
 
     <List :style="{height: this.listHeight}" @getData="getList" :total="total"
@@ -13,7 +13,7 @@
       <div class="commodityBox">
         <div class="commodity" v-for="(item,index) in list" :key="index" @click="toCommodityDetails(item)">
           <img class="isNo" src="../../../assets/img/main/yishouqin2.svg" alt="">
-          <img class="img" src="../../../assets/img/main/chanpintu.svg" alt="">
+          <img class="img" :src="imgPrefixUrl+item.shopCover[0]" alt="">
           <p class="price">￥{{item.shopPrice}}</p>
           <p class="commodityName">{{item.shopName}}</p>
         </div>
@@ -34,7 +34,7 @@ export default {
   data() {
     return {
       list: [],
-      commdityTypeInfo:{}
+      commdityTypeInfo: {}
     }
   },
   methods: {
@@ -42,7 +42,7 @@ export default {
       this.$router.push({
         path: '/layoutNoTab/commodityDetails',
         query: {
-          shopId:item.shopId
+          shopId: item.shopId
         }
       })
     },
@@ -53,16 +53,21 @@ export default {
         rows: this.pageSize
       }).then(data => {
         this.currPage++;
-
         this.total = data.totalCount;
-        this.list = [...this.list, ...data.shopList];
+        this.list = [...this.list, ...data.shopList.map(item => {
+          item.shopCover = item.shopCover.split(',');
+
+          return item;
+        })];
+
+        console.log(this.list);
       })
     }
   },
   mounted() {
     typeInfo({
-      commdityTypeId:this.$route.query.commdityType
-    }).then(data=>{
+      commdityTypeId: this.$route.query.commdityType
+    }).then(data => {
       this.commdityTypeInfo = data.data;
     })
   }
@@ -82,6 +87,7 @@ export default {
     flex-wrap: wrap;
 
     .commodity {
+      overflow: hidden;
       position: relative;
       border-radius: 10px;
       margin: 10px 0 0 10px;
@@ -110,6 +116,7 @@ export default {
 
       .img {
         width: 100%;
+        height: 100px;
         display: block;
       }
     }

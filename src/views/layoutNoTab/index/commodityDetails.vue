@@ -65,12 +65,12 @@ export default {
       shopId: this.$route.query.shopId
     }).then(data=>{
       this.info = data.data;
-      this.info.shopCover = this.info.shopCover.split(',');
+      this.info.shopCover = this.info.shopCover.split(',');  //轮播图
 
       //倒计时
       this.info.openData = this.Moment(this.info.openDate);  //商品开始时间
       this.info.closeData = this.Moment(this.info.closeData); //商品结束时间
-      
+
     })
   },
   mounted() {
