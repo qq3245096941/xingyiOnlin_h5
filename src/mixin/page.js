@@ -6,7 +6,8 @@ export default {
             listHeight: 0,
             pageSize:20,
             currPage:1,
-            total:0
+            total:0,
+            list:[]
         }
     },
     methods:{

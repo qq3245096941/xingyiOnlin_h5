@@ -1,22 +1,21 @@
 <template>
   <van-tabs sticky>
     <van-tab title="公告通知">
-      <inform></inform>
+      <inform :remark-type="1"></inform>
     </van-tab>
     <van-tab title="协议">
-      <protocol></protocol>
+      <inform></inform>
     </van-tab>
   </van-tabs>
 </template>
 
 <script>
 import inform from "@/views/component/inform";
-import protocol from "@/views/component/protocol";
 
 export default {
   name: "notice",
   components: {
-    inform, protocol
+    inform
   },
   data() {
     return {

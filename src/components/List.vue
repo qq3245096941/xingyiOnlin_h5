@@ -27,15 +27,14 @@ export default {
   },
   data() {
     return {
-      loading: true,
+      loading: false,
       finished: false,
-
     }
   },
   watch: {
     currLength(newValue) {
-      this.finished = newValue >= this.total;
       this.loading = false;
+      this.finished = newValue >= this.total;
     }
   },
   created() {

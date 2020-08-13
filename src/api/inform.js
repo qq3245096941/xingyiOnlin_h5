@@ -7,3 +7,11 @@ export function noticeList(data) {
         data
     })
 }
+
+/*info*/
+export function noticeInfo(data) {
+    return request({
+        url: `/notice/${data.noticeId}/noticeInfo`,
+        data
+    })
+}

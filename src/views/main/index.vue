@@ -1,9 +1,11 @@
 <!--主页-->
 <template>
   <div style="background: #fff">
-    <div class="lunbo">
-      <img src="../../assets/img/main/lunbo.svg" alt="">
-    </div>
+    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+      <van-swipe-item v-for="item in bannerList">
+        <img :src="item" alt="">
+      </van-swipe-item>
+    </van-swipe>
     <!--通告栏-->
     <van-notice-bar
         color="#000"
@@ -40,7 +42,8 @@ export default {
   name: "index",
   data() {
     return {
-      list: []
+      list: [],
+      bannerList:[]
     }
   },
   methods: {
@@ -58,7 +61,7 @@ export default {
     bannerAll({
       type:'index'
     }).then(data=>{
-      console.log(data);
+      this.bannerList = data.list;
     })
 
     getTypeList({page:1,rows:9999}).then(data => {
