@@ -47,7 +47,6 @@ export default {
     getList() {
       getShopAll({
         commdityType: this.$route.query.commdityType,
-        isRecommed: 0,
         page: this.currPage,
         rows: this.pageSize
       }).then(data => {
