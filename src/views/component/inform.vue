@@ -1,27 +1,38 @@
+<!--公告-->
 <template>
-  <div class="protocolBox">
-    <div class="protocol" v-for="(item,index) in list" :key="index">
-      <p>{{item.title}}</p>
-      <p>{{item.time}}</p>
-    </div>
+  <div ref="content">
+    <div ref="header"></div>
+    <List :style="{height:listHeight}" :curr-length="list.length" :total="total" @getData="getList">
+      <div class="protocol" v-for="(item,index) in list" :key="index">
+        <p>{{item.noticeTitle}}</p>
+        <p>{{item.time}}</p>
+      </div>
+    </List>
   </div>
 </template>
 
 <script>
+import {noticeList} from '@/api/inform'
+import page from "@/mixin/page";
+
 export default {
   name: "inform",
-  data(){
-    return{
-      list:[]
+  mixins: [page],
+  data() {
+    return {
+      list: []
     }
   },
-  mounted() {
-    this.list = Array.from({length: 20}).map(() => {
-      return {
-        time: '2020-01-01 11:11:11',
-        title: '用户注册协议'
-      }
-    })
+  methods: {
+    getList() {
+      noticeList({
+        page: this.currPage,
+        rows: this.pageSize,
+        remark: 1
+      }).then(data => {
+        this.list = [...this.list, ...data.list];
+      })
+    }
   }
 }
 </script>
