@@ -20,13 +20,16 @@
       </div>
     </div>
 
-    <van-button class="btn" block type="danger" v-if="isStart===false">
-      还未开始(
-      <van-count-down style="color: #fff;display: inline" :time="timeRemaining" @finish="finish"/>  <!--//默认毫秒-->
+    <van-button class="btn" block type="danger" v-if="time.isStart===false">
+      未开始(
+      <van-count-down style="color: #fff;display: inline" :time="time.timeRemaining" @finish="finish"/>  <!--//默认毫秒-->
       )
     </van-button>
 
-    <van-button v-else class="btn" block type="danger" @click="purchase">立即抢购</van-button>
+    <van-button v-if="time.isStart&&time.isEnd===false" class="btn" block type="danger" @click="purchase">立即抢购
+    </van-button>
+
+    <van-button v-if="time.isEnd" :disabled="time.isEnd" class="btn" block type="danger">已结束</van-button>
 
     <!--购买协议-->
     <agreement :isShow.sync="isShow" @look="submitOrder"></agreement>
@@ -41,9 +44,18 @@ export default {
   data() {
     return {
       isShow: false,  //展示购买协议
-      timeRemaining: 0,  //倒计时
-      isStart: false,  //是否开始抢购
-      info:{}  //商品详情
+      info: {},  //商品详情
+
+      time: {
+        startTime: 0,
+        endTime: 0,
+        currentTime: 0,
+
+        startTimeRemaining: 0,
+
+        isStart: false,  //是否开始抢购
+        isEnd: false //是否已经结束
+      }
     }
   },
   methods: {
@@ -53,27 +65,49 @@ export default {
     submitOrder() {
       this.$router.push({
         path: '/layoutNoTab/submitOrder',
-        query:{
-          shopId:this.$route.query.shopId
+        query: {
+          shopId: this.$route.query.shopId
         }
       })
     },
     /*倒计时结束时*/
     finish() {
-      this.isStart = true;
+      this.time.isStart = true;
+
+      let interval = setInterval(() => {
+        this.time.currentTime = this.Moment().valueOf();
+        if (this.time.currentTime > this.time.endTime) {
+          this.time.isEnd = true;
+          clearInterval(interval);
+        } else {
+          this.time.isEnd = false;
+        }
+
+      }, 1000)
     }
   },
   created() {
     shopInfo({
       shopId: this.$route.query.shopId
-    }).then(data=>{
+    }).then(data => {
       this.info = data.data;
       this.info.shopCover = this.info.shopCover.split(',');  //轮播图
 
       //倒计时
-      this.info.openData = this.Moment(this.info.openDate);  //商品开始时间
-      this.info.closeData = this.Moment(this.info.closeData); //商品结束时间
+      this.time.currentTime = this.Moment().valueOf();
+      this.time.startTime = this.Moment(this.Moment().format('YYYY-MM-DDT' + this.info.openDate), this.Moment.HTML5_FMT.DATETIME_LOCAL_SECONDS).valueOf();  //商品开始时间
+      this.time.endTime = this.Moment(this.Moment().format('YYYY-MM-DDT' + this.info.closeDate), this.Moment.HTML5_FMT.DATETIME_LOCAL_SECONDS).valueOf(); //商品结束时间
 
+      /*未开始*/
+      if (this.time.currentTime < this.time.startTime) {
+        this.time.timeRemaining = this.time.startTime - this.time.currentTime;
+        this.time.isStart = false;
+      } else if (this.time.currentTime >= this.time.startTime && this.time.currentTime < this.time.endTime) {
+        //正在进行中
+      } else {
+        //已结束
+        this.time.isEnd = true;
+      }
     })
   },
   mounted() {
@@ -118,7 +152,7 @@ export default {
         font-size: 15px;
       }
 
-      .nickname{
+      .nickname {
         font-weight: bold;
       }
     }

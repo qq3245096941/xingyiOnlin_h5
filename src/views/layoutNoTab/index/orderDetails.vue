@@ -2,7 +2,9 @@
   <div class="content">
     <div class="commodityMessage">
       <div class="commodity">
-        <div class="imgBox"></div>
+        <div class="imgBox">
+          <img style="width: 100%;height: 100%" :src="shop.shopCover" alt="">
+        </div>
         <ul class="message">
           <li><span class="title">名称：</span>{{shop.shopName}}</li>
           <li><span class="title">编号：</span>{{shop.typeName}}</li>
@@ -18,66 +20,36 @@
         <van-divider/>
         <p><span class="title">订单小计：</span><span class="userInfo price">￥{{shop.shopPrice}}</span></p>
 
-        <!--提交订单展示的情况-->
-        <template></template>
       </div>
     </div>
 
-    <!--公告-->
-    <div class="notice" v-if="isPreparePay===false">
-      <p>公告</p>
-      <p>请务必阅读并理解本协议</p>
-      <p>
-        请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议
-        请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议
-        请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议
-        请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议
-        请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议
-        请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议请务必阅读并理解本协议
-      </p>
-    </div>
-
-    <!--支付情况-->
-    <div v-else class="pay">
-      <paymentComponent></paymentComponent>
-    </div>
-
-    <van-button style="position: sticky;bottom: 0" block type="danger" @click="submitOrder">提交订单</van-button>
-
-    <agreement :is-show.sync="isShow" @look="look"></agreement>
+    <paymentComponent></paymentComponent>
   </div>
 </template>
 
 <script>
+import {orderInfo} from '@/api/order'
 import {shopInfo} from '@/api/shop'
 
 export default {
   name: "submitOrder",
-  data(){
-    return{
-      isShow:false,
-      shop:{}
+  data() {
+    return {
+      order: {},
+      shop: {}
     }
   },
   created() {
-    shopInfo({
-      shopId:this.$route.query.shopId
-    }).then(data=>{
-      this.shop = data.data;
+    orderInfo({
+      orderId: this.$route.query.orderId
+    }).then(data => {
+      this.shop = data.shopPo;
+
+      this.shop.shopCover = this.imgPrefixUrl + this.shop.shopCover.split(',')[0]
+
     })
   },
-  methods:{
-    submitOrder(){
-      this.isShow = true;
-    },
-    /*已经查看完毕*/
-    look(){
-      this.isShow = false;
-      this.$router.push({
-        path:'/layoutNoTab/orderDetails'
-      })
-    }
-  }
+  methods: {}
 }
 </script>
 
@@ -115,6 +87,7 @@ export default {
         width: 120px;
         height: 80px;
         background: red;
+        overflow: hidden;
       }
 
       .message {
@@ -137,7 +110,7 @@ export default {
     margin: 20px;
   }
 
-  .pay{
+  .pay {
     overflow: hidden;
     margin: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);

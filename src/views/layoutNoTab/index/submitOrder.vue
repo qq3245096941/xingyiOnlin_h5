@@ -75,15 +75,17 @@ export default {
         sumPrice:this.shop.shopPrice
       }).then(data=>{
 
-        this.$router.push({
-          path:'/layoutNoTab/orderDetails',
-          query:{
-            orderId:data.data.orderId
-          }
-        })
+        if(data.code==='4'){
+          this.Toast(data.message);
+        }else{
+          this.$router.push({
+            path:'/layoutNoTab/orderDetails',
+            query:{
+              orderId:data.data
+            }
+          })
+        }
       })
-
-
     }
   }
 }

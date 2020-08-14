@@ -19,12 +19,13 @@
 
 <script>
 import commodity from "./compnent/commodity";
-import getList from "./mixin/getList";
+import getDataList from "./mixin/getList";
 import sellPop from "@/views/layoutNoTab/my/order/compnent/sellPop";
+import {orderList} from '@/api/order'
 
 export default {
   name: "warehouse",
-  mixins: [getList],
+  mixins: [getDataList],
   components: {
     commodity,sellPop
   },
@@ -36,6 +37,18 @@ export default {
   methods:{
     sell(){
       this.isShow = true;
+    },
+    getList(){
+      orderList({
+        orderType:1,
+        buyer:this.userInfo.userId,
+        page:this.currPage,
+        rows:this.pageSize
+      }).then(data=>{
+        this.total = data.totalCount;
+        this.list = data.list;
+        this.currPage++;
+      })
     }
   }
 }

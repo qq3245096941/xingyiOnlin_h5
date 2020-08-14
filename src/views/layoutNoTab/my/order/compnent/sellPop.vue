@@ -20,12 +20,12 @@ export default {
   props:{
     isShow:{
       type:Boolean,
-      required:true
+      required:false
     }
   },
   data(){
     return {
-      isPopShow:true
+      isPopShow:false
     }
   },
   watch:{

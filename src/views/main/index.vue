@@ -87,7 +87,11 @@ export default {
       this.informList = data.list;
     })
 
-    getTypeList({page:1,rows:9999}).then(data => {
+    getTypeList({
+      page:1,
+      rows:9999,
+      openType:0
+    }).then(data => {
       this.list = data.cmTypeList;
     })
   }

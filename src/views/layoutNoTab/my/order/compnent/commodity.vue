@@ -1,9 +1,10 @@
 <template>
   <div>
     <div class="content" >
-      <img :src="comm.img" alt="">
+      <van-image fit="cover" width="100" height="100" :src="getFirstImg(comm.shopLogo)" />
+      <img  alt="">
       <div class="message">
-        <p>{{comm.number}}</p>
+        <p>{{comm.shopName}}</p>
         <p>{{comm.title}}</p>
         <p>售价：<span class="price">{{'￥' + comm.price}}</span></p>
       </div>
@@ -26,6 +27,11 @@ export default {
     comm: {
       type: Object,
       required: true
+    }
+  },
+  methods:{
+    getFirstImg(res){
+      return this.imgPrefixUrl + res.split(",")[0]
     }
   }
 }

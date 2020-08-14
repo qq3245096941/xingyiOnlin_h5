@@ -59,8 +59,6 @@ export default {
 
           return item;
         })];
-
-        console.log(this.list);
       })
     }
   },

@@ -15,14 +15,23 @@
 
 <script>
 import commodity from "./compnent/commodity";
-import getList from "./mixin/getList";
+import getDataList from "./mixin/getList";
+import {orderList} from '@/api/order'
 
 export default {
   name: "payment",
-  mixins: [getList],
+  mixins: [getDataList],
   components: {
     commodity
   },
+  methods:{
+    getList(){
+      orderList({
+        orderStat:0,
+
+      })
+    }
+  }
 }
 </script>
 
