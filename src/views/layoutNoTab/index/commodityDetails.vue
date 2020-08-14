@@ -52,7 +52,10 @@ export default {
     },
     submitOrder() {
       this.$router.push({
-        path: '/layoutNoTab/submitOrder'
+        path: '/layoutNoTab/submitOrder',
+        query:{
+          shopId:this.$route.query.shopId
+        }
       })
     },
     /*倒计时结束时*/
@@ -113,6 +116,10 @@ export default {
 
       .describe {
         font-size: 15px;
+      }
+
+      .nickname{
+        font-weight: bold;
       }
     }
   }

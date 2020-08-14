@@ -1,6 +1,7 @@
 import district from "@/views/layoutNoTab/index/district";
 import commodityDetails from "@/views/layoutNoTab/index/commodityDetails";
 import submitOrder from "@/views/layoutNoTab/index/submitOrder";
+import orderDetails from "@/views/layoutNoTab/index/orderDetails";
 
 
 export default [
@@ -26,6 +27,14 @@ export default [
         component: submitOrder,
         meta: {
             title: '确认订单'
+        }
+    },
+    {
+        path: 'orderDetails',
+        name: 'orderDetails',
+        component: orderDetails,
+        meta: {
+            title: '订单详情'
         }
     }
 ]

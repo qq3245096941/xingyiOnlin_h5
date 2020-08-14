@@ -2,9 +2,7 @@
   <div class="content">
     <div class="commodityMessage">
       <div class="commodity">
-        <div class="imgBox">
-          <img style="width: 100%;height: 100%" :src="imgPrefixUrl+shop.shopCover.split(',')[0]" alt="">
-        </div>
+        <div class="imgBox"></div>
         <ul class="message">
           <li><span class="title">名称：</span>{{shop.shopName}}</li>
           <li><span class="title">编号：</span>{{shop.typeName}}</li>
@@ -19,11 +17,14 @@
         <p><span class="title">卖家电话：</span><span class="userInfo">{{shop.userTel}}</span></p>
         <van-divider/>
         <p><span class="title">订单小计：</span><span class="userInfo price">￥{{shop.shopPrice}}</span></p>
+
+        <!--提交订单展示的情况-->
+        <template></template>
       </div>
     </div>
 
     <!--公告-->
-    <div class="notice">
+    <div class="notice" v-if="isPreparePay===false">
       <p>公告</p>
       <p>请务必阅读并理解本协议</p>
       <p>
@@ -36,6 +37,11 @@
       </p>
     </div>
 
+    <!--支付情况-->
+    <div v-else class="pay">
+      <paymentComponent></paymentComponent>
+    </div>
+
     <van-button style="position: sticky;bottom: 0" block type="danger" @click="submitOrder">提交订单</van-button>
 
     <agreement :is-show.sync="isShow" @look="look"></agreement>
@@ -44,7 +50,6 @@
 
 <script>
 import {shopInfo} from '@/api/shop'
-import {addOrder} from '@/api/order'
 
 export default {
   name: "submitOrder",
@@ -68,22 +73,9 @@ export default {
     /*已经查看完毕*/
     look(){
       this.isShow = false;
-      /*调取添加订单接口*/
-      addOrder({
-        shopId:this.$route.query.shopId,
-        buyer:this.userInfo.userId,
-        sumPrice:this.shop.shopPrice
-      }).then(data=>{
-
-        this.$router.push({
-          path:'/layoutNoTab/orderDetails',
-          query:{
-            orderId:data.data.orderId
-          }
-        })
+      this.$router.push({
+        path:'/layoutNoTab/orderDetails'
       })
-
-
     }
   }
 }
@@ -123,7 +115,6 @@ export default {
         width: 120px;
         height: 80px;
         background: red;
-        overflow: hidden;
       }
 
       .message {
