@@ -9,19 +9,11 @@
       </div>
     </List>
     <van-empty v-show="list.length===0" description="暂无数据"/>
-
-    <van-popup v-model="isShow" position="bottom" @close="close" closeable round>
-      <div>
-        <h3 style="text-align: center">{{notice.noticeTitle}}</h3>
-        <div style="padding: 20px;height: 300px;overflow: auto" v-html="notice.noticeContent"></div>
-      </div>
-    </van-popup>
-
   </div>
 </template>
 
 <script>
-import {noticeList,noticeInfo} from '@/api/inform'
+import {noticeList} from '@/api/inform'
 import page from "@/mixin/page";
 
 export default {
@@ -35,33 +27,17 @@ export default {
   },
   data() {
     return {
-      isShow:false,
-      noticeId:'',
-      notice:{}  //info信息
-    }
-  },
-  watch:{
-    isShow(newValue){
-      if(newValue){
-        /*查询info*/
-        noticeInfo({
-          noticeId:this.noticeId
-        }).then(data=>{
-          this.notice = data.data;
-        })
-      }
     }
   },
   methods: {
     /*查看数据*/
     enterPro(noticeId){
-      this.noticeId = noticeId;
-      this.isShow = true;
-      this.notice = {}
-    },
-    close(){
-      this.noticeId = '';
-      this.isShow = false;
+      this.$router.push({
+        path:'/layoutNoTab/noticeInfo',
+        query:{
+          noticeId
+        }
+      })
     },
     getList() {
       noticeList({

@@ -19,16 +19,10 @@ export default {
   },
   data() {
     return {
-      list: []
     }
   },
   mounted() {
-    this.list = Array.from({length: 20}).map(() => {
-      return {
-        time: '2020-01-01 11:11:11',
-        title: '用户注册协议'
-      }
-    })
+
   }
 }
 </script>
