@@ -6,14 +6,27 @@
         <img style="display: block;width: 100%;height: 200px" :src="imgPrefixUrl+item.imagepath" alt="">
       </van-swipe-item>
     </van-swipe>
+
     <!--通告栏-->
     <van-notice-bar
+        vertical
         color="#000"
         background="#c5c8ce"
         :left-icon="require('../../assets/img/gonggao.svg')"
-        text="这是通告栏。"
+        :scrollable="false"
         mode="link"
-    @click="$router.push({path:'/layout/notice'})"/>
+        @click="$router.push({path:'/layout/notice'})">
+      <van-swipe
+           class="notice-swipe"
+          :autoplay="3000"
+          vertical
+          :show-indicators="false">
+        <van-swipe-item :key="index" v-for="(item,index) in informList">
+            <span>{{item.noticeTitle}}</span>
+            <span style="margin-left: 30px;font-size: 10px;float: right">{{item.createDate}}</span>
+        </van-swipe-item>
+      </van-swipe>
+    </van-notice-bar>
 
     <!--商品区-->
     <div class="shopping">
@@ -37,13 +50,15 @@
 <script>
 import {getTypeList} from "@/api/type";
 import {bannerAll} from '@/api/banner'
+import {noticeList} from '@/api/inform'
 
 export default {
   name: "index",
   data() {
     return {
       list: [],
-      bannerList:[]
+      bannerList:[],
+      informList:[]  //公告list
     }
   },
   methods: {
@@ -63,6 +78,14 @@ export default {
     }).then(data=>{
       this.bannerList = data.list;
     })
+    /*获取通知列表*/
+    noticeList({
+      type:1,
+      page:1,
+      rows:9999
+    }).then(data=>{
+      this.informList = data.list;
+    })
 
     getTypeList({page:1,rows:9999}).then(data => {
       this.list = data.cmTypeList;
@@ -72,6 +95,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+.notice-swipe {
+  height: 40px;
+  line-height: 40px;
+}
+
 .lunbo {
   width: 100%;
   padding: 10px;
