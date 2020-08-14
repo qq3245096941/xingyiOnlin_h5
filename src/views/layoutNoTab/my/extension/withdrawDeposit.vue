@@ -4,7 +4,7 @@
     <img class="back" :src="require('@/static/img/redBack.png')" alt="">
     <div class="moneyList">
       <div class="card">
-        可提现金额：&nbsp;&nbsp;<span class="money">￥{{aggregateMoney}}</span>
+        可提现佣金：&nbsp;&nbsp;<span class="money">￥{{aggregateMoney}}</span>
       </div>
 
       <div class="card form">

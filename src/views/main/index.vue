@@ -17,13 +17,13 @@
         mode="link"
         @click="$router.push({path:'/layout/notice'})">
       <van-swipe
-           class="notice-swipe"
+          class="notice-swipe"
           :autoplay="3000"
           vertical
           :show-indicators="false">
         <van-swipe-item :key="index" v-for="(item,index) in informList">
-            <span>{{item.noticeTitle}}</span>
-            <span style="margin-left: 30px;font-size: 10px;float: right">{{item.createDate}}</span>
+          <span>{{item.noticeTitle}}</span>
+          <span style="margin-left: 30px;font-size: 10px;float: right">{{item.createDate}}</span>
         </van-swipe-item>
       </van-swipe>
     </van-notice-bar>
@@ -38,7 +38,8 @@
 
           <div class="body">
             <p class="title">[{{item.name}}]</p>
-            <p class="time">开启时间：{{item.openDate}} ~ {{item.closeDate}}</p>
+            <p class="time" v-if="item.openStat==='0'">开启时间：{{item.openDate}} ~ {{item.closeDate}}</p>
+            <p class="time" v-else>待开放</p>
           </div>
 
         </div>
@@ -57,12 +58,17 @@ export default {
   data() {
     return {
       list: [],
-      bannerList:[],
-      informList:[]  //公告list
+      bannerList: [],
+      informList: []  //公告list
     }
   },
   methods: {
     goDisTrict(item) {
+      if (item.openStat === '1') {
+        this.Toast('暂未开放');
+        return;
+      }
+
       this.$router.push({
         path: '/layoutNoTab/district',
         query: {
@@ -74,23 +80,23 @@ export default {
   created() {
     /*获取banner*/
     bannerAll({
-      type:'index'
-    }).then(data=>{
+      type: 'index'
+    }).then(data => {
       this.bannerList = data.list;
     })
     /*获取通知列表*/
     noticeList({
-      type:1,
-      page:1,
-      rows:9999
-    }).then(data=>{
+      type: 1,
+      page: 1,
+      rows: 9999
+    }).then(data => {
       this.informList = data.list;
     })
 
     getTypeList({
-      page:1,
-      rows:9999,
-      openType:0
+      page: 1,
+      rows: 9999,
+      openType: 0
     }).then(data => {
       this.list = data.cmTypeList;
     })
@@ -130,17 +136,17 @@ export default {
     padding: 70px 0 0 15px;
   }
 
-  .body{
+  .body {
     position: relative;
     z-index: 1000;
 
-    .title{
+    .title {
       font-size: 13px;
       font-weight: bold;
       color: #fff;
     }
 
-    .time{
+    .time {
       font-size: 13px;
       color: #fff;
       font-weight: bold;

@@ -24,6 +24,8 @@ export default {
     },
     mounted() {
         this.getListHeight();
+        console.log(this.list);
+        this.list = [];
     },
     updated() {
         this.getListHeight();

@@ -36,5 +36,6 @@ export default [
         meta: {
             title: '订单详情'
         }
-    }
+    },
+
 ]

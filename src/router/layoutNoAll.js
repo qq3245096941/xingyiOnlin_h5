@@ -17,5 +17,6 @@ export default [
 		meta: {
 			title: '注册'
 		}
-	}
+	},
+
 ]

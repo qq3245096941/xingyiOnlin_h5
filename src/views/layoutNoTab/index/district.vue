@@ -4,13 +4,13 @@
     <div ref="header">
       <p class="time">开启时间：{{commdityTypeInfo.openDate}} ~ {{commdityTypeInfo.closeDate}}</p>
       <p class="title" style="text-align: center">{{commdityTypeInfo.name}}</p>
-      <!--      <van-pagination class="page" :total-items="24" :items-per-page="5"/>-->
+      <van-pagination class="page" :total-items="total" :items-per-page="20" @change="pageChange"/>
     </div>
 
-    <List :style="{height: this.listHeight}" @getData="getList" :total="total"
-          :curr-length="list.length">
 
-      <div class="commodityBox">
+    <div :style="{height: this.listHeight}" style="overflow: auto">
+
+      <div class="commodityBox" >
         <div class="commodity" v-for="(item,index) in list" :key="index" @click="toCommodityDetails(item)">
           <img class="isNo" src="../../../assets/img/main/yishouqin2.svg" alt="">
           <img class="img" :src="imgPrefixUrl+item.shopCover[0]" alt="">
@@ -19,7 +19,12 @@
         </div>
       </div>
 
-    </List>
+      <van-empty v-show="list.length===0" description="暂无商品"/>
+    </div>
+
+
+
+
   </div>
 </template>
 
@@ -33,11 +38,17 @@ export default {
   mixins: [page],
   data() {
     return {
-      list: [],
       commdityTypeInfo: {}
     }
   },
+  created() {
+    this.getList();
+  },
   methods: {
+    pageChange(res){
+      this.currPage = res;
+      this.getList();
+    },
     toCommodityDetails(item) {
       this.$router.push({
         path: '/layoutNoTab/commodityDetails',
@@ -50,11 +61,11 @@ export default {
       getShopAll({
         commdityType: this.$route.query.commdityType,
         page: this.currPage,
-        rows: this.pageSize
+        rows: 20
       }).then(data => {
         this.currPage++;
         this.total = data.totalCount;
-        this.list = [...this.list, ...data.shopList.map(item => {
+        this.list = [...data.shopList.map(item => {
           item.shopCover = item.shopCover.split(',');
 
           return item;
@@ -81,8 +92,8 @@ export default {
 
   .commodityBox {
     display: flex;
-    width: 100%;
     flex-wrap: wrap;
+    padding-bottom: 20px;
 
     .commodity {
       overflow: hidden;

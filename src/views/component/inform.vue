@@ -25,6 +25,9 @@ export default {
       default: 0  //0协议，1公告
     }
   },
+  created() {
+    this.getList();
+  },
   data() {
     return {
     }
