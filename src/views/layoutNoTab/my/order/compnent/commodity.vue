@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="content" >
-      <van-image fit="cover" width="100" height="100" :src="getFirstImg(comm.shopLogo)" />
+    <div class="content">
+      <van-image style="border-radius: 5px;overflow: hidden" fit="cover" width="120" height="70" :src="getFirstImg(comm.shopLogo)" />
       <img  alt="">
       <div class="message">
         <p>{{comm.shopName}}</p>
-        <p>{{comm.title}}</p>
-        <p>售价：<span class="price">{{'￥' + comm.price}}</span></p>
+        <p>{{comm.typeName}}</p>
+        <p>售价：<span class="price">{{'￥' + comm.orderSum}}</span></p>
       </div>
     </div>
 
@@ -31,7 +31,9 @@ export default {
   },
   methods:{
     getFirstImg(res){
-      return this.imgPrefixUrl + res.split(",")[0]
+      if(res){
+        return this.imgPrefixUrl + res.split(",")[0]
+      }
     }
   }
 }
@@ -42,11 +44,7 @@ export default {
   display: flex;
   align-items: center;
   border-bottom: 1px solid #e8eaec;
-
-  img {
-    height: 70px;
-
-  }
+  padding-bottom: 5px;
 
   .message {
     font-size: 14px;

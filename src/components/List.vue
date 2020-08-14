@@ -27,13 +27,12 @@ export default {
   },
   data() {
     return {
-      loading: true,
+      loading: false,
       finished: false,
     }
   },
   watch: {
     currLength(newValue) {
-      this.loading = false;
       this.finished = newValue >= this.total;
     }
   },
@@ -42,6 +41,7 @@ export default {
   },
   methods: {
     load() {
+      this.loading = true;
       this.$emit('getData');
     }
   }
@@ -49,9 +49,9 @@ export default {
 </script>
 
 <style scoped>
-  .list{
-    overflow: auto;
-    position: relative;
-    z-index: 1000;
-  }
+.list {
+  overflow: auto;
+  position: relative;
+  z-index: 1000;
+}
 </style>

@@ -1,5 +1,13 @@
 import request from "@/uitls/request";
 
+/*注册*/
+export function registerUser(data) {
+    return request({
+        url: `/maUser/loginUser`,
+        data
+    })
+}
+
 /*登录*/
 export function userLogin(data) {
     return request({

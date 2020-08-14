@@ -10,6 +10,8 @@
         </commodity>
       </div>
     </List>
+
+    <van-empty v-show="list.length===0" description="暂无订单" />
   </div>
 </template>
 
@@ -28,7 +30,9 @@ export default {
     getList(){
       orderList({
         orderStat:0,
-
+        userId:this.userInfo.userId
+      }).then(data=>{
+        this.list = data.list;
       })
     }
   }

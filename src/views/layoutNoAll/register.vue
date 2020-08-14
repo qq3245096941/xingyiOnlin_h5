@@ -7,19 +7,22 @@
         <van-field
             style="margin-top: 15px"
             v-model="username"
-            placeholder="请输入手机号"/>
+            placeholder="请输入手机号"
+            :rules="[{ pattern:/^1[3456789]\d{9}$/, message: '手机号格式不正确' }]"/>
         <van-field
             style="margin-top: 15px"
             v-model="password"
             type="password"
-            placeholder="请输入密码"/>
+            placeholder="请输入密码"
+            :rules="[{ required: true, message: '请填写密码' }]"/>
         <van-field
             style="margin-top: 15px"
             v-model="code"
             type="text"
-            placeholder="请输入验证码">
+            placeholder="请输入验证码"
+            :rules="[{ required: true, message: '请填写验证码' }]">
           <template #button>
-            <van-button size="small" type="warning">发送验证码</van-button>
+            <van-button :disabled="codeNum>0" native-type="button" size="small" type="warning" @click="getCode">{{codeNum===0?'发送验证码':codeNum+'秒'}}</van-button>
           </template>
         </van-field>
 
@@ -30,7 +33,7 @@
         </van-field>
 
         <div style="margin: 16px;">
-          <van-button round block type="danger" native-type="onSubmit">
+          <van-button round block type="danger" native-type="submit">
             提交
           </van-button>
         </div>
@@ -41,6 +44,8 @@
 </template>
 
 <script>
+import {sendCode,registerUser} from '@/api/user'
+
 export default {
   name: 'register',
   data() {
@@ -49,12 +54,46 @@ export default {
       password: '',
       code: '',
       isConsent:true,  //是否同意我的协议
+      codeNum:0
     }
   },
   methods:{
-   /* onSubmit(res){
-      console.log(res);
-    }*/
+    onSubmit(){
+      registerUser({
+        tel:this.username,
+        vcode:this.code,
+        userPwd:this.password,
+        code:this.$route.query.wxCode||''
+      }).then(data=>{
+        this.$router.push({
+          path:'/login'
+        })
+      })
+    },
+    /*获取短信验证码*/
+    getCode(){
+      if(!this.username){
+        this.Toast('请填写用户名');
+        return;
+      }
+
+      sendCode({
+        telephone:this.username
+      }).then(data=>{
+        console.log(data);
+
+        this.Toast('已发送短信验证码');
+
+        this.codeNum = 60;
+        let interval = setInterval(()=>{
+          this.codeNum--;
+          if(this.codeNum===0){
+            clearInterval(interval)
+          }
+        },1000)
+
+      })
+    }
   }
 }
 </script>

@@ -11,6 +11,8 @@
       </div>
     </List>
 
+    <van-empty v-show="list.length===0" description="暂无订单" />
+
     <!--弹框-->
     <sellPop :isShow.sync="isShow"></sellPop>
 

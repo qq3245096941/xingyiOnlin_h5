@@ -11,19 +11,21 @@
               <div>
                 <van-button type="primary" size="mini" round>确认收款</van-button>
               </div>
-              <div style="font-size: 13px;flex: 1;text-align: right">甲乙丙&nbsp;&nbsp;15623554858</div>
+              <div style="font-size: 13px;flex: 1;text-align: right">{{item.buyerName}}&nbsp;&nbsp;{{item.buyerTel}}</div>
             </div>
           </template>
-
         </commodity>
       </div>
     </List>
+
+    <van-empty v-show="list.length===0" description="暂无订单" />
   </div>
 </template>
 
 <script>
 import commodity from "./compnent/commodity";
 import getList from "./mixin/getList";
+import {orderList} from "@/api/order";
 
 export default {
   name: "gathering",
@@ -31,6 +33,16 @@ export default {
   components: {
     commodity
   },
+  methods:{
+    getList(){
+      orderList({
+        orderStat:3,
+        userId:this.userInfo.userId
+      }).then(data=>{
+        this.list = data.list;
+      })
+    }
+  }
 }
 </script>
 
