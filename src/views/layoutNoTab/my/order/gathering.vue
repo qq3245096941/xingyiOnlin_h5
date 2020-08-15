@@ -2,6 +2,7 @@
 <template>
   <div ref="content">
     <div ref="header"></div>
+
     <List :curr-length="list.length" :total="total" style="height: 100%" @getData="getList">
       <div class="card" v-for="item in list">
         <commodity :comm="item">
@@ -18,7 +19,6 @@
       </div>
     </List>
 
-    <van-empty v-show="list.length===0" description="暂无订单" />
   </div>
 </template>
 
@@ -34,12 +34,10 @@ export default {
     commodity
   },
   methods:{
-    getList(){
-      orderList({
+    listApi(){
+      return orderList({
         orderStat:3,
         userId:this.userInfo.userId
-      }).then(data=>{
-        this.list = data.list;
       })
     }
   }
@@ -47,7 +45,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .commBody{
 
-  }
 </style>

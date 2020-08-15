@@ -2,16 +2,15 @@
 <template>
   <div ref="content">
     <div ref="header"></div>
+
     <List :curr-length="list.length" :total="total" style="height:100%" @getData="getList">
       <div class="card" v-for="item in list">
         <commodity :comm="item">
           <van-button type="warning" size="mini" round @click="sell">委托出售</van-button>
-          <van-button type="primary" size="mini" round>申请发货</van-button>
+          <van-button type="primary" size="mini" round @click="applyShipment(item)">申请发货</van-button>
         </commodity>
       </div>
     </List>
-
-    <van-empty v-show="list.length===0" description="暂无订单" />
 
     <!--弹框-->
     <sellPop :isShow.sync="isShow"></sellPop>
@@ -23,35 +22,47 @@
 import commodity from "./compnent/commodity";
 import getDataList from "./mixin/getList";
 import sellPop from "@/views/layoutNoTab/my/order/compnent/sellPop";
-import {orderList} from '@/api/order'
+import {orderList,upOrderExp} from '@/api/order'
 
 export default {
   name: "warehouse",
   mixins: [getDataList],
   components: {
-    commodity,sellPop
+    commodity, sellPop
   },
-  data(){
-    return{
-      isShow:false
+  data() {
+    return {
+      isShow: false,
     }
   },
-  methods:{
-    sell(){
+  methods: {
+    sell() {
       this.isShow = true;
     },
-    getList(){
-      orderList({
-        orderType:1,
-        buyer:this.userInfo.userId,
-        page:this.currPage,
-        rows:this.pageSize
-      }).then(data=>{
-        this.total = data.totalCount;
-        this.list = data.list;
-        this.currPage++;
+    listApi(){
+      return orderList({
+        orderStat: 1,
+        buyer: this.userInfo.userId,
+        page: this.currPage,
+        rows: this.pageSize
       })
-    }
+    },
+    /*申请发货*/
+    applyShipment(item) {
+      this.$router.push({
+        path: '/layoutNoTab/addressManager'
+      })
+
+      this.$eventBus.$on('getAddress', (addressId) => {
+        //申请发货
+        upOrderExp({
+          orderId:item.orderId,
+          addressId
+        }).then(data=>{
+          this.getList(true);
+        })
+      })
+    },
   }
 }
 </script>

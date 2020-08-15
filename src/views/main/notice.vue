@@ -16,13 +16,6 @@ export default {
   name: "notice",
   components: {
     inform
-  },
-  data() {
-    return {
-    }
-  },
-  mounted() {
-
   }
 }
 </script>

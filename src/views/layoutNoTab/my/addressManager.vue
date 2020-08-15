@@ -9,7 +9,7 @@
         @select="select"
     />
 
-    <van-empty v-show="list.length===0" description="暂无地址" />
+    <van-empty v-show="list.length===0" description="暂无地址"/>
 
     <van-action-sheet v-model="isShow" :actions="actions" @select="actionSelect"/>
   </div>
@@ -24,9 +24,13 @@ export default {
   data() {
     return {
       list: [],
-      index: '',
+      index: '',  //选中的地址id
       isShow: false,
-      actions: [{name: '删除地址', index: 1}, {name: '取消'}],
+      actions: [
+        {name: '选择地址', index: 2},
+        {name: '删除地址', index: 1},
+        {name: '取消'}
+      ],
     }
   },
   watch: {
@@ -56,14 +60,20 @@ export default {
     },
     /*删除选中的数据*/
     actionSelect(res) {
-      if (res.index === 1) {
-        deleteAddress({
-          addressId: this.index
-        }).then(data => {
-          this.getList();
-
-        })
+      switch (res.index) {
+        case 1:
+          deleteAddress({
+            addressId: this.index
+          }).then(data => {
+            this.getList();
+          })
+          break;
+        case 2:
+          this.$eventBus.$emit('getAddress',this.index);
+          this.$router.go(-1);
+          break;
       }
+
       this.isShow = false;
     },
     getList() {

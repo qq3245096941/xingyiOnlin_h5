@@ -8,7 +8,7 @@
         <p class="time">{{item.createDate}}</p>
       </div>
     </List>
-    <van-empty v-show="list.length===0" description="暂无数据"/>
+
   </div>
 </template>
 
@@ -49,6 +49,7 @@ export default {
         remark: this.remarkType
       }).then(data => {
         this.currPage++;
+        this.total = data.totalCount;
         this.list = [...this.list, ...data.list];
       })
     }

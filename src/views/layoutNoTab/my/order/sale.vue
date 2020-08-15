@@ -2,10 +2,10 @@
 <template>
   <div ref="content">
     <div ref="header"></div>
+
     <List :curr-length="list.length" :total="total" style="height:100%" @getData="getList">
       <div class="card" v-for="item in list">
         <commodity :comm="item">
-
           <template #default>
             <div style="display: flex;align-items: center">
               <div>
@@ -14,16 +14,17 @@
               <div style="font-size: 13px;flex: 1;text-align: right">15623554858</div>
             </div>
           </template>
-
         </commodity>
       </div>
     </List>
+
   </div>
 </template>
 
 <script>
 import commodity from "./compnent/commodity";
 import getList from "./mixin/getList";
+import {orderList} from "@/api/order";
 
 export default {
   name: "sale",
@@ -31,6 +32,14 @@ export default {
   components: {
     commodity
   },
+  methods:{
+    listApi(){
+      return orderList({
+        orderStat:1,
+        userId:this.userInfo.userId
+      })
+    }
+  }
 }
 </script>
 
