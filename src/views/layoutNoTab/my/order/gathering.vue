@@ -10,9 +10,10 @@
           <template #default>
             <div style="display: flex;align-items: center;">
               <div>
-                <van-button type="primary" size="mini" round>确认收款</van-button>
+                <van-button type="primary" size="mini" round @click="confirmReceipt(item)">确认收款</van-button>
               </div>
-              <div style="font-size: 13px;flex: 1;text-align: right">{{item.buyerName}}&nbsp;&nbsp;{{item.buyerTel}}</div>
+              <div style="font-size: 13px;flex: 1;text-align: right">{{item.buyerName}}&nbsp;&nbsp;{{item.buyerTel}}
+              </div>
             </div>
           </template>
         </commodity>
@@ -25,7 +26,7 @@
 <script>
 import commodity from "./compnent/commodity";
 import getList from "./mixin/getList";
-import {orderList} from "@/api/order";
+import {orderList,confimReceipt} from "@/api/order";
 
 export default {
   name: "gathering",
@@ -33,11 +34,23 @@ export default {
   components: {
     commodity
   },
-  methods:{
-    listApi(){
+  methods: {
+    listApi() {
       return orderList({
-        orderStat:3,
-        userId:this.userInfo.userId
+        orderStat: 3,
+        userId: this.userInfo.userId
+      })
+    },
+    confirmReceipt(item) {
+      this.Dialog.confirm({
+        title: '确认收款吗？'
+      }).then(() => {
+        confimReceipt({
+          orderId: item.orderId
+        }).then(data => {
+          this.Toast('收款成功');
+          this.getList(true);
+        })
       })
     }
   }

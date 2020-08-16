@@ -64,7 +64,6 @@ export default {
         this.total = data.totalCount;
         this.list = [...data.shopList.map(item => {
           item.shopCover = item.shopCover.split(',');
-
           return item;
         })];
       })

@@ -13,14 +13,17 @@ export default {
       this.$router.go(-1);
     }
   },
-  watch:{
-    $route(){
-      document.getElementsByClassName('van-nav-bar__title')[0].style.color = this.$route.meta.color?this.$route.meta.color:'#000';
+  watch: {
+    $route() {
+      document.getElementsByClassName('van-nav-bar__title')[0].style.color = this.$route.meta.color ? this.$route.meta.color : '#000';
 
-      if(this.$route.meta.needUser){
-        if(!this.userInfo){
+      if (this.$route.meta.needUser) {
+        if (!this.userInfo) {
+
+          this.$eventBus.savePath = window.location.href.split('#')[1];
+
           this.$router.push({
-            path:'/login'
+            path: '/login'
           })
         }
       }

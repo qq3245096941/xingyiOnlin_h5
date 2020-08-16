@@ -15,10 +15,11 @@ export default [
     },
     {
         path: 'commodityDetails',
-        name: 'commodityDetails',
+        name: 'commodityDetails',  //商品详情
         component: commodityDetails,
         meta: {
-            title: ''
+            title: '',
+            needUser:true
         }
     },
     {

@@ -1,6 +1,11 @@
 /*订单*/
 import request from "@/uitls/request";
 
+/**
+ * 添加订单
+ * @param data
+ * @returns {Promise | Promise<unknown>}
+ */
 export function addOrder(data) {
     return request({
         url: '/maOrder/addOrder',
@@ -43,6 +48,44 @@ export function upOrderExp(data) {
         data
     })
 }
+
+/**
+ * 取消订单
+ * @param data {orderId:订单id}
+ * @returns {Promise | Promise<unknown>}
+ */
+export function canalOrder(data) {
+    return request({
+        url: `/maOrder/${data.orderId}/canalOrder`
+    })
+}
+
+
+/**
+ * 确认收款
+ * @param data {orderId:订单id}
+ * @returns {Promise | Promise<unknown>}
+ */
+export function confimReceipt(data) {
+    return request({
+        url: `/maOrder/confimReceipt`,
+        data
+    })
+}
+
+/**
+ * 重新上架
+ * @param data
+ * @returns {Promise | Promise<unknown>}
+ */
+export function upOrderShelf(data) {
+    return request({
+        url: `/maOrder/upOrderShelf`,
+        data
+    })
+}
+
+
 
 
 

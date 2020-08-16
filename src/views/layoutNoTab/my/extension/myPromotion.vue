@@ -88,10 +88,10 @@ export default {
     flex-direction: column;
 
     .withdrawalRecord {
-      display: flex;
-      align-items: center;
       font-size: 12px;
       color: #fff;
+      text-align: right;
+      margin-right: 10px;
     }
 
     .commission {

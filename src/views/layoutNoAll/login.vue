@@ -14,7 +14,7 @@
             type="password"
             placeholder="请输入密码"/>
 
-        <p class="register" ></p>
+        <p class="register"></p>
 
         <div class="btns">
           <van-button block type="danger" native-type="onSubmit">
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import {userLogin,sendCode} from '@/api/user'
+import {userLogin, sendCode} from '@/api/user'
 import handleLocalStorage from '@/uitls/localStorage'
 
 export default {
@@ -45,35 +45,35 @@ export default {
   },
   methods: {
     async onSubmit(res) {
-      //获取短信
-     /* let data = await sendCode({telephone:this.username})
-      console.log(data);
-      return;*/
-
       userLogin({
-        tel:this.username,
+        tel: this.username,
         userPwd: this.password
-      }).then(data=>{
-        if(data.code==='1'){
+      }).then(data => {
+        if (data.code === '1') {
           this.Toast(data.message);
           return;
         }
 
         //将用户信息保存在本地
-        handleLocalStorage('set','userInfo',data.user);
+        handleLocalStorage('set', 'userInfo', data.user);
 
         this.Toast('登录成功');
 
-        this.$router.push({
-          path:'/layout/main'
-        })
+        setTimeout(() => {
+          this.$router.replace({
+            path: this.$eventBus.savePath ? this.$eventBus.savePath : '/'
+          })
+
+          this.$eventBus.savePath = '';
+        }, 1000)
+
       })
     },
     authorization() {
       window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxd71848e1ce66dcd6&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect`
-       userLogin().then(data=>{
+      userLogin().then(data => {
 
-       })
+      })
     }
   },
   created() {
@@ -114,7 +114,7 @@ export default {
       margin-top: 45px;
     }
 
-    .btns{
+    .btns {
       display: flex;
       flex-direction: column;
       align-content: center;

@@ -19,11 +19,14 @@
         <p><span class="title">卖家电话：</span><span class="userInfo">{{shop.userTel}}</span></p>
         <van-divider/>
         <p><span class="title">订单小计：</span><span class="userInfo price">￥{{shop.shopPrice}}</span></p>
-
       </div>
     </div>
 
     <paymentComponent></paymentComponent>
+
+    <van-button style="position: sticky;bottom: 0" block type="danger"
+                @click="$router.replace({path:'/layoutNoTab/orderAll',query:{index:1}})">我的订单
+    </van-button>
   </div>
 </template>
 
@@ -44,9 +47,7 @@ export default {
       orderId: this.$route.query.orderId
     }).then(data => {
       this.shop = data.shopPo;
-
       this.shop.shopCover = this.imgPrefixUrl + this.shop.shopCover.split(',')[0]
-
     })
   },
   methods: {}

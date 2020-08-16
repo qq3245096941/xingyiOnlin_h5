@@ -6,14 +6,14 @@
     <List :curr-length="list.length" :total="total" style="height:100%" @getData="getList">
       <div class="card" v-for="item in list">
         <commodity :comm="item">
-          <van-button type="warning" size="mini" round @click="sell">委托出售</van-button>
+          <van-button type="warning" size="mini" round @click="sell(item)">委托出售</van-button>
           <van-button type="primary" size="mini" round @click="applyShipment(item)">申请发货</van-button>
         </commodity>
       </div>
     </List>
 
     <!--弹框-->
-    <sellPop :isShow.sync="isShow"></sellPop>
+    <sellPop :total="clickTotal" :isShow.sync="isShow"></sellPop>
 
   </div>
 </template>
@@ -22,7 +22,7 @@
 import commodity from "./compnent/commodity";
 import getDataList from "./mixin/getList";
 import sellPop from "@/views/layoutNoTab/my/order/compnent/sellPop";
-import {orderList,upOrderExp} from '@/api/order'
+import {orderList, upOrderExp} from '@/api/order'
 
 export default {
   name: "warehouse",
@@ -33,13 +33,15 @@ export default {
   data() {
     return {
       isShow: false,
+      clickTotal: 0
     }
   },
   methods: {
-    sell() {
+    sell(item) {
+      this.clickTotal = item.sumPrice;
       this.isShow = true;
     },
-    listApi(){
+    listApi() {
       return orderList({
         orderStat: 1,
         buyer: this.userInfo.userId,
@@ -56,9 +58,9 @@ export default {
       this.$eventBus.$on('getAddress', (addressId) => {
         //申请发货
         upOrderExp({
-          orderId:item.orderId,
+          orderId: item.orderId,
           addressId
-        }).then(data=>{
+        }).then(data => {
           this.getList(true);
         })
       })

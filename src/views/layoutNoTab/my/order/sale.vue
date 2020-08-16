@@ -11,7 +11,7 @@
               <div>
                 <van-tag type="success">已成功售出</van-tag>
               </div>
-              <div style="font-size: 13px;flex: 1;text-align: right">15623554858</div>
+              <div style="font-size: 13px;flex: 1;text-align: right">{{item.buyerTel}}</div>
             </div>
           </template>
         </commodity>

@@ -16,7 +16,11 @@ import localStorage from "@/uitls/localStorage";
 Vue.config.productionTip = false
 Vue.use(Vant);
 
-Vue.prototype.$eventBus = new Vue({}); //事件总线
+Vue.prototype.$eventBus = new Vue({
+    data: {
+        savePath: ''  //记录登录之前的路径，用于在登录之后直接跳转到指定页面
+    }
+}); //事件总线
 
 Vue.mixin({
     data() {

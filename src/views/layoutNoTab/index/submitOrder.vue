@@ -78,7 +78,7 @@ export default {
         if(data.code==='4'){
           this.Toast(data.message);
         }else{
-          this.$router.push({
+          this.$router.replace({
             path:'/layoutNoTab/orderDetails',
             query:{
               orderId:data.data

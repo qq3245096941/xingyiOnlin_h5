@@ -13,6 +13,7 @@
 <script>
 import commodity from "./compnent/commodity";
 import getList from "./mixin/getList";
+import {orderList} from '@/api/order'
 
 export default {
   name: "putaway",
@@ -20,6 +21,14 @@ export default {
   components: {
     commodity
   },
+  methods:{
+    listApi(){
+      return orderList({
+        orderStat:2,
+        userId:this.userInfo.userId
+      })
+    }
+  }
 }
 </script>
 
