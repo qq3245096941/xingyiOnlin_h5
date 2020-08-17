@@ -38,12 +38,12 @@
       <p>￥00.00</p>
     </div>
 
-
   </div>
 </template>
 
 <script>
 import page from "@/mixin/page";
+import {sourceAll} from '@/api/rank'
 
 export default {
   name: "myWallet",
@@ -55,30 +55,39 @@ export default {
   },
   methods: {
     getList() {
-      setTimeout(() => {
-        let list = Array.from({length: 10}).map(item => {
-          return {
-            time: '08/09',
-            price: '+00.00',
-            source: '推广佣金',
-            isShow:false,
-            children:[
-              {
-                time: '08/09',
-                price: '+00.00',
-                source: '推广佣金',
-              },
-              {
-                time: '08/09',
-                price: '+00.00',
-                source: '推广佣金',
-              },
-            ]
-          }
-        })
 
-        this.list = [...this.list, ...list]
-      }, 1000)
+      sourceAll({
+        userId:this.userInfo.userId,
+        page:this.currPage,
+        rows:this.pageSize
+      }).then(data=>{
+        console.log(data);
+      })
+
+      // setTimeout(() => {
+      //   let list = Array.from({length: 10}).map(item => {
+      //     return {
+      //       time: '08/09',
+      //       price: '+00.00',
+      //       source: '推广佣金',
+      //       isShow:false,
+      //       children:[
+      //         {
+      //           time: '08/09',
+      //           price: '+00.00',
+      //           source: '推广佣金',
+      //         },
+      //         {
+      //           time: '08/09',
+      //           price: '+00.00',
+      //           source: '推广佣金',
+      //         },
+      //       ]
+      //     }
+      //   })
+      //
+      //   this.list = [...this.list, ...list]
+      // }, 1000)
     }
   },
 }

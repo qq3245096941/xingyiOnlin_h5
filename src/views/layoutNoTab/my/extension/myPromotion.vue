@@ -38,6 +38,8 @@ import tuiguangrentongji from '@/assets/img/tuiguangrentongji.svg'
 import tuiguangrenpaihangbang from '@/assets/img/tuiguangrenpaihangbang.svg'
 import yongjinpaihang from '@/assets/img/yongjinpaihang.svg'
 
+import {getUserInfo} from '@/api/user'
+
 export default {
   name: "myPromotion",
   data() {
@@ -63,8 +65,16 @@ export default {
           icon: yongjinpaihang,
           url:'/layoutNoTab/listOfCommission'
         }
-      ]
+      ],
+      account:{}
     }
+  },
+  created() {
+    getUserInfo({
+      userId:this.userInfo.userId
+    }).then(data=>{
+      this.account = data.account;
+    })
   }
 }
 </script>
