@@ -20,7 +20,11 @@ export default {
     commodity
   },
   methods:{
-
+    listApi(){
+      return {
+        
+      }
+    }
   }
 }
 </script>
