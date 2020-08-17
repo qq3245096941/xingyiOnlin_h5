@@ -74,7 +74,6 @@ export default {
       userId:this.userInfo.userId
     }).then(data=>{
       this.account = data.account;
-      console.log(this.account);
     })
   }
 }

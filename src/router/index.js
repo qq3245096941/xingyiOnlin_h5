@@ -9,7 +9,12 @@ import layoutNoTabJs from './layoutNoJs/layoutNoJs'
 
 import layoutNoAll from './layoutNoAll.js'
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
+
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+	return originalPush.call(this, location).catch(err => err)
+}
 
 const routes = [
 	{

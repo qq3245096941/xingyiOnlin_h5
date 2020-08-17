@@ -47,13 +47,18 @@ import {fansList, getUserInfo} from '@/api/user'
 export default {
   name: "myFans",
   mixins: [page],
+  props: {
+    pageType: {
+      type: Number,
+      default: 1
+    }
+  },
   data() {
     return {
       nickName: '',
       list: [],
       user: {},
       userId: '',
-
 
       priceSort: '',
       priceOption: [
@@ -69,38 +74,41 @@ export default {
       ]
     }
   },
-  created() {
+  mounted() {
+    this.userId = this.userInfo.userId;
     this.getList();
   },
   watch: {
-    '$route'() {
-      this.userId = this.$route.query.userId;
+    $route: {
+      handler(to, form) {
+        this.userId = to.query.userId ? to.query.userId : this.userInfo.userId;
 
-      //判断路由上是否带userId，如果带了则是查某个具体的用户
-      if (this.userId) {
+        //判断路由上是否带userId，如果带了则是查某个具体的用户
         getUserInfo({
           userId: this.userId
         }).then(data => {
           this.user = data.user
         })
-      }
-      this.getList();
+
+        this.getList();
+      },
+      deep: true,
     }
   },
   methods: {
     getList() {
       let pxOrder = '';
 
-      if(this.priceSort===''&&this.orderSort===''){
-         pxOrder = '';
-      }else if(this.priceSort===''){
+      if (this.priceSort === '' && this.orderSort === '') {
+        pxOrder = '';
+      } else if (this.priceSort === '') {
         pxOrder = this.orderSort;
-      }else{
+      } else {
         pxOrder = this.priceSort;
       }
 
       fansList({
-        userId: this.userId ? this.userId : this.userInfo.userId,
+        userId: this.userId,
         nickName: this.nickName,
         pxOrder
       }).then(data => {
@@ -110,7 +118,7 @@ export default {
     /*点击查看某个粉丝*/
     userFans(item) {
       this.$router.push({
-        path: '/layoutNoTab/myFans',
+        path: this.pageType === 1 ? '/layoutNoTab/myFans' : '/layoutNoTab/promoterStatistics',
         query: {
           userId: item.userId
         }
@@ -121,7 +129,7 @@ export default {
       this.orderSort = '';
       this.getList();
     },
-    orderChange(){
+    orderChange() {
       this.priceSort = '';
       this.getList();
     }
@@ -141,7 +149,7 @@ export default {
     z-index: 1000;
     position: absolute;
     width: 100%;
-    top: 15%;
+    top: 10%;
     text-align: center;
     color: #f2f2f2;
 

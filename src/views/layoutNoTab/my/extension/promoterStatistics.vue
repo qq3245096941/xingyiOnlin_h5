@@ -1,6 +1,6 @@
 <!--推广人统计-->
 <template>
-  <myFans></myFans>
+  <myFans :page-type="2"></myFans>
 </template>
 
 <script>
