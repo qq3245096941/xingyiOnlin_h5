@@ -14,20 +14,13 @@
         <p>佣金来源</p>
       </div>
 
-      <List class="list" :style="{height:contentHeight-headerHeight-40+'px'}" :total="40" :curr-length="list.length"
+      <List class="list" :style="{height:contentHeight-headerHeight-40+'px'}" :total="total" :curr-length="list.length"
             @getData="getList">
         <div v-for="item in list">
-          <div  class="item" @click="item.isShow = !item.isShow">
-            <p>{{item.time}}</p>
-            <p>{{item.price}}</p>
-            <p>{{item.source}}<van-icon style="margin-left: 5px" size="12" :name="item.isShow?'arrow-up':'arrow-down'" /></p>
-          </div>
-
-          <!--子类-->
-          <div class="item" v-show="item.isShow" v-for="childrenItem in item.children" style="background: #f8f8f9">
-            <p>{{childrenItem.time}}</p>
-            <p>{{childrenItem.price}}</p>
-            <p>{{childrenItem.source}}</p>
+          <div class="item" @click="item.isShow = !item.isShow">
+            <p>{{item.createDate.split(' ')[0]}}</p>
+            <p>{{item.sourceMoney}}</p>
+            <p>{{sourceType[item.sourceType]}}</p>
           </div>
         </div>
       </List>
@@ -35,7 +28,7 @@
 
     <div class="detail">
       <p>佣金明细</p>
-      <p>￥00.00</p>
+      <p>￥{{account.everyMy + account.everyOne + account.everyTwo}}</p>
     </div>
 
   </div>
@@ -44,50 +37,39 @@
 <script>
 import page from "@/mixin/page";
 import {sourceAll} from '@/api/rank'
+import {getUserInfo} from '@/api/user'
 
 export default {
   name: "myWallet",
   mixins: [page],
   data() {
     return {
-      list: []
+      sourceType: [
+        '第一佣金',
+        '第二佣金',
+        '个人佣金'
+      ],
+      account:{}
     }
+  },
+  mounted() {
+    getUserInfo({
+      userId:this.userInfo.userId
+    }).then(data=>{
+      this.account = data.account;
+    })
   },
   methods: {
     getList() {
-
       sourceAll({
-        userId:this.userInfo.userId,
-        page:this.currPage,
-        rows:this.pageSize
-      }).then(data=>{
-        console.log(data);
+        userId: this.userInfo.userId,
+        page: this.currPage,
+        rows: this.pageSize
+      }).then(data => {
+        this.currPage++;
+        this.list = data.sourceList;
+        this.total = data.totalCount;
       })
-
-      // setTimeout(() => {
-      //   let list = Array.from({length: 10}).map(item => {
-      //     return {
-      //       time: '08/09',
-      //       price: '+00.00',
-      //       source: '推广佣金',
-      //       isShow:false,
-      //       children:[
-      //         {
-      //           time: '08/09',
-      //           price: '+00.00',
-      //           source: '推广佣金',
-      //         },
-      //         {
-      //           time: '08/09',
-      //           price: '+00.00',
-      //           source: '推广佣金',
-      //         },
-      //       ]
-      //     }
-      //   })
-      //
-      //   this.list = [...this.list, ...list]
-      // }, 1000)
     }
   },
 }
@@ -100,7 +82,7 @@ export default {
   width: 100%;
   height: 100%;
 
-  .detail{
+  .detail {
     position: absolute;
     top: 13%;
     color: #fff;
@@ -109,7 +91,7 @@ export default {
     align-items: center;
     flex-direction: column;
 
-    p{
+    p {
       font-size: 15px;
     }
   }

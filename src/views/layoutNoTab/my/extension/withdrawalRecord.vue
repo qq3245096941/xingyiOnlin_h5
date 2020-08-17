@@ -5,32 +5,60 @@
     <div ref="header" class="moneyList">
       <div class="card">
         可提现佣金：&nbsp;&nbsp;
-        <p class="money">￥{{aggregateMoney}}</p>
-        <p class="clickAll">全部提现</p>
+        <p class="money">￥{{account.userSumComm}}</p>
+        <p class="clickAll" @click="$router.push({path:'/layoutNoTab/withdrawDeposit'})">全部提现</p>
       </div>
     </div>
 
-    <list :style="{height:listHeight}" :curr-length="list.length" @getData="getList">
-
+    <list :style="{height:listHeight}" :curr-length="list.length" @getData="getList" :total="total">
+      <div class="item" v-for="item in list">
+        <p style="margin-left: 13px">{{item.createDate.split(" ")[0]}}</p>
+        <div class="card body">
+          <div>
+            <p>提现金额</p>
+            <p style="margin-top: 10px">{{item.createDate}}</p>
+          </div>
+          <div class="amountMoney">￥{{item.surplusAmount}}</div>
+        </div>
+      </div>
     </list>
+
+    <van-button @click="$router.push({path:'/layoutNoTab/withdrawDeposit'})" class="btn" type="danger">立刻提现</van-button>
   </div>
 </template>
 
 <script>
 import page from "@/mixin/page";
+import {withAll} from '@/api/withdraw'
+import {getUserInfo} from '@/api/user'
 
 export default {
   name: "withdrawDeposit",
   mixins: [page],
   data() {
     return {
-      aggregateMoney: 3250,  //总金额
-      list: []
+      list: [],
+      account:{}
     }
+  },
+  mounted() {
+    getUserInfo({
+      userId:this.userInfo.userId
+    }).then(data=>{
+      this.account = data.account;
+    })
   },
   methods: {
     getList(){
-
+      withAll({
+        userId:this.userInfo.userId,
+        page:this.currPage,
+        rows:this.pageSize
+      }).then(data=>{
+        this.currPage++;
+        this.total = data.totalCount;
+        this.list = [...this.list,...data.list];
+      })
     }
   }
 }
@@ -42,6 +70,24 @@ export default {
   position: absolute;
   width: 100%;
   height: 100%;
+
+  .item{
+    .body{
+      display: flex;
+      align-items: center;
+
+      div{
+        flex: 1;
+      }
+
+      .amountMoney{
+        text-align: right;
+        color: #ed4014;
+        font-weight: bold;
+        font-size: 30px;
+      }
+    }
+  }
 
   .back {
     display: block;
@@ -69,9 +115,10 @@ export default {
   }
 
   .btn {
-    position: fixed;
+    position: sticky;
     bottom: 0;
     width: 100%;
+    z-index: 1000;
   }
 }
 </style>

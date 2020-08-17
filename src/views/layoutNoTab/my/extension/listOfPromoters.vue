@@ -16,18 +16,20 @@
       <img :src="require('@/static/img/bottom.png')" alt="">
       <List :style="{height:this.listHeight}" :curr-length="list.length" :total="total" @getData="getList">
         <div class="list">
-          <div class="item" v-for="item in list">
+          <div class="item" v-for="(item,index) in list">
             <p>
-              {{item.rankId}}
+              {{index+1}}
             </p>
 
             <div class="userInfo">
               <van-image round width="18" height="18" :src="filterAvatar(item.userTx)"/>
               <p class="nickname">{{item.nickName}}</p>
             </div>
-            <p>
+            <p v-if="rankState===1">
               {{item.extPersoncount}}人
             </p>
+            <p v-else>￥{{item.extComm}}</p>
+
           </div>
         </div>
       </List>
@@ -44,7 +46,10 @@ export default {
   name: "ListOfPromoters",
   mixins: [page],
   props:{
-
+    rankState:{
+      type:Number,
+      default:1
+    }
   },
   data() {
     return {

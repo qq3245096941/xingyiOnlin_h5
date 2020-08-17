@@ -13,7 +13,6 @@
                   @search="getList"/>
       <div class="hen"></div>
 
-
       <div class="sort">
         <van-dropdown-menu>
           <van-dropdown-item @change="priceChange" v-model="priceSort" :options="priceOption"/>

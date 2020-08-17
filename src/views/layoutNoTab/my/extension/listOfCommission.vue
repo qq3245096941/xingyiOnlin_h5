@@ -1,6 +1,6 @@
 <!--推广人排行-->
 <template>
-  <listOfPromoters></listOfPromoters>
+  <listOfPromoters :rank-state="2"></listOfPromoters>
 </template>
 
 <script>

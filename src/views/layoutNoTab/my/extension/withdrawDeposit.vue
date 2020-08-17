@@ -4,12 +4,12 @@
     <img class="back" :src="require('@/static/img/redBack.png')" alt="">
     <div class="moneyList">
       <div class="card">
-        可提现佣金：&nbsp;&nbsp;<span class="money">￥{{aggregateMoney}}</span>
+        可提现佣金：&nbsp;&nbsp;<span class="money">￥{{account.userSumComm}}</span>
       </div>
 
       <div class="card form">
         <van-form @submit="onSubmit" scroll-to-error :show-error="false">
-          <p style="font-size: 13px">提现金额<span style="float: right" @click="money = aggregateMoney">全部提现</span></p>
+          <p style="font-size: 13px">提现金额<span style="float: right" @click="money = account.userSumComm">全部提现</span></p>
           <van-field
               style="font-size: 30px"
               v-model="money"
@@ -19,7 +19,7 @@
                     { required: true, message: '请填写金额' },
                     {
                       validator(){
-                        return money <= aggregateMoney
+                        return money <= account.userSumComm
                       },
                       message: '您输入的金额已经超过啦！'
                     }
@@ -52,28 +52,45 @@
         </van-form>
       </div>
     </div>
-
-
   </div>
 </template>
 
 <script>
+import {getUserInfo} from '@/api/user'
+import {addWith} from '@/api/withdraw'
 
 export default {
   name: "withdrawDeposit",
   data() {
     return {
-      aggregateMoney: 3250,  //总金额
-
       money: '',
       name: '',
       phone: '',
-      zifubao: ''
+      zifubao: '',
+
+      account:{}
     }
+  },
+  mounted() {
+    getUserInfo({
+      userId:this.userInfo.userId
+    }).then(data=>{
+      this.account = data.account;
+    })
   },
   methods: {
     onSubmit(res) {
-      console.log(res);
+      addWith({
+        money:this.money,
+        realName:this.name,
+        userTel:this.phone,
+        alipayNumber:this.zifubao,
+        userId:this.userInfo.userId
+      }).then(data=>{
+        this.$router.push({
+          path:'/layoutNoTab/withdrawalRecord'
+        })
+      })
     }
   }
 }

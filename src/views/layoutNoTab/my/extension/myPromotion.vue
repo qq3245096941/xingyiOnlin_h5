@@ -10,10 +10,10 @@
 
       <div class="commission card">
         <p class="currMoneyTitle">当前佣金</p>
-        <p class="currMoney">￥00.00</p>
+        <p class="currMoney">￥{{account.userSumComm}}</p>
         <div style="display: flex">
-          <p class="ziP">昨日收益：<span style="color: #ff9900">￥00.00</span></p>
-          <p class="ziP">累计提现：<span style="color: #ff9900">￥00.00</span></p>
+          <p class="ziP">今日收益：<span style="color: #ff9900">￥{{account.everyMy + account.everyOne + account.everyTwo}}</span></p>
+          <p class="ziP">累计提现：<span style="color: #ff9900">￥{{account.withdrawlComm}}</span></p>
         </div>
 
         <div class="withdraw" @click="$router.push({path:'/layoutNoTab/withdrawDeposit'})">立刻提现</div>
@@ -74,6 +74,7 @@ export default {
       userId:this.userInfo.userId
     }).then(data=>{
       this.account = data.account;
+      console.log(this.account);
     })
   }
 }
