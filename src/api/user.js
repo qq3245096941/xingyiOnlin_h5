@@ -12,8 +12,8 @@ export function registerUser(data) {
 export function userLogin(data) {
     return request({
         url: `/maUser/${data.tel}/userInfoTel`,
-        data:{
-            userPwd:data.userPwd
+        data: {
+            userPwd: data.userPwd
         }
     })
 }
@@ -35,9 +35,20 @@ export function updateUser(data) {
 }
 
 /*获取用户信息*/
-export function getUserInfo(data){
+export function getUserInfo(data) {
     return request({
         url: `/maUser/${data.userId}/userInfo`
+    })
+}
+
+/*粉丝列表*/
+export function fansList(data) {
+    return request({
+        url: `/maUser/${data.userId}/userTeam`,
+        data: {
+            pxOrder: data.pxOrder,
+            nickName:data.nickName,
+        }
     })
 }
 

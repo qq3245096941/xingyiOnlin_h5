@@ -2,10 +2,8 @@
 <template>
   <div class="content" ref="content">
     <div class="topBody" ref="header">
-      <img :src="require('@/static/img/promoter.png')" alt="">
+      <img :src="require('@/static/img/commission.png')" alt="">
       <p class="time">截止日期：2020年11月1日</p>
-
-
     </div>
 
     <div class="bottomBody">
@@ -43,7 +41,6 @@ import page from "@/mixin/page";
 import {maRanks} from '@/api/rank'
 
 export default {
-  name: "ListOfPromoters",
   mixins: [page],
   data() {
     return {

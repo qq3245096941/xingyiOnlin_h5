@@ -40,6 +40,7 @@ Vue.mixin({
     methods: {
         /*过滤头像*/
         filterAvatar(url) {
+            if (!url) return;
             if (url.indexOf('http://') === 0 || url.indexOf('https://') === 0) {
                 return url;
             } else {

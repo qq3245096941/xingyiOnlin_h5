@@ -13,7 +13,7 @@
     </List>
 
     <!--弹框-->
-    <sellPop :total="clickTotal" :isShow.sync="isShow"></sellPop>
+    <sellPop :total="clickTotal" :orderId="clickOrderId" :isShow.sync="isShow" @getList="getList"></sellPop>
 
   </div>
 </template>
@@ -33,12 +33,14 @@ export default {
   data() {
     return {
       isShow: false,
-      clickTotal: 0
+      clickTotal: 0,
+      clickOrderId: ''
     }
   },
   methods: {
     sell(item) {
       this.clickTotal = item.sumPrice;
+      this.clickOrderId = item.orderId;
       this.isShow = true;
     },
     listApi() {

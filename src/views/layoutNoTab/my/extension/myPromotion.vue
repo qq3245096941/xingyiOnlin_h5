@@ -61,7 +61,7 @@ export default {
         {
           title: '佣金排行',
           icon: yongjinpaihang,
-          url:'/layoutNoTab/businessCard'
+          url:'/layoutNoTab/listOfCommission'
         }
       ]
     }

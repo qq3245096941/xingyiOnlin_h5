@@ -15,6 +15,7 @@ import bankCardEdit from "@/views/layoutNoTab/my/bankCardEdit";
 import myWallet from "@/views/layoutNoTab/my/myWallet";
 import myFans from "@/views/layoutNoTab/my/myFans";
 import fansOrder from "@/views/layoutNoTab/my/fansOrder";
+import listOfCommission from "@/views/layoutNoTab/my/extension/listOfCommission";
 
 export default [
     {
@@ -132,6 +133,15 @@ export default [
         component: listOfPromoters,  //推广人排行
         meta: {
             title: '推广人统计',
+            color: '#ffffff'
+        }
+    },
+    {
+        path: 'listOfCommission',
+        name: 'listOfCommission',
+        component: listOfCommission,  //佣金排行
+        meta: {
+            title: '佣金排行',
             color: '#ffffff'
         }
     },
