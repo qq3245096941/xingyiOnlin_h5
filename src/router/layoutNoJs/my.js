@@ -16,6 +16,7 @@ import myWallet from "@/views/layoutNoTab/my/myWallet";
 import myFans from "@/views/layoutNoTab/my/myFans";
 import fansOrder from "@/views/layoutNoTab/my/fansOrder";
 import listOfCommission from "@/views/layoutNoTab/my/extension/listOfCommission";
+import withdrawalRecord from "@/views/layoutNoTab/my/extension/withdrawalRecord";
 
 export default [
     {
@@ -159,7 +160,17 @@ export default [
         name: 'withdrawDeposit',
         component: withdrawDeposit,  //立刻提现
         meta: {
-            title: '立刻提现'
+            title: '立刻提现',
+            color: '#ffffff'
+        }
+    },
+    {
+        path: 'withdrawalRecord',
+        name: 'withdrawalRecord',
+        component: withdrawalRecord,  //提现记录
+        meta: {
+            title: '提现记录',
+            color: '#ffffff'
         }
     },
     {

@@ -27,19 +27,19 @@
           <van-field
               v-model="name"
               type="text"
-              placeholder="提现名称"
-              :rules="[{ required: true, message: '请输入提现名称' }]"
+              label="提现姓名"
+              :rules="[{ required: true, message: '请输入提现姓名' }]"
           />
           <van-field
               v-model="phone"
               type="tel"
-              placeholder="提现电话"
+              label="提现电话"
               :rules="[{ required: true, message: '请输入提现电话' }]"
           />
           <van-field
               v-model="zifubao"
               type="text"
-              placeholder="支付宝"
+              label="提现支付宝"
               :rules="[{ required: true, message: '请输入提现支付宝' }]"
           />
 

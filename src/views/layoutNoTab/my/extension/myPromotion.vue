@@ -4,7 +4,7 @@
     <img class="back" :src="require('@/static/img/redBack.png')" alt="">
     <!--提现记录-->
     <div class="body">
-      <div class="withdrawalRecord">提现记录
+      <div class="withdrawalRecord" @click="$router.push({path:'/layoutNoTab/withdrawalRecord'})">提现记录
         <van-icon name="arrow"/>
       </div>
 
