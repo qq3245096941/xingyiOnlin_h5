@@ -29,7 +29,7 @@ export default {
     listApi() {
       return orderList({
         orderStat: 0,
-        userId: this.userInfo.userId
+        buyer: this.userInfo.userId
       })
     },
     /*查看订单*/
