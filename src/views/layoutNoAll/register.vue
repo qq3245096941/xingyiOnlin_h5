@@ -56,8 +56,12 @@ export default {
       password: '',
       code: '',
       isConsent:true,  //是否同意我的协议
-      codeNum:0
+      codeNum:0,
+      reCode:''
     }
+  },
+  mounted() {
+    this.reCode = this.$route.query.reCode;
   },
   methods:{
     onSubmit(){
@@ -70,12 +74,15 @@ export default {
         tel:this.username,
         vcode:this.code,
         userPwd:this.password,
-        code:this.$route.query.wxCode||''
+        code:this.$route.query.wxCode||'',
+        reCode:this.reCode
+
       }).then(data=>{
         this.$router.push({
           path:'/login'
         })
       })
+
     },
     /*获取短信验证码*/
     getCode(){
@@ -87,8 +94,6 @@ export default {
       sendCode({
         telephone:this.username
       }).then(data=>{
-        console.log(data);
-
         this.Toast('已发送短信验证码');
 
         this.codeNum = 60;
