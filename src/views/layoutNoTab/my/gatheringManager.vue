@@ -66,6 +66,11 @@ export default {
   },
   methods: {
     look(payUrl) {
+      if(!payUrl){
+        this.Toast('请先添加一张图片');
+        return;
+      }
+
       this.ImagePreview([
         this.imgPrefixUrl + payUrl
       ]);
