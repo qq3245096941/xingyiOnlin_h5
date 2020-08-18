@@ -10,7 +10,7 @@
       </div>
     </div>
 
-    <list :style="{height:listHeight}" :curr-length="list.length" @getData="getList" :total="total">
+    <list :style="{height:listHeight}" style="padding-bottom: 55%;z-index: 1000" :curr-length="list.length" @getData="getList" :total="total">
       <div class="item" v-for="item in list">
         <p style="margin-left: 13px">{{item.createDate.split(" ")[0]}}</p>
         <div class="card body">
@@ -79,6 +79,7 @@ export default {
   height: 100%;
 
   .item {
+
     .body {
       position: relative;
 
@@ -119,7 +120,7 @@ export default {
   }
 
   .btn {
-    position: sticky;
+    position: fixed;
     bottom: 0;
     width: 100%;
     z-index: 10000;
