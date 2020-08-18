@@ -85,6 +85,29 @@ export function upOrderShelf(data) {
     })
 }
 
+/**
+ * 粉丝订单(按年分组)
+ * @param data
+ * @returns {Promise | Promise<unknown>}
+ */
+export function sourceYearTeamAll(data) {
+    return request({
+        url: `/maSource/${data.userId}/sourceYearGroup`
+    })
+}
+
+/**
+ * 粉丝订单(按月)
+ * @param data
+ * @returns {Promise | Promise<unknown>}
+ */
+export function sourceMonthTeamAll(data) {
+    return request({
+        url: `/maSource/sourceTeamAll`,
+        data
+    })
+}
+
 
 
 

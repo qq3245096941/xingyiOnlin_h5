@@ -4,7 +4,11 @@
     <div ref="header"></div>
 
     <List :total="total" :curr-length="list.length" @getData="getList">
-      <commodity class="card" v-for="(item,index) in list" :comm="item" :key="index"></commodity>
+      <commodity class="card" v-for="(item,index) in list" :comm="item" :key="index">
+        <p>快递单号：{{item.expNumber}}</p>
+        <p>{{item.createDate}}</p>
+      </commodity>
+
     </List>
   </div>
 </template>
@@ -12,6 +16,7 @@
 <script>
 import getList from "@/views/layoutNoTab/my/order/mixin/getList";
 import commodity from "@/views/layoutNoTab/my/order/compnent/commodity";
+import {orderList} from '@/api/order'
 
 export default {
   name: "deliverOrder",
@@ -21,14 +26,18 @@ export default {
   },
   methods:{
     listApi(){
-      return {
-        
-      }
+      return orderList({
+        orderStat:3,
+        userId:this.userInfo.userId
+      })
     }
   }
 }
 </script>
 
 <style scoped>
-
+  .card p{
+    font-size: 13px;
+    margin-top: 10px;
+  }
 </style>

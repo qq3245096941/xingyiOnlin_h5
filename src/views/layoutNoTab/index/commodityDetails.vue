@@ -14,8 +14,7 @@
       <div class="userMessage">
         <p>藏品所有者</p>
         <p class="nickname">{{info.userName}}</p>
-        <p class="describe">
-          {{info.shopDesc}}
+        <p class="describe" v-html="info.shopDesc">
         </p>
       </div>
     </div>

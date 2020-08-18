@@ -2,7 +2,7 @@
 <template>
   <div class="content" ref="content">
     <div class="topBody" ref="header">
-      <img :src="require('@/static/img/promoter.png')" alt="">
+      <img :src="rankState===1?require('@/static/img/promoter.png'):require('@/static/img/commission.png')" alt="">
       <p class="time">截止日期：2020年11月1日</p>
     </div>
 

@@ -17,8 +17,15 @@
           <div>
             <p>提现金额</p>
             <p style="margin-top: 10px">{{item.createDate}}</p>
+            <p>
+              <van-tag type="warning" v-if="item.withdrawalStat==='0'">审核中</van-tag>
+              <van-tag type="success" v-if="item.withdrawalStat==='1'">审核通过</van-tag>
+              <van-tag type="danger" v-if="item.withdrawalStat==='2'">审核失败</van-tag>
+              <van-tag type="primary" v-if="item.withdrawalStat==='3'">拒绝申请</van-tag>
+            </p>
           </div>
-          <div class="amountMoney">￥{{item.surplusAmount}}</div>
+
+          <div class="amountMoney">￥{{item.money}}</div>
         </div>
       </div>
     </list>
@@ -38,26 +45,26 @@ export default {
   data() {
     return {
       list: [],
-      account:{}
+      account: {}
     }
   },
   mounted() {
     getUserInfo({
-      userId:this.userInfo.userId
-    }).then(data=>{
+      userId: this.userInfo.userId
+    }).then(data => {
       this.account = data.account;
     })
   },
   methods: {
-    getList(){
+    getList() {
       withAll({
-        userId:this.userInfo.userId,
-        page:this.currPage,
-        rows:this.pageSize
-      }).then(data=>{
+        userId: this.userInfo.userId,
+        page: this.currPage,
+        rows: this.pageSize
+      }).then(data => {
         this.currPage++;
         this.total = data.totalCount;
-        this.list = [...this.list,...data.list];
+        this.list = [...this.list, ...data.list];
       })
     }
   }
@@ -71,17 +78,14 @@ export default {
   width: 100%;
   height: 100%;
 
-  .item{
-    .body{
-      display: flex;
-      align-items: center;
+  .item {
+    .body {
+      position: relative;
 
-      div{
-        flex: 1;
-      }
-
-      .amountMoney{
-        text-align: right;
+      .amountMoney {
+        position: absolute;
+        top: 10px;
+        right: 10px;
         color: #ed4014;
         font-weight: bold;
         font-size: 30px;
@@ -118,7 +122,7 @@ export default {
     position: sticky;
     bottom: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: 10000;
   }
 }
 </style>

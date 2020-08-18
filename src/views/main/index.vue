@@ -2,8 +2,8 @@
 <template>
   <div style="background: #fff">
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-      <van-swipe-item v-for="item in bannerList">
-        <img style="display: block;width: 100%;height: 200px" :src="imgPrefixUrl+item.imagepath" alt="">
+      <van-swipe-item v-for="item in bannerList" style="padding: 5px">
+        <img style="display: block;width: 100%;height: 170px;border-radius: 10px;" :src="imgPrefixUrl+item.imagepath" alt="">
       </van-swipe-item>
     </van-swipe>
 
