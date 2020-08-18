@@ -33,7 +33,7 @@
       </p>
     </div>
 
-    <van-button style="position: sticky;bottom: 0" block type="danger" @click="submitOrder">提交订单</van-button>
+    <van-button style="position: fixed;bottom: 0" block type="danger" @click="submitOrder">提交订单</van-button>
 
     <agreement :is-show.sync="isShow" @look="look"></agreement>
   </div>
@@ -143,6 +143,7 @@ export default {
     flex-direction: column;
     align-items: center;
     margin: 20px;
+    padding-bottom: 40px;
   }
 
   .pay{
