@@ -7,7 +7,7 @@
       </div>
       <div style="text-align: center;margin:10px 0">出售价格：<span style="color: #ed4014">￥{{tradingValue}}</span></div>
       <div class="hen"></div>
-      <paymentComponent></paymentComponent>
+      <paymentComponent :user-id="10086"></paymentComponent>
 
       <van-button type="danger" block round style="margin-top: 10px" @click="submit">提交委托申请</van-button>
     </div>
