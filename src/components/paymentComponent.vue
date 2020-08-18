@@ -32,7 +32,7 @@ export default {
     }
   },
   created() {
-    payList({userId: this.userId ? this.user : this.userInfo.userId}).then(data => {
+    payList({userId: this.userId ? this.userId : this.userInfo.userId}).then(data => {
       this.list = data.data;
     })
   }
