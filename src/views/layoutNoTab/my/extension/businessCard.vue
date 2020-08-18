@@ -1,32 +1,58 @@
 <template>
   <div class="content">
-    <img :src="haibao" alt="">
+    <img class="back" :src="haibao" alt="">
+    <div id="qrcode"></div>
   </div>
 </template>
 
 <script>
 import businessCard from "@/static/img/businessCard.png"
+import {configInfo} from '@/api/config'
 
 export default {
   name: "businessCard",
-  data(){
-    return{
-      haibao:businessCard
+  data() {
+    return {
+      haibao: businessCard,
+      url: ''
     }
+  },
+  mounted() {
+    configInfo({code: 'SYSTEM_URL'}).then(data => {
+      this.url = data.data.sysValue + this.userInfo.shareCode;
+
+      console.log(this.url);
+      let qrcode = new QRCode(document.getElementById("qrcode"), {
+        text: this.url,
+        width: 118,
+        height: 118,
+        correctLevel: QRCode.CorrectLevel.H
+      });
+    })
   }
 }
 </script>
 
 <style scoped lang="scss">
-  .content{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
+.content {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
 
-    img{
-      display: block;
-      width: 100%;
-    }
+  .back {
+    display: block;
+    width: 100%;
   }
+
+  #qrcode {
+    position: absolute;
+    z-index: 1000;
+    bottom: 50%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+}
 </style>

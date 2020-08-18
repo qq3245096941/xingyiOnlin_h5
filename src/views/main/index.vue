@@ -3,7 +3,8 @@
   <div style="background: #fff">
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
       <van-swipe-item v-for="item in bannerList" style="padding: 5px">
-        <img style="display: block;width: 100%;height: 170px;border-radius: 10px;" :src="imgPrefixUrl+item.imagepath" alt="">
+        <img style="display: block;width: 100%;height: 170px;border-radius: 10px;" :src="imgPrefixUrl+item.imagepath"
+             alt="">
       </van-swipe-item>
     </van-swipe>
 
@@ -125,40 +126,42 @@ export default {
 .shopping {
   padding: 10px;
 
-  .item {
-    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.3);
-    position: relative;
-    width: 100%;
-    height: 130px;
-    border-radius: 5px;
-    overflow: hidden;
-    margin-bottom: 15px;
-    padding: 70px 0 0 15px;
-  }
+  .typeList {
+    .item {
+      box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.3);
+      position: relative;
+      width: 100%;
+      height: 130px;
+      border-radius: 15px;
+      overflow: hidden;
+      margin-bottom: 15px;
+      padding: 70px 0 0 15px;
 
-  .body {
-    position: relative;
-    z-index: 1000;
+      .body {
+        position: relative;
+        z-index: 1000;
 
-    .title {
-      font-size: 13px;
-      font-weight: bold;
-      color: #fff;
+        .title {
+          font-size: 13px;
+          font-weight: bold;
+          color: #fff;
+        }
+
+        .time {
+          font-size: 13px;
+          color: #fff;
+          font-weight: bold;
+        }
+      }
+
+      img {
+        top: 0;
+        left: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
     }
-
-    .time {
-      font-size: 13px;
-      color: #fff;
-      font-weight: bold;
-    }
-  }
-
-  img {
-    top: 0;
-    left: 0;
-    position: absolute;
-    width: 100%;
-    height: 100%;
   }
 }
 </style>

@@ -6,3 +6,10 @@ export function configAll() {
         url: '/config/configAll',
     })
 }
+
+export function configInfo(data) {
+    return request({
+        url: '/config/configInfo',
+        data
+    })
+}

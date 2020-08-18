@@ -18,7 +18,7 @@
 
         <div class="btns">
           <van-button block type="danger" native-type="onSubmit">
-            提交
+            登录
           </van-button>
           <van-button style="margin-top: 10px" block type="warning" @click="$router.push({path:'/register'})">
             注册
