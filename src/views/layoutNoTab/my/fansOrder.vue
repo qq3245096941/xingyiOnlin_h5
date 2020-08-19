@@ -71,7 +71,7 @@ export default {
             orderNum++;
           })
 
-          item.moneyNum = moneyNum;
+          item.moneyNum = moneyNum.toFixed(2);
           item.orderNum = orderNum;
 
           return item;

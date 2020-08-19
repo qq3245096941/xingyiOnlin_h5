@@ -21,7 +21,7 @@
       </div>
     </div>
 
-    <div class="list" :style="{'height':this.listHeight}">
+    <div class="list" :style="{'height':this.listHeight}" v-if="list.length>0">
       <!--list-->
       <div class="item" v-for="(item,index) in list" :key="index" @click="userFans(item)">
         <van-image round width="40" height="40" :src="filterAvatar(item.usertx)"/>
@@ -36,6 +36,8 @@
         <div class="time">{{item.time}}</div>
       </div>
     </div>
+
+    <van-empty v-else description="暂无粉丝" />
 
   </div>
 </template>
