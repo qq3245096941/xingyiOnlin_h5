@@ -80,7 +80,7 @@ export function confimReceipt(data) {
  */
 export function upOrderShelf(data) {
     return request({
-        url: `/maOrder/upOrderShelf`,
+        url: `/maOrder/upOrderSHSJ`,
         data
     })
 }

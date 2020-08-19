@@ -35,6 +35,8 @@ export default {
   methods:{
     listApi(){
       return orderList({
+        page:this.currPage,
+        rows:this.pageSize,
         orderStat:1,
         userId:this.userInfo.userId
       })
