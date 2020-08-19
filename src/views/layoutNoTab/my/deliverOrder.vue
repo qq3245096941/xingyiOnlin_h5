@@ -28,7 +28,9 @@ export default {
     listApi(){
       return orderList({
         orderStat:3,
-        userId:this.userInfo.userId
+        page:this.currPage,
+        rows:this.pageSize,
+        buyer:this.userInfo.userId
       })
     }
   }

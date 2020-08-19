@@ -6,15 +6,15 @@
       <p class="time">截止日期：2020年11月1日</p>
     </div>
 
-    <div class="bottomBody">
+    <div class="bottomBody" >
       <div class="rank">
         <p @click="clickRank(1)" :class="{'active':rankType===1}">日排行</p>
         <p @click="clickRank(2)" :class="{'active':rankType===2}">周排行</p>
         <p @click="clickRank(3)" :class="{'active':rankType===3}">月排行</p>
       </div>
 
-      <img :src="require('@/static/img/bottom.png')" alt="">
-      <List :style="{height:this.listHeight}" :curr-length="list.length" :total="total" @getData="getList">
+      <img :src="require('@/static/img/bottom.png')" :style="{height:this.listHeight}" alt="">
+      <List :style="{height:this.contentHeight-this.headerHeight-65+'px'}"  :curr-length="list.length" :total="total" @getData="getList">
         <div class="list">
           <div class="item" v-for="(item,index) in list">
             <p>
@@ -61,6 +61,7 @@ export default {
     getList() {
       maRanks({
         rankType: this.rankType,
+        orderDesc:this.rankState===1?'ext_personcount desc':'ext_comm desc',
         page: this.currPage,
         rows: this.pageSize
       }).then(data => {
@@ -125,7 +126,9 @@ export default {
   }
 
   .bottomBody {
+    height: 100%;
     position: relative;
+    overflow: hidden;
     top: -5px;
 
     img {

@@ -14,6 +14,7 @@
 
     <!--弹框-->
     <sellPop :total="clickTotal" :orderId="clickOrderId" :isShow.sync="isShow" @getList="getList"></sellPop>
+    <entrust :isShow.sync="isEnterShow" @look="look"></entrust>
 
   </div>
 </template>
@@ -23,25 +24,32 @@ import commodity from "./compnent/commodity";
 import getDataList from "./mixin/getList";
 import sellPop from "@/views/layoutNoTab/my/order/compnent/sellPop";
 import {orderList, upOrderExp} from '@/api/order'
+import entrust from "@/components/entrust";
 
 export default {
   name: "warehouse",
   mixins: [getDataList],
   components: {
-    commodity, sellPop
+    commodity, sellPop, entrust
   },
   data() {
     return {
       isShow: false,
       clickTotal: 0,
-      clickOrderId: ''
+      clickOrderId: '',
+      /*是否同意委托协议*/
+      isEnterShow: false
     }
   },
   methods: {
+    look(){
+      this.isShow = true;
+      this.isEnterShow = false;
+    },
     sell(item) {
       this.clickTotal = item.sumPrice;
       this.clickOrderId = item.orderId;
-      this.isShow = true;
+      this.isEnterShow = true;
     },
     listApi() {
       return orderList({

@@ -132,7 +132,7 @@ export default {
       position: relative;
       width: 100%;
       height: 130px;
-      border-radius: 15px;
+      border-radius: 17px;
       overflow: hidden;
       margin-bottom: 15px;
       padding: 70px 0 0 15px;

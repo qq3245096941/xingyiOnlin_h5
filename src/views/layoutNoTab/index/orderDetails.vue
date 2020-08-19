@@ -11,9 +11,7 @@
           <li><span class="title">售价：</span><span class="price">￥{{shop.shopPrice}}</span></li>
         </ul>
       </div>
-
       <van-divider/>
-
       <div class="userMessage">
         <p><span class="title">卖家昵称：</span><span class="userInfo">{{shop.userName}}</span></p>
         <p><span class="title">卖家电话：</span><span class="userInfo">{{shop.userTel}}</span></p>
@@ -22,9 +20,9 @@
       </div>
     </div>
 
-    <paymentComponent></paymentComponent>
+    <paymentComponent style="padding-bottom: 50px;"></paymentComponent>
 
-    <van-button style="position: sticky;bottom: 0" block type="danger"
+    <van-button style="position: fixed;bottom: 0;" block type="danger"
                 @click="$router.replace({path:'/layoutNoTab/orderAll',query:{index:1}})">我的订单
     </van-button>
   </div>
