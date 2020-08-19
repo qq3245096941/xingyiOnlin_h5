@@ -3,7 +3,7 @@
   <div class="content" ref="content">
     <div class="topBody" ref="header">
       <img :src="rankState===1?require('@/static/img/promoter.png'):require('@/static/img/commission.png')" alt="">
-      <p class="time">截止日期：2020年11月1日</p>
+      <p class="time">截止日期：{{Moment().subtract(1, 'days').format('YYYY-MM-DD')}}</p>
     </div>
 
     <div class="bottomBody" >

@@ -4,7 +4,7 @@
     <div ref="header">
       <p class="time">开启时间：{{commdityTypeInfo.openDate}} ~ {{commdityTypeInfo.closeDate}}</p>
       <p class="title" style="text-align: center">{{commdityTypeInfo.name}}</p>
-      <van-pagination class="page" :total-items="total" :items-per-page="20" @change="pageChange"/>
+      <van-pagination v-model="currPage" class="page" :total-items="total" :items-per-page="20" @change="pageChange"/>
     </div>
 
 
@@ -19,7 +19,7 @@
         </div>
       </div>
 
-      <van-empty v-show="list.length===0" description="暂无商品"/>
+      <van-empty v-show="total===0" description="暂无商品"/>
     </div>
 
   </div>
@@ -65,7 +65,6 @@ export default {
         page: this.currPage,
         rows: 20
       }).then(data => {
-        this.currPage++;
         this.total = data.totalCount;
         this.list = [...data.shopList.map(item => {
           item.shopCover = item.shopCover.split(',');

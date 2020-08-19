@@ -12,7 +12,7 @@
         <p class="currMoneyTitle">当前佣金</p>
         <p class="currMoney">￥{{account.userSumComm}}</p>
         <div style="display: flex">
-          <p class="ziP">今日收益：<span style="color: #ff9900">￥{{account.everyMy + account.everyOne + account.everyTwo}}</span></p>
+          <p class="ziP">今日收益：<span style="color: #ff9900">￥{{(account.everyMy + account.everyOne + account.everyTwo).toFixed(2)}}</span></p>
           <p class="ziP">累计提现：<span style="color: #ff9900">￥{{account.withdrawlComm}}</span></p>
         </div>
 

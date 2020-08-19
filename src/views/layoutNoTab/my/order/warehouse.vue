@@ -6,7 +6,8 @@
     <List :curr-length="list.length" :total="total" style="height:100%" @getData="getList">
       <div class="card" v-for="item in list">
         <commodity :comm="item">
-          <van-button type="warning" size="mini" round @click="sell(item)">委托出售</van-button>
+          <van-button v-if="item.orderStats!==4" type="warning" size="mini" round @click="sell(item)">委托出售</van-button>
+          <van-tag v-else type="warning">正在审核</van-tag>
           <van-button type="primary" size="mini" round @click="applyShipment(item)">申请发货</van-button>
         </commodity>
       </div>
