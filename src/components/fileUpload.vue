@@ -1,5 +1,5 @@
 <template>
-  <van-uploader :after-read="afterRead">
+  <van-uploader class="upload" :after-read="afterRead">
     <slot></slot>
   </van-uploader>
 </template>
@@ -35,5 +35,9 @@ export default {
 </script>
 
 <style scoped>
-
+  .upload{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 </style>

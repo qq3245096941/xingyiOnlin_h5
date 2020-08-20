@@ -69,7 +69,14 @@ export default {
         orderId:this.orderId
       }).then(data=>{
         if(data.code==='3'){
-          this.Toast(data.message);
+          this.Dialog.alert({
+            message: data.message,
+            theme: 'round-button',
+          }).then(() => {
+            this.$router.push({
+              path:'/layoutNoTab/gatheringManager'
+            })
+          });
           return;
         }
 

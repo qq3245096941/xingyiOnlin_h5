@@ -6,14 +6,14 @@
       <div class="item" v-for="(item,index) in payList">
         <img :src="item.icon" alt="">
         <div class="btns">
-          <span @click="look(item.payUrl)" v-show="item.payUrl!=='null'">查看</span>
+          <span @click="look(item.payUrl)" v-show="item.payUrl">查看</span>
 
-          <fileUpload v-if="item.payType===1||item.payType===0" @change="edit($event,item)">
+          <fileUpload v-if="item.payType===1 || item.payType===0" @change="edit($event,item)">
             <span>修改</span>
           </fileUpload>
 
           <!--编辑银行卡-->
-          <span v-else @click="edit('',item)">{{item.payUrl==='null'?'查看':'修改'}}</span>
+          <span v-else @click="edit('',item)">{{item.payUrl ? '查看' : '修改'}}</span>
 
           <span @click="deleteItem(item)">删除</span>
         </div>
@@ -22,7 +22,7 @@
       </div>
 
       <!-- 通用错误 -->
-      <van-empty v-show="payList.length===0" description="请选择一个付款方式" />
+      <van-empty v-show="payList.length===0" description="请选择一个付款方式"/>
     </div>
 
     <van-button style="position: fixed;width: 100%;bottom: 0;left: 0" type="danger" @click="isShow=true">添加支付方式
@@ -33,9 +33,20 @@
         <h3 class="title">选择支付方式</h3>
 
         <div class="payList">
-          <div v-for="item in list" class="payItem" @click="addPayType(item)">
-            <img :src="item.icon" alt="">
-            <p>{{item.title}}</p>
+          <div v-for="item in list" class="payItem">
+
+            <fileUpload @change="addPayType($event,item)" v-if="item.type<2">
+              <div class="itemBody">
+                <img :src="item.icon" alt="">
+                <p>{{item.title}}</p>
+              </div>
+            </fileUpload>
+
+            <div v-else class="itemBody" @click="addBank(item)">
+              <img :src="item.icon" alt="">
+              <p>{{item.title}}</p>
+            </div>
+
           </div>
         </div>
       </div>
@@ -44,16 +55,16 @@
 </template>
 
 <script>
-import zhifubao from '../../../assets/img/my/zhifubao.svg';
-import weiixn from '../../../assets/img/my/weiixn.svg';
-import yinhangka from '../../../assets/img/my/yinhangka.svg';
+import zhifubao from '@/assets/img/my/zhifubao.svg';
+import weiixn from '@/assets/img/my/weiixn.svg';
+import yinhangka from '@/assets/img/my/yinhangka.svg';
 import BankCard from "@/components/BankCard";
 
 import {addPay, payList, deletePay, updatePay} from '@/api/pay'
 
 export default {
   name: "gatheringManager",
-  components:{BankCard},
+  components: {BankCard},
   data() {
     return {
       list: [],
@@ -66,7 +77,7 @@ export default {
   },
   methods: {
     look(payUrl) {
-      if(!payUrl){
+      if (!payUrl) {
         this.Toast('请先添加一张图片');
         return;
       }
@@ -154,14 +165,26 @@ export default {
         })
       })
     },
-    addPayType(item) {
+
+    /*添加支付方式，但不包括银行卡*/
+    addPayType(imgUrl, item) {
       addPay({
         payName: item.title,
         payType: item.type,
-        userId: this.userInfo.userId
+        userId: this.userInfo.userId,
+        payUrl: imgUrl
       }).then(data => {
         this.getList();
         this.isShow = false;
+      })
+    },
+    /*只添加银行卡*/
+    addBank(item) {
+      this.$router.push({
+        path: '/layoutNoTab/bankCardEdit',
+        query: {
+          payId: item.payId
+        }
       })
     },
     /*删除支付方式*/
@@ -181,6 +204,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.itemBody {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 .content {
   width: 100%;
   height: 100%;
@@ -195,6 +224,9 @@ export default {
       .btns {
         flex: 1;
         text-align: right;
+        display: flex;
+        align-items: center;
+        margin-left: 60%;
 
         span {
           margin-right: 10px;
