@@ -1,12 +1,13 @@
 <template>
   <div>
     <div class="content">
-      <van-image style="border-radius: 5px;overflow: hidden" fit="cover" width="120" height="70" :src="getFirstImg(comm.shopLogo)" />
-      <img  alt="">
+      <van-image style="border-radius: 5px;overflow: hidden" fit="cover" width="120" height="70"
+                 :src="getFirstImg(comm.shopLogo)"/>
+      <img alt="">
       <div class="message">
         <p>{{comm.shopName}}</p>
         <p>{{comm.typeName}}</p>
-        <p>售价：<span class="price">{{'￥' + comm.orderSum}}</span></p>
+        <p>售价：<span class="price">{{'￥' + orderMoney}}</span></p>
       </div>
     </div>
 
@@ -27,11 +28,25 @@ export default {
     comm: {
       type: Object,
       required: true
+    },
+    orderType: {
+      type: String,
+      default: ''
     }
   },
-  methods:{
-    getFirstImg(res){
-      if(res){
+  computed: {
+    orderMoney() {
+      //如果是上架状态
+      if (this.orderType === 'putaway') {
+        return this.comm.shopPrice;
+      }
+      return this.comm.orderSum;
+    }
+  },
+
+  methods: {
+    getFirstImg(res) {
+      if (res) {
         return this.imgPrefixUrl + res.split(",")[0]
       }
     }
@@ -58,11 +73,11 @@ export default {
   }
 }
 
-.btns{
+.btns {
   margin: 10px 0;
 }
 
-.time{
+.time {
   font-size: 13px;
 }
 </style>
