@@ -6,7 +6,9 @@
     <List :total="total" :curr-length="list.length" @getData="getList">
       <commodity class="card" v-for="(item,index) in list" :comm="item" :key="index">
         <p>快递单号：{{item.expNumber}}</p>
+        <p>快递公司：{{item.expCompany}}</p>
         <p>{{item.createDate}}</p>
+
       </commodity>
 
     </List>

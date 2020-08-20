@@ -7,7 +7,6 @@
       <van-pagination v-model="currPage" class="page" :total-items="total" :items-per-page="20" @change="pageChange"/>
     </div>
 
-
     <div :style="{height: this.listHeight}" style="overflow: auto">
 
       <div class="commodityBox" >

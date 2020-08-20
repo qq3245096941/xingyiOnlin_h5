@@ -4,7 +4,10 @@
     <div ref="header"></div>
     <List :curr-length="list.length" :total="total" style="height:100%" @getData="getList">
       <div class="card" v-for="item in list">
-        <commodity :comm="item"></commodity>
+        <commodity :comm="item">
+          <van-tag type="warning" v-if="item.orderStat==='4'">审核中</van-tag>
+          <van-tag type="success" v-else>审核通过</van-tag>
+        </commodity>
       </div>
     </List>
   </div>
@@ -27,7 +30,7 @@ export default {
         orderStat:4,
         page:this.currPage,
         rows:this.pageSize,
-        userId:this.userInfo.userId
+        buyer:this.userInfo.userId
       })
     }
   }
