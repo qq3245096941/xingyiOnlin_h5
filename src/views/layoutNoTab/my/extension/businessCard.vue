@@ -1,7 +1,10 @@
 <template>
   <div class="content">
-    <img class="back" :src="haibao" alt="">
-    <div id="qrcode"></div>
+    <div style="position: relative">
+      <img class="back" :src="haibao" alt="">
+      <div id="qrcode"></div>
+    </div>
+
   </div>
 </template>
 
