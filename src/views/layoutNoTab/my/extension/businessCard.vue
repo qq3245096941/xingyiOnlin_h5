@@ -51,7 +51,7 @@ export default {
   #qrcode {
     position: absolute;
     z-index: 1000;
-    bottom: 50%;
+    bottom: 10%;
     width: 100%;
     display: flex;
     align-items: center;

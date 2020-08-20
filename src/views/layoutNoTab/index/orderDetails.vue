@@ -20,7 +20,7 @@
       </div>
     </div>
 
-    <paymentComponent style="padding-bottom: 50px;"></paymentComponent>
+    <paymentComponent :user-id="order.userId" style="padding-bottom: 50px;"></paymentComponent>
 
     <van-button style="position: fixed;bottom: 0;" block type="danger"
                 @click="$router.replace({path:'/layoutNoTab/orderAll',query:{index:1}})">我的订单
@@ -36,8 +36,8 @@ export default {
   name: "submitOrder",
   data() {
     return {
-      order: {},
-      shop: {}
+      shop: {},
+      order:{}
     }
   },
   created() {
@@ -45,7 +45,11 @@ export default {
       orderId: this.$route.query.orderId
     }).then(data => {
       this.shop = data.shopPo;
-      this.shop.shopCover = this.imgPrefixUrl + this.shop.shopCover.split(',')[0]
+      this.shop.shopCover = this.imgPrefixUrl + this.shop.shopCover.split(',')[0];
+
+      this.order = data.obj;
+
+      console.log(this.order);
     })
   },
   methods: {}

@@ -68,6 +68,11 @@ export default {
       upOrderShelf({
         orderId:this.orderId
       }).then(data=>{
+        if(data.code==='3'){
+          this.Toast(data.message);
+          return;
+        }
+
         this.Toast('提交成功');
         this.$emit('getList');
         this.close();
