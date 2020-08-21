@@ -49,13 +49,13 @@ export default {
         '第二佣金',
         '个人佣金'
       ],
-      account:{}
+      account: {}
     }
   },
   mounted() {
     getUserInfo({
-      userId:this.userInfo.userId
-    }).then(data=>{
+      userId: this.userInfo.userId
+    }).then(data => {
       this.account = data.account;
     })
   },
@@ -67,7 +67,7 @@ export default {
         rows: this.pageSize
       }).then(data => {
         this.currPage++;
-        this.list = data.sourceList;
+        this.list = [...this.list, ...data.sourceList];
         this.total = data.totalCount;
       })
     }

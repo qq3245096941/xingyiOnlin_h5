@@ -3,7 +3,6 @@
     <div class="content">
       <van-image style="border-radius: 5px;overflow: hidden" fit="cover" width="120" height="70"
                  :src="getFirstImg(comm.shopLogo)"/>
-      <img alt="">
       <div class="message">
         <p>{{comm.shopName}}</p>
         <p>{{comm.typeName}}</p>

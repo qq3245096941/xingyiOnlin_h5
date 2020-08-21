@@ -38,7 +38,6 @@ export default {
     }
   },
   created() {
-    this.total = 5;
     this.getList();
   },
   methods: {
