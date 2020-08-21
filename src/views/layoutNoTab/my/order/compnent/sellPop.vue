@@ -55,6 +55,9 @@ export default {
       this.isPopShow = newValue;
     },
     total(newValue) {
+      console.log('委托费用',newValue * Number.parseFloat(this.configList.find(item => item.code === 'H5_RENEW_ONE').sysValue));
+      console.log('佣金比例',newValue * Number.parseFloat(this.configList.find(item => item.code === 'H5_RENEW_TWO').sysValue));
+
       this.entrustMoney = (newValue * Number.parseFloat(this.configList.find(item => item.code === 'H5_RENEW_ONE').sysValue)).toFixed(2);  //委托费用
       this.estimateMoney = (newValue * Number.parseFloat(this.configList.find(item => item.code === 'H5_RENEW_TWO').sysValue)).toFixed(2);  //佣金比例
       this.tradingValue = (Number(this.entrustMoney) + Number(this.estimateMoney) + Number(newValue)).toFixed(2);
