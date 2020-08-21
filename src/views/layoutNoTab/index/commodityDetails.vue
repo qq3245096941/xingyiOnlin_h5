@@ -2,7 +2,7 @@
 <template>
   <div class="content">
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-      <van-swipe-item v-for="item in info.shopCover">
+      <van-swipe-item v-for="item in info.shopUrlList">
         <img :src="imgPrefixUrl+item" alt="">
       </van-swipe-item>
     </van-swipe>
@@ -122,6 +122,10 @@ export default {
   width: 100%;
   height: 100%;
   overflow: auto;
+
+  .my-swipe{
+    min-height: 100px;
+  }
 
   .price {
     color: #ed4014;

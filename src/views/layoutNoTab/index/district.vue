@@ -12,7 +12,7 @@
       <div class="commodityBox" >
         <div class="commodity" v-for="(item,index) in list" :key="index" @click="toCommodityDetails(item)">
           <img v-show="item.shopStat==='1'" class="isNo" src="../../../assets/img/main/yishouqin2.svg" alt="">
-          <img class="img" :src="imgPrefixUrl+item.shopCover[0]" alt="">
+          <img class="img" :src="imgPrefixUrl+item.shopCover" alt="">
           <p class="price">￥{{item.shopPrice}}</p>
           <p class="commodityName">{{item.shopName}}</p>
         </div>
@@ -65,10 +65,7 @@ export default {
         rows: 20
       }).then(data => {
         this.total = data.totalCount;
-        this.list = [...data.shopList.map(item => {
-          item.shopCover = item.shopCover.split(',');
-          return item;
-        })];
+        this.list = data.shopList;
       })
     }
   },
