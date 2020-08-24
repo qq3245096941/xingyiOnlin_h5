@@ -30,7 +30,7 @@
           <p>
             <span style="color: #19be6b">{{item.userCount}}</span>人&nbsp;&nbsp;
             <span style="color: #ff9900">{{item.orderCount}}</span>单&nbsp;&nbsp;
-            <span style="color: #ed4014">{{item.everySum}}</span>元</p>
+            <span style="color: #ed4014">{{item.userSum}}</span>元</p>
         </div>
 
         <div class="time">{{item.time}}</div>
