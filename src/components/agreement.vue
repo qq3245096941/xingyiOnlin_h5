@@ -10,7 +10,7 @@
         产损失的, 需自行承担责任请及时报警。
       </div>
 
-      <van-button block type="danger" @click="submitOrder">我已阅读该协议</van-button>
+      <van-button block type="danger" @click="submitOrder">{{btnText}}</van-button>
     </div>
   </van-popup>
 </template>
@@ -22,6 +22,10 @@ export default {
     isShow: {
       type: Boolean,
       default: false
+    },
+    btnText: {
+      type: String,
+      default: '我已阅读该协议'
     }
   },
   data() {
@@ -40,7 +44,7 @@ export default {
       this.$emit('update:isShow', false)
     },
     /*提交订单*/
-    submitOrder(){
+    submitOrder() {
       this.$emit('look');
     }
   }
@@ -61,7 +65,7 @@ export default {
   .body {
     padding: 0 20px 40px 20px;
     font-size: 13px;
-    text-indent:2em
+    text-indent: 2em
   }
 }
 </style>

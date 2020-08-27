@@ -25,10 +25,13 @@
       )
     </van-button>
 
-    <van-button v-if="time.isStart&&time.isEnd===false" class="btn" block type="danger" @click="submitOrder">确认购买
+    <van-button v-if="time.isStart&&time.isEnd===false" class="btn" block type="danger" @click="purchase">立刻购买
     </van-button>
 
     <van-button v-if="time.isEnd" :disabled="time.isEnd" class="btn" block type="danger">已结束</van-button>
+
+    <!--购买协议-->
+    <agreement btn-text="确认购买" :isShow.sync="isShow" @look="submitOrder"></agreement>
   </div>
 </template>
 
@@ -39,6 +42,8 @@ export default {
   name: "commodityDetails",
   data() {
     return {
+      isShow: false,  //展示购买协议
+
       info: {},  //商品详情
 
       time: {
@@ -54,6 +59,9 @@ export default {
     }
   },
   methods: {
+    purchase() {
+      this.isShow = true;
+    },
     submitOrder() {
       this.$router.push({
         path: '/layoutNoTab/submitOrder',
@@ -62,6 +70,7 @@ export default {
         }
       })
     },
+
     /*倒计时结束时*/
     finish() {
       this.time.isStart = true;

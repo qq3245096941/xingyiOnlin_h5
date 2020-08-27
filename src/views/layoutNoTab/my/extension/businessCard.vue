@@ -2,6 +2,10 @@
   <div class="content">
     <div style="position: relative">
       <img class="back" :src="haibao" alt="">
+
+      <div>
+
+      </div>
       <div id="qrcode"></div>
     </div>
 

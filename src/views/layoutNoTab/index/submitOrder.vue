@@ -33,9 +33,7 @@
       </p>
     </div>
 
-    <van-button style="position: fixed;bottom: 0" block type="danger" @click="submitOrder">提交订单</van-button>
-
-    <agreement :is-show.sync="isShow" @look="look"></agreement>
+    <van-button style="position: fixed;bottom: 0" block type="danger" @click="look">提交订单</van-button>
   </div>
 </template>
 
@@ -47,7 +45,6 @@ export default {
   name: "submitOrder",
   data(){
     return{
-      isShow:false,
       shop:{}
     }
   },
@@ -59,12 +56,8 @@ export default {
     })
   },
   methods:{
-    submitOrder(){
-      this.isShow = true;
-    },
     /*已经查看完毕*/
     look(){
-      this.isShow = false;
       /*调取添加订单接口*/
       addOrder({
         shopId:this.$route.query.shopId,
