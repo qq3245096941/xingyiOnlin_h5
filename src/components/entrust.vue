@@ -76,8 +76,7 @@
         <p>2）您因使用平台服务所产生及与平台服务有关的争议，由平台与您协商解决。协商不成时，任何一方均可向平台住所地有管辖权的人民法院提起诉讼。</p>
         <p>3）本协议任一条款被视为废止、无效或不可执行，该条应视为可分的且并不影响本协议其余条款的有效性及可执行性。</p>
       </div>
-
-      <van-button block type="danger" @click="submitOrder">我已阅读该协议</van-button>
+      <van-button style="position: sticky;width: 100%;bottom: 0" block type="danger" @click="submitOrder">我已阅读该协议</van-button>
     </div>
   </van-popup>
 </template>

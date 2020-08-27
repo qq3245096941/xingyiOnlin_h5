@@ -3,7 +3,7 @@
     <div style="padding: 20px;font-size: 15px">
       <div class="topPrice">
         <p>委托费用：<span style="color: #ff9900">￥{{entrustMoney}}</span></p>
-        <p>预计费用：<span style="color: #ff9900">￥{{estimateMoney}}</span></p>
+        <p>产品收益：<span style="color: #ff9900">￥{{estimateMoney}}</span></p>
       </div>
       <div style="text-align: center;margin:10px 0">出售价格：<span style="color: #ed4014">￥{{tradingValue}}</span></div>
       <div class="hen"></div>

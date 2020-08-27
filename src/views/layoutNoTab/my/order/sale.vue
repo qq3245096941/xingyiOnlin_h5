@@ -11,7 +11,10 @@
               <div>
                 <van-tag type="success">已成功售出</van-tag>
               </div>
-              <div style="font-size: 13px;flex: 1;text-align: right">{{item.buyerTel}}</div>
+              <div style="font-size: 13px;flex: 1;text-align: right">
+                <span>{{item.buyerName}}</span>
+                {{item.buyerTel}}
+              </div>
             </div>
           </template>
         </commodity>
@@ -37,7 +40,7 @@ export default {
       return orderList({
         page:this.currPage,
         rows:this.pageSize,
-        orderStat:1,
+        orderStats:'1,2,3,4',
         userId:this.userInfo.userId
       })
     }

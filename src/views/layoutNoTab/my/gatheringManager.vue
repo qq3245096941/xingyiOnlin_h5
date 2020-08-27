@@ -6,16 +6,16 @@
       <div class="item" v-for="(item,index) in payList">
         <img :src="item.icon" alt="">
         <div class="btns">
-          <span @click="look(item.payUrl)" v-show="item.payUrl">查看</span>
+          <span @click="look(item)">查看</span>
 
-          <fileUpload v-if="item.payType===1 || item.payType===0" @change="edit($event,item)">
-            <span>修改</span>
-          </fileUpload>
+          <!--          <fileUpload v-if="item.payType===1 || item.payType===0" @change="edit($event,item)">-->
+          <!--            <span>修改</span>-->
+          <!--          </fileUpload>-->
 
-          <!--编辑银行卡-->
-          <span v-else @click="edit('',item)">{{item.payUrl ? '查看' : '修改'}}</span>
+          <!--          &lt;!&ndash;编辑银行卡&ndash;&gt;-->
+          <!--          <span v-else @click="edit('',item)">{{item.payUrl ? '查看' : '修改'}}</span>-->
 
-          <span @click="deleteItem(item)">删除</span>
+          <!--          <span @click="deleteItem(item)">删除</span>-->
         </div>
 
         <van-divider/>
@@ -76,14 +76,19 @@ export default {
     this.getList();
   },
   methods: {
-    look(payUrl) {
-      if (!payUrl) {
-        this.Toast('请先添加一张图片');
+    look(item) {
+      if (!item.payUrl) {
+        this.$router.push({
+          path: '/layoutNoTab/bankCardEdit',
+          query: {
+            payId: item.payId
+          }
+        })
         return;
       }
 
       this.ImagePreview([
-        this.imgPrefixUrl + payUrl
+        this.imgPrefixUrl + item.payUrl
       ]);
     },
     edit(res, item) {

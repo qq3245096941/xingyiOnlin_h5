@@ -6,15 +6,15 @@
     <List :curr-length="list.length" :total="total" style="height:100%" @getData="getList">
       <div class="card" v-for="item in list">
         <commodity :comm="item">
-          <van-button v-if="item.orderStats!==4" type="warning" size="mini" round @click="sell(item)">委托出售</van-button>
-          <van-tag v-else type="warning">正在审核</van-tag>
-          <van-button type="primary" size="mini" round @click="applyShipment(item)">申请发货</van-button>
+          <van-button v-if="item.orderStats!==4" type="warning" size="small" round @click="sell(item)">委托出售</van-button>
+          <van-tag v-else type="warning" >正在审核</van-tag>
+          <van-button type="primary" size="small" round @click="applyShipment(item)" style="margin-left: 10px">申请发货</van-button>
         </commodity>
       </div>
     </List>
 
     <!--弹框-->
-    <sellPop :total="clickTotal" :orderId="clickOrderId" :isShow.sync="isShow" @getList="getList"></sellPop>
+    <sellPop :total="clickTotal" :orderId="clickOrderId" :isShow.sync="isShow" @getList="getList(true)"></sellPop>
     <entrust :isShow.sync="isEnterShow" @look="look"></entrust>
 
   </div>
