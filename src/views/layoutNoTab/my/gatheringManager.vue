@@ -228,13 +228,11 @@ export default {
 
       .btns {
         flex: 1;
-        text-align: right;
         display: flex;
+        flex-direction: row-reverse;
         align-items: center;
-        margin-left: 60%;
 
         span {
-          margin-right: 10px;
           font-size: 12px;
         }
       }
