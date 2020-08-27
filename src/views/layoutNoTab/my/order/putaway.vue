@@ -16,7 +16,7 @@
 <script>
 import commodity from "./compnent/commodity";
 import getList from "./mixin/getList";
-import {orderList} from '@/api/order'
+import {getShopAll} from '@/api/shop'
 
 export default {
   name: "putaway",
@@ -25,12 +25,16 @@ export default {
     commodity
   },
   methods:{
-    listApi(){
-      return orderList({
-        orderStat:2,
+    getList(){
+      return getShopAll({
+        shopStat:0,
         page:this.currPage,
         rows:this.pageSize,
-        buyer:this.userInfo.userId
+        userId:this.userInfo.userId
+      }).then(data=>{
+        this.currPage++;
+        this.list = [...this.list,...data.shopList];
+        this.total = data.totalCount;
       })
     }
   }
