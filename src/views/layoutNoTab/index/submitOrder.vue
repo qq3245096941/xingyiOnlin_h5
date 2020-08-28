@@ -58,7 +58,7 @@ export default {
   methods: {
     /*已经查看完毕*/
     look() {
-      Dialog.confirm({
+      this.Dialog.confirm({
         title: '确定购买吗？',
       }).then(() => {
         /*调取添加订单接口*/
