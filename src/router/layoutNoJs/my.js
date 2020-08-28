@@ -42,7 +42,7 @@ export default [
         name: 'myWallet',
         component: myWallet,
         meta: {
-            title: '我的钱包',
+            title: '我的收益',
             color:'#ffffff'
         }
     },
@@ -115,7 +115,7 @@ export default [
         name: 'myPromotion',
         component: myPromotion,
         meta: {
-            title: '我的推广',
+            title: '我的钱包',
             color: '#ffffff'
         }
     },

@@ -37,7 +37,7 @@
       </div>
     </div>
 
-    <van-empty v-else description="暂无粉丝" />
+    <van-empty v-else description="暂无粉丝"/>
 
   </div>
 </template>
@@ -119,6 +119,11 @@ export default {
     },
     /*点击查看某个粉丝*/
     userFans(item) {
+      /*只处理到二级就够*/
+      if(this.$route.query.userId){
+        return;
+      }
+
       this.$router.push({
         path: this.pageType === 1 ? '/layoutNoTab/myFans' : '/layoutNoTab/promoterStatistics',
         query: {

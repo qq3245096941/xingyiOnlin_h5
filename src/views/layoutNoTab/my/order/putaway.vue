@@ -4,10 +4,7 @@
     <div ref="header"></div>
     <List :curr-length="list.length" :total="total" style="height:100%" @getData="getList">
       <div class="card" v-for="item in list">
-        <commodity orderType="putaway" :comm="item">
-          <van-tag type="warning" v-if="item.orderStat==='4'">审核中</van-tag>
-          <van-tag type="success" v-else>审核通过</van-tag>
-        </commodity>
+        <commodity orderType="putaway" :comm="item"></commodity>
       </div>
     </List>
   </div>
@@ -16,7 +13,7 @@
 <script>
 import commodity from "./compnent/commodity";
 import getList from "./mixin/getList";
-import {orderList} from '@/api/order'
+import {getShopAll} from '@/api/shop'
 
 export default {
   name: "putaway",
@@ -24,19 +21,24 @@ export default {
   components: {
     commodity
   },
-  methods:{
-    listApi(){
-      return orderList({
-        orderStat:2,
-        page:this.currPage,
-        rows:this.pageSize,
-        buyer:this.userInfo.userId
+  methods: {
+    getList() {
+      return getShopAll({
+        shopStat: 0,
+        page: this.currPage,
+        rows: this.pageSize,
+        userId: this.userInfo.userId
+      }).then(data => {
+        this.currPage++;
+        this.list = [...this.list, ...data.shopList.map(item => {
+          item.shopLogo = item.shopCover;
+          return item;
+        })];
+        this.total = data.totalCount;
       })
     }
   }
 }
 </script>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

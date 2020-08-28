@@ -1,22 +1,25 @@
 <template>
   <div class="content">
     <div style="position: relative">
-      <img class="back" :src="haibao" alt="">
-      <div id="qrcode"></div>
+      <img :src="require('@/static/img/promotion_top.png')" alt="">
+
+      <div style="position: relative">
+        <img :src="require('@/static/img/promotion_bottom.png')" alt="">
+        <div id="qrcode"></div>
+      </div>
+
     </div>
 
   </div>
 </template>
 
 <script>
-import businessCard from "@/static/img/businessCard.png"
 import {configInfo} from '@/api/config'
 
 export default {
   name: "businessCard",
   data() {
     return {
-      haibao: businessCard,
       url: ''
     }
   },
@@ -43,7 +46,7 @@ export default {
   position: absolute;
   top: 0;
 
-  .back {
+  img {
     display: block;
     width: 100%;
   }
@@ -51,11 +54,9 @@ export default {
   #qrcode {
     position: absolute;
     z-index: 1000;
-    bottom: 10%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+    top: 10px;
+    right: 35px;
+
   }
 }
 </style>

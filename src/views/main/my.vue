@@ -31,7 +31,7 @@
     <div class="orderTab">
       <div class="order" @click="$router.push({path:'/layoutNoTab/myWallet'})">
         <img class="icon" src="../../assets/img/my/fans/wodeqianbao.svg" alt="">
-        <p class="title">我的钱包</p>
+        <p class="title">我的收益</p>
       </div>
       <div class="order" @click="$router.push({path:'/layoutNoTab/fansOrder'})">
         <img class="icon" src="../../assets/img/my/fans/fensidingdan.svg" alt="">
@@ -43,7 +43,7 @@
       </div>
       <div class="order" @click="$router.push({path:'/layoutNoTab/myPromotion'})">
         <img class="icon" src="../../assets/img/my/fans/wodetuiguang.svg" alt="">
-        <p class="title">我的推广</p>
+        <p class="title">我的钱包</p>
       </div>
     </div>
 
