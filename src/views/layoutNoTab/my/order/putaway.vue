@@ -33,7 +33,10 @@ export default {
         userId:this.userInfo.userId
       }).then(data=>{
         this.currPage++;
-        this.list = [...this.list,...data.shopList];
+        this.list = [...this.list,...data.shopList.map(item=>{
+          item.shopLogo = item.shopCover;
+          return item;
+        })];
         this.total = data.totalCount;
       })
     }
