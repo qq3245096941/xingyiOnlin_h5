@@ -43,38 +43,42 @@ import {addOrder} from '@/api/order'
 
 export default {
   name: "submitOrder",
-  data(){
-    return{
-      shop:{}
+  data() {
+    return {
+      shop: {}
     }
   },
   created() {
     shopInfo({
-      shopId:this.$route.query.shopId
-    }).then(data=>{
+      shopId: this.$route.query.shopId
+    }).then(data => {
       this.shop = data.data;
     })
   },
-  methods:{
+  methods: {
     /*已经查看完毕*/
-    look(){
-      /*调取添加订单接口*/
-      addOrder({
-        shopId:this.$route.query.shopId,
-        buyer:this.userInfo.userId,
-        sumPrice:this.shop.shopPrice
-      }).then(data=>{
+    look() {
+      Dialog.confirm({
+        title: '确定购买吗？',
+      }).then(() => {
+        /*调取添加订单接口*/
+        addOrder({
+          shopId: this.$route.query.shopId,
+          buyer: this.userInfo.userId,
+          sumPrice: this.shop.shopPrice
+        }).then(data => {
 
-        if(data.code==='4'){
-          this.Toast(data.message);
-        }else{
-          this.$router.replace({
-            path:'/layoutNoTab/orderDetails',
-            query:{
-              orderId:data.data
-            }
-          })
-        }
+          if (data.code === '4') {
+            this.Toast(data.message);
+          } else {
+            this.$router.replace({
+              path: '/layoutNoTab/orderDetails',
+              query: {
+                orderId: data.data
+              }
+            })
+          }
+        })
       })
     }
   }
@@ -139,7 +143,7 @@ export default {
     padding-bottom: 40px;
   }
 
-  .pay{
+  .pay {
     overflow: hidden;
     margin: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);

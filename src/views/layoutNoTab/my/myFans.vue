@@ -119,6 +119,7 @@ export default {
     },
     /*点击查看某个粉丝*/
     userFans(item) {
+      /*只处理到二级就够*/
       if(this.$route.query.userId){
         return;
       }

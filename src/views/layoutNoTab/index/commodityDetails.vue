@@ -31,7 +31,7 @@
     <van-button v-if="time.isEnd" :disabled="time.isEnd" class="btn" block type="danger">已结束</van-button>
 
     <!--购买协议-->
-    <agreement btn-text="确认购买" :isShow.sync="isShow" @look="submitOrder"></agreement>
+    <agreement :isShow.sync="isShow" @look="submitOrder"></agreement>
   </div>
 </template>
 

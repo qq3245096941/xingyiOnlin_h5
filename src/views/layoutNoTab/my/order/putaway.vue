@@ -4,10 +4,7 @@
     <div ref="header"></div>
     <List :curr-length="list.length" :total="total" style="height:100%" @getData="getList">
       <div class="card" v-for="item in list">
-        <commodity orderType="putaway" :comm="item">
-          <van-tag type="warning" v-if="item.orderStat==='4'">审核中</van-tag>
-          <van-tag type="success" v-else>审核通过</van-tag>
-        </commodity>
+        <commodity orderType="putaway" :comm="item"></commodity>
       </div>
     </List>
   </div>
@@ -24,16 +21,16 @@ export default {
   components: {
     commodity
   },
-  methods:{
-    getList(){
+  methods: {
+    getList() {
       return getShopAll({
-        shopStat:0,
-        page:this.currPage,
-        rows:this.pageSize,
-        userId:this.userInfo.userId
-      }).then(data=>{
+        shopStat: 0,
+        page: this.currPage,
+        rows: this.pageSize,
+        userId: this.userInfo.userId
+      }).then(data => {
         this.currPage++;
-        this.list = [...this.list,...data.shopList.map(item=>{
+        this.list = [...this.list, ...data.shopList.map(item => {
           item.shopLogo = item.shopCover;
           return item;
         })];
