@@ -73,6 +73,9 @@ export default {
       window.localStorage.removeItem('userInfo');
       this.$router.push({path: '/login', replace: true})
     }
+  },
+  mounted() {
+    this.exitLogin();
   }
 }
 </script>
