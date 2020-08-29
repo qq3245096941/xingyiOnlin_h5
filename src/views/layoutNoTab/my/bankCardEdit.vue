@@ -3,28 +3,28 @@
     <van-field
         v-model="info.realName"
         label="姓名"
-        :disabled="info.payId"
+        :disabled="$route.query.payId"
         :rules="[{ required: true, message: '请填写姓名' }]"
     />
     <van-field
         v-model="info.userTel"
         type="tel"
         label="手机号"
-        :disabled="info.payId"
+        :disabled="$route.query.payId"
         :rules="[{ required: true, message: '请输入手机号' }]"
     />
     <van-field
         v-model="info.bankCode"
         type="digit"
         label="银行卡号"
-        :disabled="info.payId"
+        :disabled="$route.query.payId"
         :rules="[{ required: true, message: '请输入银行卡号' }]"
     />
     <van-field
         v-model="info.bankDeposit"
         type="text"
         label="开户行"
-        :disabled="info.payId"
+        :disabled="$route.query.payId"
         :rules="[{ required: true, message: '请输入开户行' }]"
     />
 
