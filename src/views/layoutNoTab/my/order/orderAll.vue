@@ -10,6 +10,9 @@
     <van-tab title="收款">
       <gathering></gathering>
     </van-tab>
+    <van-tab title="审核中">
+      <audit></audit>
+    </van-tab>
     <van-tab title="卖出">
       <sale></sale>
     </van-tab>
@@ -25,12 +28,13 @@ import payment from "@/views/layoutNoTab/my/order/payment";  //付款
 import gathering from "@/views/layoutNoTab/my/order/gathering";//收款
 import sale from "@/views/layoutNoTab/my/order/sale";  //卖出
 import putaway from "@/views/layoutNoTab/my/order/putaway";  //已上架
+import audit from "@/views/layoutNoTab/my/order/audit"; //审核中
 
 
 export default {
   name: "order",
   components: {
-    warehouse, payment, gathering, sale, putaway
+    warehouse, payment, gathering, sale, putaway,audit
   },
   data() {
     return {
