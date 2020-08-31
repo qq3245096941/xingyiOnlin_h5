@@ -4,7 +4,9 @@
     <div ref="header"></div>
     <List :curr-length="list.length" :total="total" style="height:100%" @getData="getList">
       <div class="card" v-for="item in list">
-        <commodity orderType="putaway" :comm="item"></commodity>
+        <commodity orderType="putaway" :comm="item">
+          <van-tag type="warning">审核中</van-tag>
+        </commodity>
       </div>
     </List>
   </div>
