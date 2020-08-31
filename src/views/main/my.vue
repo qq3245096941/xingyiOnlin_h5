@@ -75,7 +75,11 @@ export default {
     }
   },
   mounted() {
-    this.exitLogin();
+    if (!this.userInfo.userId) {
+      this.$router.push({
+        path: '/login'
+      })
+    }
   }
 }
 </script>
