@@ -12,7 +12,7 @@
       <div class="commodityBox" >
         <div class="commodity" v-for="(item,index) in list" :key="index" @click="toCommodityDetails(item)">
           <img v-show="item.shopStat==='1'" class="isNo" src="../../../assets/img/main/yishouqin2.svg" alt="">
-          <img class="img" :src="imgPrefixUrl+item.shopCover" alt="">
+          <van-image fit="contain" class="img" :src="imgPrefixUrl+item.shopCover" alt="" van-image/>
           <p class="price">￥{{item.shopPrice}}</p>
           <p class="commodityName">{{item.shopName}}</p>
         </div>
