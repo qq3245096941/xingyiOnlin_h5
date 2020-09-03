@@ -34,7 +34,8 @@ export default {
   mixins: [page],
   data() {
     return {
-      commdityTypeInfo: {}
+      commdityTypeInfo: {},
+      total:''
     }
   },
   created() {

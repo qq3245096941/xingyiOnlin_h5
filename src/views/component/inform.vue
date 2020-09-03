@@ -8,7 +8,6 @@
         <p class="time">{{item.createDate}}</p>
       </div>
     </List>
-
   </div>
 </template>
 
