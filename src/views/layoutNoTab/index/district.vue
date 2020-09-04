@@ -4,7 +4,7 @@
     <div ref="header">
       <p class="time">开启时间：{{commdityTypeInfo.openDate}} ~ {{commdityTypeInfo.closeDate}}</p>
       <p class="title" style="text-align: center">{{commdityTypeInfo.name}}</p>
-      <van-pagination v-model="currPage" class="page" :total-items="total" :items-per-page="20" @change="pageChange"/>
+      <van-pagination v-model="currPage" class="page" :total-items="total" :items-per-page="pageSize" @change="pageChange"/>
     </div>
 
     <div :style="{height: this.listHeight}" style="overflow: auto">
@@ -35,7 +35,8 @@ export default {
   data() {
     return {
       commdityTypeInfo: {},
-      total:''
+      total:'',
+      pageSize:10,
     }
   },
   created() {
@@ -63,9 +64,15 @@ export default {
       getShopAll({
         commdityType: this.$route.query.commdityType,
         page: this.currPage,
-        rows: 20
+        rows: this.pageSize
       }).then(data => {
         this.total = data.totalCount;
+
+     /*   let shopList = data.shopList;
+
+        setTimeout(()=>{
+          this.list = [...this.list,...shopList]
+        },1500)*/
         this.list = data.shopList;
       })
     }
