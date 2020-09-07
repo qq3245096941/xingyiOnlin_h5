@@ -22,14 +22,18 @@
             placeholder="请输入验证码"
             :rules="[{ required: true, message: '请填写验证码' }]">
           <template #button>
-            <van-button :disabled="codeNum>0" native-type="button" size="small" type="warning" @click="getCode">{{codeNum===0?'发送验证码':codeNum+'秒'}}</van-button>
+            <van-button :disabled="codeNum>0" native-type="button" size="small" type="warning" @click="getCode">
+              {{codeNum === 0 ? '发送验证码' : codeNum + '秒'}}
+            </van-button>
           </template>
         </van-field>
 
         <van-field>
-          <template #input >
-            <van-checkbox :label-disabled="true" icon-size="14px" style="font-size: 8px" v-model="isConsent" shape="square" >
-              我已阅读并接受<router-link to="/layoutNoTab/registrProtocol">《星艺在线注册协议》</router-link>
+          <template #input>
+            <van-checkbox :label-disabled="true" icon-size="14px" style="font-size: 8px" v-model="isConsent"
+                          shape="square">
+              我已阅读并接受
+              <router-link to="/layoutNoTab/registrProtocol">《星艺在线注册协议》</router-link>
             </van-checkbox>
           </template>
         </van-field>
@@ -46,7 +50,7 @@
 </template>
 
 <script>
-import {sendCode,registerUser} from '@/api/user'
+import {sendCode, registerUser} from '@/api/user'
 
 export default {
   name: 'register',
@@ -55,54 +59,68 @@ export default {
       username: '',
       password: '',
       code: '',
-      isConsent:true,  //是否同意我的协议
-      codeNum:0,
-      reCode:''
+      isConsent: true,  //是否同意我的协议
+      codeNum: 0,
+      reCode: ''
     }
   },
   mounted() {
     this.reCode = this.$route.query.reCode;
   },
-  methods:{
-    onSubmit(){
-      if(this.isConsent===false){
+  methods: {
+    onSubmit() {
+      if (this.isConsent === false) {
         this.Toast('请勾选我已同意协议');
         return;
       }
 
-      registerUser({
-        tel:this.username,
-        vcode:this.code,
-        userPwd:this.password,
-        code:this.$route.query.wxCode||'',
-        reCode:this.reCode
+      /*获取微信code*/
+      let wxCode = this.getQueryValue('code');
 
-      }).then(data=>{
+      registerUser({
+        tel: this.username,
+        vcode: this.code,
+        userPwd: this.password,
+        code: wxCode,
+        reCode: this.reCode
+
+      }).then(data => {
         this.$router.push({
-          path:'/login'
+          path: '/login'
         })
       })
-
+    },
+    //获取wxcode
+    getQueryValue(queryName) {
+      let query = decodeURI(window.location.search.substring(1));
+      let vars = query.split("&");
+      for (let i = 0; i < vars.length; i++) {
+        let pair = vars[i].split("=");
+        if (pair[0] == queryName) {
+          return pair[1];
+        }
+      }
+      return null;
     },
     /*获取短信验证码*/
-    getCode(){
-      if(!this.username){
+    getCode() {
+      if (!this.username) {
         this.Toast('请填写用户名');
         return;
       }
 
       sendCode({
-        telephone:this.username
-      }).then(data=>{
+        telephone: this.username
+      }).then(data => {
         this.Toast('已发送短信验证码');
 
         this.codeNum = 60;
-        let interval = setInterval(()=>{
+        let interval = setInterval(() => {
           this.codeNum--;
-          if(this.codeNum===0){
+          if (this.codeNum === 0) {
             clearInterval(interval)
           }
-        },1000)
+        }, 1000)
 
       })
     }

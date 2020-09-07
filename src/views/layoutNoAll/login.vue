@@ -70,10 +70,8 @@ export default {
       })
     },
     authorization() {
-      window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxd71848e1ce66dcd6&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect`
-      userLogin().then(data => {
-
-      })
+      let url = 'http://lzf.xingyizaixian.com/#/register'
+      window.location.replace("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxd71848e1ce66dcd6&redirect_uri=" + encodeURIComponent(url) + "&response_type=code&scope=snsapi_userinfo&connect_redirect=1&state=0#wechat_redirect");
     }
   },
   created() {
