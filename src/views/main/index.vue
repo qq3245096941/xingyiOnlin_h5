@@ -73,7 +73,8 @@ export default {
       this.$router.push({
         path: '/layoutNoTab/district',
         query: {
-          commdityType: item.cid
+          commdityType: item.cid,
+          currPage:1
         }
       })
     }
