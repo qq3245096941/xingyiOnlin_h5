@@ -58,29 +58,16 @@
                 is-link/>
     </van-cell-group>
 
-    <div class="btn">
-      <van-button block type="danger" round @click="exitLogin">退出登录</van-button>
-    </div>
+<!--    <div class="btn">-->
+<!--      <van-button block type="danger" round @click="exitLogin">退出登录</van-button>-->
+<!--    </div>-->
 
   </div>
 </template>
 
 <script>
 export default {
-  name: "my",
-  methods: {
-    exitLogin() {
-      window.localStorage.removeItem('userInfo');
-      this.$router.push({path: '/login', replace: true})
-    }
-  },
-  mounted() {
-    if (!this.userInfo.userId) {
-      this.$router.push({
-        path: '/login'
-      })
-    }
-  }
+  name: "my"
 }
 </script>
 

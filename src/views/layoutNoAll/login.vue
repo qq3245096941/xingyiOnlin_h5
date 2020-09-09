@@ -23,8 +23,8 @@
           <van-button style="margin-top: 10px" block type="warning" @click="$router.push({path:'/register'})">
             注册
           </van-button>
-          <img style="margin-top: 10px" @click="authorization" :src="require('@/assets/img/weixinLogo.svg')" alt="">
-          <p style="text-align: center;font-size: 11px">授权登录</p>
+<!--          <img style="margin-top: 10px" @click="authorization" :src="require('@/assets/img/weixinLogo.svg')" alt="">-->
+<!--          <p style="text-align: center;font-size: 11px">授权登录</p>-->
         </div>
       </van-form>
     </div>
@@ -42,6 +42,9 @@ export default {
       username: '',
       password: ''
     }
+  },
+  created() {
+    window.localStorage.removeItem('userInfo');
   },
   methods: {
     async onSubmit(res) {
@@ -68,14 +71,7 @@ export default {
         }, 1000)
 
       })
-    },
-    authorization() {
-      let url = 'http://lzf.xingyizaixian.com/#/register'
-      window.location.replace("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxd71848e1ce66dcd6&redirect_uri=" + encodeURIComponent(url) + "&response_type=code&scope=snsapi_userinfo&connect_redirect=1&state=0#wechat_redirect");
     }
-  },
-  created() {
-
   }
 }
 </script>

@@ -8,13 +8,11 @@ export function registerUser(data) {
     })
 }
 
-/*登录*/
+/*授权登录*/
 export function userLogin(data) {
     return request({
-        url: `/maUser/${data.tel}/userInfoTel`,
-        data: {
-            userPwd: data.userPwd
-        }
+        url: `/maUser/loginUser`,
+        data
     })
 }
 

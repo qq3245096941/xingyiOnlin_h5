@@ -2,15 +2,13 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import Vant from 'vant';
+import Vant, {Dialog, ImagePreview, Toast} from 'vant';
 import 'vant/lib/index.css';
-import moment from 'moment'
-import {ImagePreview, Toast, Dialog} from 'vant';
-
 import agreement from "@/components/agreement";
 import List from "@/components/List";
 import paymentComponent from "@/components/paymentComponent";
 import fileUpload from "@/components/fileUpload";
+import moment from "moment";
 import localStorage from "@/uitls/localStorage";
 
 Vue.config.productionTip = false
@@ -43,13 +41,6 @@ Number.prototype.toFixed = function (d) {
     return this + "";
 };
 
-
-Vue.prototype.$eventBus = new Vue({
-    data: {
-        savePath: ''  //记录登录之前的路径，用于在登录之后直接跳转到指定页面
-    }
-}); //事件总线
-
 Vue.mixin({
     data() {
         return {
@@ -66,6 +57,18 @@ Vue.mixin({
         }
     },
     methods: {
+        //获取url上的属性
+        getQueryValue(queryName) {
+            let query = decodeURI(window.location.search.substring(1));
+            let vars = query.split("&");
+            for (let i = 0; i < vars.length; i++) {
+                let pair = vars[i].split("=");
+                if (pair[0] == queryName) {
+                    return pair[1];
+                }
+            }
+            return null;
+        },
         /*过滤头像*/
         filterAvatar(url) {
             if (!url) return;
@@ -77,6 +80,13 @@ Vue.mixin({
         }
     }
 })
+
+
+Vue.prototype.$eventBus = new Vue({
+    data: {
+        savePath: ''  //记录登录之前的路径，用于在登录之后直接跳转到指定页面
+    }
+}); //事件总线
 
 /*购买协议*/
 Vue.component('agreement', agreement);
