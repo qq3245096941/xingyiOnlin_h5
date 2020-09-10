@@ -83,7 +83,6 @@ export default {
         userPwd: this.password,
         code: wxCode,
         reCode: this.reCode
-
       }).then(data => {
         this.$router.push({
           path: '/login'

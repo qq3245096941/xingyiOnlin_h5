@@ -19,17 +19,19 @@ export default {
       if (code) {
         window.localStorage.setItem('wxcode', code);
 
-        let obj = {
-          code
-        }
-
+        //如果邀请人存在，则直接进入注册页面
         if (reCode) {
-          Reflect.set(obj, 'reCode', reCode);
+          window.localStorage.setItem('reCode', reCode);
+          this.$router.push({
+            path: '/register'
+          })
+          return;
         }
 
-        userLogin(obj).then(data => {
-          console.log(data);
+        this.$router.push({
+          path: '/login'
         })
+
       } else {
         window.location.replace("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxd71848e1ce66dcd6&redirect_uri=" + encodeURIComponent(url) + "&response_type=code&scope=snsapi_userinfo&connect_redirect=1&state=0#wechat_redirect");
       }

@@ -23,8 +23,8 @@
           <van-button style="margin-top: 10px" block type="warning" @click="$router.push({path:'/register'})">
             注册
           </van-button>
-<!--          <img style="margin-top: 10px" @click="authorization" :src="require('@/assets/img/weixinLogo.svg')" alt="">-->
-<!--          <p style="text-align: center;font-size: 11px">授权登录</p>-->
+          <!--          <img style="margin-top: 10px" @click="authorization" :src="require('@/assets/img/weixinLogo.svg')" alt="">-->
+          <!--          <p style="text-align: center;font-size: 11px">授权登录</p>-->
         </div>
       </van-form>
     </div>
@@ -49,6 +49,7 @@ export default {
   methods: {
     async onSubmit(res) {
       userLogin({
+        code: window.localStorage.getItem('wxcode'),
         tel: this.username,
         userPwd: this.password
       }).then(data => {
