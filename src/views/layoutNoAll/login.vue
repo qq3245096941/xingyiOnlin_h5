@@ -72,15 +72,6 @@ export default {
         }, 1000)
 
       })
-<<<<<<< HEAD
-=======
-    },
-    authorization() {
-      window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxd71848e1ce66dcd6&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect`
-      userLogin().then(data => {
-
-      })
->>>>>>> parent of 0010860... 已构建授权登录
     }
   }
 }
