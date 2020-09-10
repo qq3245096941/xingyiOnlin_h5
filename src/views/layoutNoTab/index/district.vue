@@ -4,13 +4,12 @@
     <div ref="header">
       <p class="time">开启时间：{{commdityTypeInfo.openDate}} ~ {{commdityTypeInfo.closeDate}}</p>
       <p class="title" style="text-align: center">{{commdityTypeInfo.name}}</p>
-      <van-pagination :value="currPage" class="page" :total-items="total" :items-per-page="pageSize"
-                      @change="pageChange"/>
+      <van-pagination v-model="currPage" class="page" :total-items="total" :items-per-page="pageSize" @change="pageChange"/>
     </div>
 
     <div :style="{height: this.listHeight}" style="overflow: auto">
 
-      <div class="commodityBox">
+      <div class="commodityBox" >
         <div class="commodity" v-for="(item,index) in list" :key="index" @click="toCommodityDetails(item)">
           <img v-show="item.shopStat==='1'" class="isNo" src="../../../assets/img/main/yishouqin2.svg" alt="">
           <img class="img" :src="imgPrefixUrl+item.shopCover" alt="">
@@ -36,23 +35,20 @@ export default {
   data() {
     return {
       commdityTypeInfo: {},
-      total: '',
-      pageSize: 10,
+      total:'',
+      pageSize:10,
     }
   },
+  created() {
+    this.getList();
+  },
   methods: {
-    pageChange(res) {
+    pageChange(res){
       this.currPage = res;
-      this.$router.replace({
-        path: '/layoutNoTab/district',
-        query: {
-          commdityType: this.$route.query.commdityType,
-          currPage: res
-        }
-      })
+      this.getList();
     },
     toCommodityDetails(item) {
-      if (item.shopStat === '1') {
+      if(item.shopStat==='1'){
         this.Toast('已售完');
         return;
       }
@@ -71,22 +67,17 @@ export default {
         rows: this.pageSize
       }).then(data => {
         this.total = data.totalCount;
+
+     /*   let shopList = data.shopList;
+
+        setTimeout(()=>{
+          this.list = [...this.list,...shopList]
+        },1500)*/
         this.list = data.shopList;
       })
     }
   },
-  watch: {
-    currPage() {
-      this.getList();
-    }
-  },
-  created() {
-    this.currPage = Number.parseInt(this.$route.query.currPage);
-    this.getList();
-  },
   mounted() {
-    this.currPage = Number.parseInt(this.$route.query.currPage);
-
     typeInfo({
       commdityTypeId: this.$route.query.commdityType
     }).then(data => {
