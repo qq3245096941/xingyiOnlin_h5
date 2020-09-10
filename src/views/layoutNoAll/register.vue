@@ -83,25 +83,13 @@ export default {
         userPwd: this.password,
         code: wxCode,
         reCode: this.reCode
-
       }).then(data => {
         this.$router.push({
           path: '/login'
         })
       })
     },
-    //获取wxcode
-    getQueryValue(queryName) {
-      let query = decodeURI(window.location.search.substring(1));
-      let vars = query.split("&");
-      for (let i = 0; i < vars.length; i++) {
-        let pair = vars[i].split("=");
-        if (pair[0] == queryName) {
-          return pair[1];
-        }
-      }
-      return null;
-    },
+
     /*获取短信验证码*/
     getCode() {
       if (!this.username) {

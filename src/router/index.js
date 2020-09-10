@@ -13,36 +13,46 @@ Vue.use(VueRouter);
 
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push(location) {
-	return originalPush.call(this, location).catch(err => err)
+    return originalPush.call(this, location).catch(err => err)
 }
 
 const routes = [
-	{
-		path:'/',
-		redirect:'/layout/main'
-	},
-	/*这个是有底部栏的页面*/
-	{
-		path: '/layout',
-		component: layout,
-		children: [
-			...layoutJs
-		]
-	},
-	/*这个是没有底部栏的页面*/
-	{
-		path: '/layoutNoTab',
-		component: layoutNoTab,
-		children: [
-			...layoutNoTabJs
-		]
-	},
-	/* 这是全局页面 */
-	...layoutNoAll
+    {
+        path: '/',
+        redirect: '/layout/main'
+    },
+    /*这个是有底部栏的页面*/
+    {
+        path: '/layout',
+        component: layout,
+        children: [
+            ...layoutJs
+        ]
+    },
+    /*这个是没有底部栏的页面*/
+    {
+        path: '/layoutNoTab',
+        component: layoutNoTab,
+        children: [
+            ...layoutNoTabJs
+        ]
+    },
+    /* 这是全局页面 */
+    ...layoutNoAll
 ]
 
 const router = new VueRouter({
-	routes
+    routes
+})
+
+router.beforeEach((to, from, next) => {
+    let url = ['/authorization', '/login', '/register'];
+
+    if(url.find(item=>to.path===item)){
+        next();
+    }else{
+        next({path: '/authorization'})
+    }
 })
 
 export default router
