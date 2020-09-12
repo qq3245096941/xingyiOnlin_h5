@@ -20,7 +20,7 @@
           <van-button block type="danger" native-type="onSubmit">
             登录
           </van-button>
-          <van-button style="margin-top: 10px" block type="warning" @click="$router.push({path:'/register'})">
+          <van-button native-type="button" style="margin-top: 10px" block type="warning" @click="$router.push({path:'/register'})">
             注册
           </van-button>
           <!--          <img style="margin-top: 10px" @click="authorization" :src="require('@/assets/img/weixinLogo.svg')" alt="">-->
@@ -49,17 +49,11 @@ export default {
   methods: {
     async onSubmit(res) {
       userLogin({
-        code: window.localStorage.getItem('wxcode'),
-        tel: this.username,
+        userTel: this.username,
         userPwd: this.password
       }).then(data => {
-        if (data.code === '1') {
-          this.Toast(data.message);
-          return;
-        }
-
         //将用户信息保存在本地
-        handleLocalStorage('set', 'userInfo', data.user);
+        handleLocalStorage('set', 'userInfo', data.obj);
 
         this.Toast('登录成功');
 

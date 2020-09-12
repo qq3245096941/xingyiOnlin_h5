@@ -45,14 +45,4 @@ const router = new VueRouter({
     routes
 })
 
-router.beforeEach((to, from, next) => {
-    let url = ['/authorization', '/login', '/register'];
-
-    if(url.find(item=>to.path===item)){
-        next();
-    }else{
-        next({path: '/authorization'})
-    }
-})
-
 export default router

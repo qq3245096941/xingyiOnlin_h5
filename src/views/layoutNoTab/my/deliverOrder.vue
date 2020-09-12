@@ -8,9 +8,7 @@
         <p>快递单号：{{item.expNumber}}</p>
         <p>快递公司：{{item.expCompany}}</p>
         <p>{{item.createDate}}</p>
-
       </commodity>
-
     </List>
   </div>
 </template>

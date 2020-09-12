@@ -22,9 +22,12 @@ export default function ({url, data, method = 'post'}) {
         }).then(data => {
             if (data.status === 200) {
                 Toast.clear();
-                resolve(data.data);
+                if(data.data.code!=='0'){
+                    Toast(data.data.message)
+                }else{
+                    resolve(data.data);
+                }
             }
-            resolve(data);
         }).catch(error => {
             console.log(error);
         })

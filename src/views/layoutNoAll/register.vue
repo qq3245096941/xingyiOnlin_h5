@@ -6,7 +6,7 @@
       <van-form class="form" @submit="onSubmit">
         <van-field
             style="margin-top: 15px"
-            v-model="username"
+            v-model="tel"
             placeholder="请输入手机号"
             :rules="[{ pattern:/^1[3456789]\d{9}$/, message: '手机号格式不正确' }]"/>
         <van-field
@@ -15,6 +15,11 @@
             type="password"
             placeholder="请输入密码"
             :rules="[{ required: true, message: '请填写密码' }]"/>
+        <van-field
+            style="margin-top: 15px"
+            v-model="userName"
+            placeholder="请输入昵称"
+            :rules="[{ required: true, message: '请填写昵称' }]"/>
         <van-field
             style="margin-top: 15px"
             v-model="code"
@@ -51,21 +56,23 @@
 
 <script>
 import {sendCode, registerUser} from '@/api/user'
+import handleLocalStorage from '@/uitls/localStorage'
 
 export default {
   name: 'register',
   data() {
     return {
-      username: '',
+      tel: '',
       password: '',
       code: '',
       isConsent: true,  //是否同意我的协议
       codeNum: 0,
-      reCode: ''
+      reCode: '',
+      userName:'' //昵称
     }
   },
   mounted() {
-    this.reCode = this.$route.query.reCode;
+    this.reCode = this.$route.query.reCode?this.$route.query.reCode:'';
   },
   methods: {
     onSubmit() {
@@ -74,34 +81,36 @@ export default {
         return;
       }
 
-      /*获取微信code*/
-      let wxCode = this.getQueryValue('code');
-
       registerUser({
-        tel: this.username,
+        tel: this.tel,
         vcode: this.code,
         userPwd: this.password,
-        code: wxCode,
-        reCode: this.reCode
+        reCode: this.reCode,
+        userName:this.userName,
       }).then(data => {
+        this.Toast('注册成功');
+
+        handleLocalStorage('set', 'userInfo', data.obj);
+
         this.$router.push({
-          path: '/login'
+          path: this.$eventBus.savePath ? this.$eventBus.savePath : '/'
         })
+
+        this.$eventBus.savePath = '';
       })
     },
 
     /*获取短信验证码*/
     getCode() {
-      if (!this.username) {
-        this.Toast('请填写用户名');
+      if (!this.tel) {
+        this.Toast('请填写手机号');
         return;
       }
 
       sendCode({
-        telephone: this.username
+        telephone: this.tel
       }).then(data => {
         this.Toast('已发送短信验证码');
-
         this.codeNum = 60;
         let interval = setInterval(() => {
           this.codeNum--;
@@ -109,7 +118,6 @@ export default {
             clearInterval(interval)
           }
         }, 1000)
-
       })
     }
   }

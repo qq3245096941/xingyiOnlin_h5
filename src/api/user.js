@@ -8,10 +8,10 @@ export function registerUser(data) {
     })
 }
 
-/*授权登录*/
+/*登录*/
 export function userLogin(data) {
     return request({
-        url: `/maUser/loginUser`,
+        url: `/maUser/userPwdAndTel`,
         data
     })
 }
