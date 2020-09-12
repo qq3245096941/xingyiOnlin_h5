@@ -11,7 +11,7 @@
     </div>
 
     <list :style="{height:listHeight}" style="padding-bottom: 55%;z-index: 1000" :curr-length="list.length" @getData="getList" :total="total">
-      <div class="item" v-for="item in list">
+      <div class="item" v-for="(item,index) in list" :key="index">
         <p style="margin-left: 13px">{{item.createDate.split(" ")[0]}}</p>
         <div class="card body">
           <div>

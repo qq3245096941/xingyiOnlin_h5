@@ -1,7 +1,7 @@
 <template>
   <div>
     <van-tabs v-if="list.length>0">
-      <van-tab v-for="item in list" :title="item.payName" >
+      <van-tab v-for="(item,index) in list" :key="index" :title="item.payName" >
         <van-cell-group v-if="item.payType==='2'">
           <van-cell title="姓名" :value="item.realName"/>
           <van-cell title="手机号" :value="item.userTel"/>
