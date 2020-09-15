@@ -20,7 +20,7 @@
       </div>
     </div>
 
-    <paymentComponent :user-id="order.userId" style="padding-bottom: 50px;"></paymentComponent>
+    <paymentComponent :user-id="order.userId" :shopId="shop.shopId" style="padding-bottom: 50px;"></paymentComponent>
 
     <van-button style="position: fixed;bottom: 0;" block type="danger"
                 @click="$router.replace({path:'/layoutNoTab/orderAll',query:{index:1}})">我的订单
@@ -48,8 +48,6 @@ export default {
       this.shop.shopCover = this.imgPrefixUrl + this.shop.shopCover.split(',')[0];
 
       this.order = data.obj;
-
-      console.log(this.order);
     })
   },
   methods: {}

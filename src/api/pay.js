@@ -8,12 +8,30 @@ export function addPay(data) {
     })
 }
 
+//普通用户收款码
 export function payList(data) {
     return request({
         url: '/mapay/payUser',
         data
     })
 }
+
+//商品收款码
+export function shopPays(data) {
+    return request({
+        url: '/mashoppay/shopPays',
+        data
+    })
+}
+
+//分类收款码
+export function typePays(data) {
+    return request({
+        url: '/maTypepay/shopPays',
+        data
+    })
+}
+
 
 /*删除*/
 export function deletePay(data) {

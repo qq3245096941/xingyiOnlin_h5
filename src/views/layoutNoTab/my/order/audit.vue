@@ -3,7 +3,7 @@
   <div ref="content">
     <div ref="header"></div>
     <List :curr-length="list.length" :total="total" style="height:100%" @getData="getList">
-      <div class="card" v-for="item in list">
+      <div class="card" v-for="(item,index) in list" :key="index">
         <commodity :comm="item"></commodity>
       </div>
     </List>

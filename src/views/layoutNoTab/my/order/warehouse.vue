@@ -4,7 +4,7 @@
     <div ref="header"></div>
 
     <List :curr-length="list.length" :total="total" style="height:100%" @getData="getList">
-      <div class="card" v-for="item in list">
+      <div class="card" v-for="(item,index) in list" :key="index">
         <commodity :comm="item">
           <van-button v-if="item.orderStats!==4" type="warning" size="small" round @click="sell(item)">委托出售</van-button>
           <van-tag v-else type="warning" >正在审核</van-tag>

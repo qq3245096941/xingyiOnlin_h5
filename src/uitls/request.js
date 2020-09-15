@@ -14,7 +14,7 @@ export default function ({url, data, method = 'post'}) {
         formData.append(i,data[i]);
     }
 
-    return new Promise(resolve => {
+    return new Promise((resolve,reject) => {
         axios({
             url: baseUrl + url,
             method,
@@ -23,12 +23,14 @@ export default function ({url, data, method = 'post'}) {
             if (data.status === 200) {
                 Toast.clear();
                 if(data.data.code!=='0'){
-                    Toast(data.data.message)
+                    Toast(data.data.message);
+                    reject(data.data);
                 }else{
                     resolve(data.data);
                 }
             }
         }).catch(error => {
+            
             console.log(error);
         })
     })
