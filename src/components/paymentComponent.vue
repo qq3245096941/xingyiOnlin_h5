@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-tabs v-if="list.length>0">
+    <van-tabs>
       <van-tab v-for="(item,index) in list" :key="index" :title="item.payName">
         <van-cell-group v-if="item.payType==='2'">
           <van-cell title="姓名" :value="item.realName" />
@@ -11,16 +11,6 @@
         <img v-else :src="imgPrefixUrl+item.payUrl" alt />
       </van-tab>
     </van-tabs>
-
-    <van-empty v-else description="暂无支付方式，请添加支付方式">
-      <van-button
-        size="mini"
-        round
-        type="warning"
-        class="bottom-button"
-        @click="$router.push({path:'/layoutNoTab/gatheringManager'})"
-      >添加支付方式</van-button>
-    </van-empty>
   </div>
 </template>
 
