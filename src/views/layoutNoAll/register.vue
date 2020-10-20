@@ -38,7 +38,7 @@
             <van-checkbox :label-disabled="true" icon-size="14px" style="font-size: 8px" v-model="isConsent"
                           shape="square">
               我已阅读并接受
-              <router-link to="/layoutNoTab/registrProtocol">《星艺在线注册协议》</router-link>
+              <router-link to="/layoutNoTab/registrProtocol">《芯艺在线注册协议》</router-link>
             </van-checkbox>
           </template>
         </van-field>
