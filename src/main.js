@@ -48,7 +48,7 @@ Vue.mixin({
             ImagePreview,  //图片查看器
             Toast,   //轻量提示工具
             Dialog,
-            imgPrefixUrl: 'http://39.99.138.150/images/'
+            imgPrefixUrl: 'http://xyzaixin1.com/images/'
         }
     },
     computed: {
