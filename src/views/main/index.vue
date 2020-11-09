@@ -124,7 +124,7 @@ export default {
 }
 
 .shopping {
-  padding: 10px;
+  padding: 10px 6px;
 
   .typeList {
     .item {
