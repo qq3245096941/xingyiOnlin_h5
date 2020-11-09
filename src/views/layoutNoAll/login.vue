@@ -3,6 +3,7 @@
     <img class="back" :src="require('@/static/img/loginBack.png')" alt="">
 
     <div class="login">
+
       <van-form class="form" @submit="onSubmit">
         <van-field
             style="margin-top: 15px"

@@ -4,6 +4,8 @@
 
     <div class="login">
       <van-form class="form" @submit="onSubmit">
+        <uploadAvatar></uploadAvatar>
+
         <van-field
             style="margin-top: 15px"
             v-model="tel"
@@ -55,11 +57,15 @@
 </template>
 
 <script>
+import uploadAvatar from "@/views/layoutNoAll/components/uploadAvatar";
 import {sendCode, registerUser} from '@/api/user'
 import handleLocalStorage from '@/uitls/localStorage'
 
 export default {
   name: 'register',
+  components:{
+    uploadAvatar
+  },
   data() {
     return {
       tel: '',
