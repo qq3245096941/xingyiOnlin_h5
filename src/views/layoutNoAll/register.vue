@@ -4,7 +4,9 @@
 
     <div class="login">
       <van-form class="form" @submit="onSubmit">
-        <uploadAvatar></uploadAvatar>
+        <fileUpload @change="getImgUrl">
+          <van-image width="40" height="40" round :src="avatar"/>
+        </fileUpload>
 
         <van-field
             style="margin-top: 15px"
@@ -22,6 +24,9 @@
             v-model="userName"
             placeholder="请输入昵称"
             :rules="[{ required: true, message: '请填写昵称' }]"/>
+
+<!--        <van-area title="标题" :area-list="areaList" />-->
+
         <van-field
             style="margin-top: 15px"
             v-model="code"
@@ -57,19 +62,20 @@
 </template>
 
 <script>
-import uploadAvatar from "@/views/layoutNoAll/components/uploadAvatar";
 import {sendCode, registerUser} from '@/api/user'
 import handleLocalStorage from '@/uitls/localStorage'
 
 export default {
   name: 'register',
   components:{
-    uploadAvatar
+
   },
   data() {
     return {
+      avatar:'',
       tel: '',
       password: '',
+      address:'', //地址
       code: '',
       isConsent: true,  //是否同意我的协议
       codeNum: 0,
@@ -81,6 +87,11 @@ export default {
     this.reCode = this.$route.query.reCode?this.$route.query.reCode:'';
   },
   methods: {
+    /*获取图片路径*/
+    getImgUrl(res){
+      this.avatar = this.imgPrefixUrl+res;
+      console.log(this.avatar);
+    },
     onSubmit() {
       if (this.isConsent === false) {
         this.Toast('请勾选我已同意协议');
