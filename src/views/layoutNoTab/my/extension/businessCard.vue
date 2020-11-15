@@ -26,8 +26,6 @@ export default {
   mounted() {
     configInfo({code: 'SYSTEM_URL'}).then(data => {
       this.url = data.data.sysValue + '#/register?reCode=' + this.userInfo.reCode;
-      console.log(this.url);
-
       let qrcode = new QRCode(document.getElementById("qrcode"), {
         text: this.url,
         width: 118,

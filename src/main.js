@@ -48,7 +48,7 @@ Vue.mixin({
             ImagePreview,  //图片查看器
             Toast,   //轻量提示工具
             Dialog,
-            imgPrefixUrl: 'http://xyzaixin1.com/images/'
+            imgPrefixUrl: 'http://www.yunyift.com/images/'
         }
     },
     computed: {

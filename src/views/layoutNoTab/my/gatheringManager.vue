@@ -137,16 +137,16 @@ export default {
         })
 
         this.list = [
-          {
-            icon: zhifubao,
-            title: '支付宝',
-            type: 0
-          },
-          {
-            icon: weiixn,
-            title: '微信',
-            type: 1
-          },
+          // {
+          //   icon: zhifubao,
+          //   title: '支付宝',
+          //   type: 0
+          // },
+          // {
+          //   icon: weiixn,
+          //   title: '微信',
+          //   type: 1
+          // },
           {
             icon: yinhangka,
             title: '银行卡',

@@ -36,7 +36,7 @@ export default {
     return {
       commdityTypeInfo: {},
       total:'',
-      pageSize:10,
+      pageSize:20,
     }
   },
   created() {

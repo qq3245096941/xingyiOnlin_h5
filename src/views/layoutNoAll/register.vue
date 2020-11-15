@@ -5,7 +5,7 @@
     <div class="login">
       <van-form class="form" @submit="onSubmit">
         <fileUpload @change="getImgUrl">
-          <van-image width="40" height="40" round :src="avatar"/>
+          <van-image width="40" height="40" round :src="userTx"/>
         </fileUpload>
 
         <van-field
@@ -25,7 +25,13 @@
             placeholder="请输入昵称"
             :rules="[{ required: true, message: '请填写昵称' }]"/>
 
-<!--        <van-area title="标题" :area-list="areaList" />-->
+        <van-field
+            @click="isShowArea=true"
+            style="margin-top: 15px"
+            :value="province + province===city?'':city + county"
+            placeholder="请输入地址"
+            disabled
+            :rules="[{ required: true, message: '请输入地址' }]"/>
 
         <van-field
             style="margin-top: 15px"
@@ -57,6 +63,9 @@
         </div>
       </van-form>
 
+      <van-popup v-model="isShowArea" position="bottom" @close="isShowArea=false">
+        <van-area title="选择地址" :area-list="area" @confirm="areaConfirm"/>
+      </van-popup>
     </div>
   </div>
 </template>
@@ -64,33 +73,45 @@
 <script>
 import {sendCode, registerUser} from '@/api/user'
 import handleLocalStorage from '@/uitls/localStorage'
+import area from "@/assets/js/area";
 
 export default {
   name: 'register',
-  components:{
-
-  },
+  components: {},
   data() {
     return {
-      avatar:'',
+      userTx: '',
       tel: '',
       password: '',
-      address:'', //地址
+
+      province: '',
+      city: '',
+      county: '',
+
       code: '',
       isConsent: true,  //是否同意我的协议
       codeNum: 0,
       reCode: '',
-      userName:'' //昵称
+      userName: '', //昵称
+
+      area,
+      isShowArea: false
     }
   },
   mounted() {
-    this.reCode = this.$route.query.reCode?this.$route.query.reCode:'';
+    this.reCode = this.$route.query.reCode ? this.$route.query.reCode : '';
   },
   methods: {
+    /*地址选择完成*/
+    areaConfirm(res) {
+      this.province = res[0].name;
+      this.city = res[1].name;
+      this.county = res[2].name;
+      this.isShowArea = false;
+    },
     /*获取图片路径*/
-    getImgUrl(res){
-      this.avatar = this.imgPrefixUrl+res;
-      console.log(this.avatar);
+    getImgUrl(res) {
+      this.userTx = this.imgPrefixUrl + res;
     },
     onSubmit() {
       if (this.isConsent === false) {
@@ -102,8 +123,14 @@ export default {
         tel: this.tel,
         vcode: this.code,
         userPwd: this.password,
+        userTx: this.userTx,
+
+        province: this.province,
+        city: this.city,
+        county: this.county,
+
         reCode: this.reCode,
-        userName:this.userName,
+        userName: this.userName,
       }).then(data => {
         this.Toast('注册成功');
 
