@@ -5,7 +5,7 @@
     <div class="login">
       <van-form class="form" @submit="onSubmit">
         <fileUpload @change="getImgUrl">
-          <van-image width="40" height="40" round :src="userTx"/>
+          <van-image style="background: #d2d2d2" width="40" height="40" round :src="userTx===''?require('@/static/touxiang.png'):userTx"/>
         </fileUpload>
 
         <van-field
@@ -29,9 +29,9 @@
             @click="isShowArea=true"
             style="margin-top: 15px"
             :value="province + province===city?'':city + county"
-            placeholder="请输入地址"
+            placeholder="省市区"
             disabled
-            :rules="[{ required: true, message: '请输入地址' }]"/>
+            :rules="[{ required: true, message: '请选择省市区' }]"/>
 
         <van-field
             style="margin-top: 15px"
@@ -182,8 +182,7 @@ export default {
 
   .login {
     width: 279px;
-    height: 421px;
-    background: url("../../static/img/login.png");
+    background: url("../../static/img/register.png");
     background-size: 100% 100%;
     position: relative;
     z-index: 1000;
