@@ -35,6 +35,12 @@
 
         <van-field
             style="margin-top: 15px"
+            v-model="addDesc"
+            placeholder="详细地址"
+            :rules="[{ required: true, message: '请选择详细地址' }]"/>
+
+        <van-field
+            style="margin-top: 15px"
             v-model="code"
             type="text"
             placeholder="请输入验证码"
@@ -87,6 +93,7 @@ export default {
       province: '',
       city: '',
       county: '',
+      addDesc:'', //详细地址
 
       code: '',
       isConsent: true,  //是否同意我的协议
@@ -128,6 +135,7 @@ export default {
         province: this.province,
         city: this.city,
         county: this.county,
+        addDesc:this.addDesc,
 
         reCode: this.reCode,
         userName: this.userName,

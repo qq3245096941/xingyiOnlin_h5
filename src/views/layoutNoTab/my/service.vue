@@ -1,12 +1,26 @@
 <template>
   <div class="content">
-    <img :src="require('@/assets/img/my/serve.jpg')" alt="">
+    <img :src="url" alt="">
   </div>
 </template>
 
 <script>
+import {configInfo} from '@/api/config'
+
 export default {
-  name: "service"
+  name: "service",
+  data(){
+    return{
+      url:''
+    }
+  },
+  created () {
+    configInfo({
+      code:'CUSTOMER_CODE'
+    }).then(data=>{
+      this.url = data.data.sysValue;
+    })
+  }
 }
 </script>
 
