@@ -35,6 +35,9 @@ export default {
       case 'userTel':
         this.label = '电话'
         break;
+      case 'userPwd':
+        this.label = '密码'
+        break;
     }
   },
   methods:{

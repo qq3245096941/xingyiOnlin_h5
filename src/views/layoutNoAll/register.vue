@@ -2,7 +2,7 @@
   <div class="content">
     <img class="back" :src="require('@/static/img/loginBack.png')" alt="">
 
-    <div class="login">
+    <div class="login" style="">
       <van-form class="form" @submit="onSubmit">
         <fileUpload @change="getImgUrl">
           <van-image style="background: #d2d2d2" width="40" height="40" round :src="userTx===''?require('@/static/touxiang.png'):userTx"/>
@@ -19,6 +19,13 @@
             type="password"
             placeholder="请输入密码"
             :rules="[{ required: true, message: '请填写密码' }]"/>
+
+        <van-field
+            style="margin-top: 15px"
+            v-model="realName"
+            placeholder="请输入姓名"
+            :rules="[{ required: true, message: '请输入姓名' }]"/>
+
         <van-field
             style="margin-top: 15px"
             v-model="userName"
@@ -89,6 +96,7 @@ export default {
       userTx: '',
       tel: '',
       password: '',
+      realName:'',
 
       province: '',
       city: '',
@@ -131,6 +139,7 @@ export default {
         vcode: this.code,
         userPwd: this.password,
         userTx: this.userTx,
+        realName:this.realName,
 
         province: this.province,
         city: this.city,
@@ -194,7 +203,7 @@ export default {
     background-size: 100% 100%;
     position: relative;
     z-index: 1000;
-    margin: 20% auto;
+    margin: 5% auto;
     padding: 30px;
 
     .form {

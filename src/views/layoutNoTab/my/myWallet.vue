@@ -27,8 +27,8 @@
     </div>
 
     <div class="detail">
-      <p>佣金明细</p>
-      <p>￥{{(account.userMy + account.userOne + account.userTwo).toFixed(2)}}</p>
+      <p>当前佣金</p>
+<!--      <p>￥{{(account.userMy + account.userOne + account.userTwo).toFixed(2)}}</p>-->
     </div>
 
   </div>

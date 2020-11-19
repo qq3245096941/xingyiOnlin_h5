@@ -29,29 +29,29 @@
     </div>
 
     <div class="orderTab">
-      <div class="order" @click="$router.push({path:'/layoutNoTab/myWallet'})">
-        <img class="icon" src="../../assets/img/my/fans/wodeqianbao.svg" alt="">
-        <p class="title">我的收益</p>
-      </div>
       <div class="order" @click="$router.push({path:'/layoutNoTab/fansOrder'})">
-        <img class="icon" src="../../assets/img/my/fans/fensidingdan.svg" alt="">
+        <img class="icon" src="../../assets/img/my/fans/fensidingdan.png" alt="">
         <p class="title">粉丝订单</p>
       </div>
       <div class="order" @click="$router.push({path:'/layoutNoTab/myFans'})">
-        <img class="icon" src="../../assets/img/my/fans/wodefensi.svg" alt="">
+        <img class="icon" src="../../assets/img/my/fans/wodefensi.png" alt="">
         <p class="title">我的粉丝</p>
       </div>
-      <div class="order" @click="$router.push({path:'/layoutNoTab/myPromotion'})">
-        <img class="icon" src="../../assets/img/my/fans/wodetuiguang.svg" alt="">
-        <p class="title">我的钱包</p>
+      <div class="order" @click="$router.push({path:'/layoutNoTab/businessCard'})">
+        <img class="icon" src="../../assets/img/my/fans/tuiguangmingpian.png" alt="">
+        <p class="title">推广名片</p>
+      </div>
+      <div class="order" @click="$router.push({path:'/layoutNoTab/myWallet'})">
+        <img class="icon" src="../../assets/img/my/fans/wodeshouyi.png" alt="">
+        <p class="title">我的收益</p>
       </div>
     </div>
 
     <van-cell-group class="people">
       <van-cell :icon="require('@/assets/img/my/geern/shoukuanqueren.svg')" title="收款中心"
                 to="/layoutNoTab/gatheringManager" is-link/>
-      <van-cell :icon="require('@/assets/img/my/geern/wodedizhi.svg')" title="我的地址" to="/layoutNoTab/addressManager"
-                is-link/>
+<!--      <van-cell :icon="require('@/assets/img/my/geern/wodedizhi.svg')" title="我的地址" to="/layoutNoTab/addressManager"-->
+<!--                is-link/>-->
       <van-cell :icon="require('@/assets/img/my/geern/kefuzhongxin.svg')" title="客服中心" to="/layoutNoTab/service"
                 is-link/>
       <van-cell :icon="require('@/assets/img/my/geern/gerenzhongxin.svg')" title="个人中心" to="/layoutNoTab/personalCenter"

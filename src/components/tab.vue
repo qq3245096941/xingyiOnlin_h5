@@ -3,19 +3,19 @@
     <van-tabbar-item to="/layout/main" name="main">
       <span>首页</span>
       <template #icon="props">
-        <img :src="props.active ? require('../assets/img/tabIcon/shouye2.svg') : require('../assets/img/tabIcon/shouye1.svg')" />
+        <img :src="props.active ? require('../assets/img/tabIcon/shouye2.png') : require('../assets/img/tabIcon/shouye1.png')" />
       </template>
     </van-tabbar-item>
     <van-tabbar-item to="/layout/notice" name="notice" icon="search">
       <span>公告</span>
       <template #icon="props">
-        <img :src="props.active ? require('../assets/img/tabIcon/gonggao2.svg') : require('../assets/img/tabIcon/gonggao1.svg')" />
+        <img :src="props.active ? require('../assets/img/tabIcon/gonggao2.png') : require('../assets/img/tabIcon/gonggao1.png')" />
       </template>
     </van-tabbar-item>
     <van-tabbar-item to="/layout/my" name="my" icon="setting-o">
       <span>我的</span>
       <template #icon="props">
-        <img :src="props.active ? require('../assets/img/tabIcon/wode2.svg') : require('../assets/img/tabIcon/wode1.svg')" />
+        <img :src="props.active ? require('../assets/img/tabIcon/wode2.png') : require('../assets/img/tabIcon/wode1.png')" />
       </template>
     </van-tabbar-item>
   </van-tabbar>
