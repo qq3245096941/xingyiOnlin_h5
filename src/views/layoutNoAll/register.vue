@@ -5,7 +5,8 @@
     <div class="login" style="">
       <van-form class="form" @submit="onSubmit">
         <fileUpload @change="getImgUrl">
-          <van-image style="background: #d2d2d2" width="40" height="40" round :src="userTx===''?require('@/static/touxiang.png'):userTx"/>
+          <van-image style="background: #d2d2d2" width="40" height="40" round
+                     :src="userTx===''?require('@/static/touxiang.png'):userTx"/>
         </fileUpload>
 
         <van-field
@@ -84,24 +85,24 @@
 </template>
 
 <script>
-import {sendCode, registerUser} from '@/api/user'
+import { sendCode, registerUser } from '@/api/user'
 import handleLocalStorage from '@/uitls/localStorage'
-import area from "@/assets/js/area";
+import area from '@/assets/js/area'
 
 export default {
   name: 'register',
   components: {},
-  data() {
+  data () {
     return {
       userTx: '',
       tel: '',
       password: '',
-      realName:'',
+      realName: '',
 
       province: '',
       city: '',
       county: '',
-      addDesc:'', //详细地址
+      addDesc: '', //详细地址
 
       code: '',
       isConsent: true,  //是否同意我的协议
@@ -113,25 +114,25 @@ export default {
       isShowArea: false
     }
   },
-  mounted() {
-    this.reCode = this.$route.query.reCode ? this.$route.query.reCode : '';
+  mounted () {
+    this.reCode = this.$route.query.reCode ? this.$route.query.reCode : ''
   },
   methods: {
     /*地址选择完成*/
-    areaConfirm(res) {
-      this.province = res[0].name;
-      this.city = res[1].name;
-      this.county = res[2].name;
-      this.isShowArea = false;
+    areaConfirm (res) {
+      this.province = res[0].name
+      this.city = res[1].name
+      this.county = res[2].name
+      this.isShowArea = false
     },
     /*获取图片路径*/
-    getImgUrl(res) {
-      this.userTx = this.imgPrefixUrl + res;
+    getImgUrl (res) {
+      this.userTx = this.imgPrefixUrl + res
     },
-    onSubmit() {
+    onSubmit () {
       if (this.isConsent === false) {
-        this.Toast('请勾选我已同意协议');
-        return;
+        this.Toast('请勾选我已同意协议')
+        return
       }
 
       registerUser({
@@ -139,42 +140,39 @@ export default {
         vcode: this.code,
         userPwd: this.password,
         userTx: this.userTx,
-        realName:this.realName,
+        realName: this.realName,
 
-        province: this.province,
-        city: this.city,
-        county: this.county,
-        addDesc:this.addDesc,
+        addDesc: this.province + this.city + this.county + this.addDesc,
 
         reCode: this.reCode,
         userName: this.userName,
       }).then(data => {
-        this.Toast('注册成功');
+        this.Toast('注册成功')
 
-        handleLocalStorage('set', 'userInfo', data.obj);
+        handleLocalStorage('set', 'userInfo', data.obj)
 
         this.$router.push({
           path: this.$eventBus.savePath ? this.$eventBus.savePath : '/'
         })
 
-        this.$eventBus.savePath = '';
+        this.$eventBus.savePath = ''
       })
     },
 
     /*获取短信验证码*/
-    getCode() {
+    getCode () {
       if (!this.tel) {
-        this.Toast('请填写手机号');
-        return;
+        this.Toast('请填写手机号')
+        return
       }
 
       sendCode({
         telephone: this.tel
       }).then(data => {
-        this.Toast('已发送短信验证码');
-        this.codeNum = 60;
+        this.Toast('已发送短信验证码')
+        this.codeNum = 60
         let interval = setInterval(() => {
-          this.codeNum--;
+          this.codeNum--
           if (this.codeNum === 0) {
             clearInterval(interval)
           }

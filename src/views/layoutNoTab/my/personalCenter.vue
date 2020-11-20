@@ -16,14 +16,7 @@
                         type:'nickName'
                       }
                     })"/>
-      <van-cell title="姓名" :value="realName" @click="$router.push(
-                    {
-                      path:'/layoutNoTab/editUserInfo',
-                      query:{
-                        value:realName,
-                        type:'realName'
-                      }
-                    })"/>
+      <van-cell title="姓名" :value="realName"/>
       <van-cell title="地址" :value="address"/>
       <van-cell title="手机号" :value="phone"/>
       <van-cell title="密码" :value="userPwd" @click="$router.push(
@@ -52,13 +45,12 @@ export default {
       realName: '',
       phone: '',
       address: '',
-      userPwd:''
+      userPwd: ''
     }
   },
   mounted () {
     this.getUser()
   },
-
   methods: {
     /*获取图片*/
     getImgUrl (res) {
@@ -81,9 +73,9 @@ export default {
         this.nickname = user.nickName
         this.phone = user.userTel
 
-        this.userPwd = user.userPwd;
+        this.userPwd = user.userPwd
 
-        this.address = '';
+        this.address = user.addDesc
 
         // addressList({
         //   userId: this.userInfo.userId,

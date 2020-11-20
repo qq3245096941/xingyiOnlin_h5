@@ -2,12 +2,29 @@
 <template>
   <div ref="content" class="content">
 
-    <div ref="header">
+    <div ref="header" style="height: 230px">
       <img class="back" :src="require('@/static/img/redBack.png')" alt="">
+      <!--提现记录-->
+      <div class="body">
+        <div class="withdrawalRecord" @click="$router.push({path:'/layoutNoTab/withdrawalRecord'})">提现记录
+          <van-icon name="arrow"/>
+        </div>
+
+        <div class="commission card">
+          <p class="currMoneyTitle">当前佣金</p>
+          <p class="currMoney">￥{{account.userSumComm}}</p>
+          <div style="display: flex">
+            <p class="ziP">今日收益：<span
+                style="color: #ff9900">￥{{(account.everyMy + account.everyOne + account.everyTwo).toFixed(2)}}</span></p>
+            <p class="ziP">累计提现：<span style="color: #ff9900">￥{{account.withdrawlComm}}</span></p>
+          </div>
+
+          <div class="withdraw" @click="$router.push({path:'/layoutNoTab/withdrawDeposit'})">立刻提现</div>
+        </div>
+      </div>
     </div>
 
     <div class="card">
-
       <div class="title">
         <p>日期</p>
         <p>佣金</p>
@@ -25,24 +42,18 @@
         </div>
       </List>
     </div>
-
-    <div class="detail">
-      <p>当前佣金</p>
-<!--      <p>￥{{(account.userMy + account.userOne + account.userTwo).toFixed(2)}}</p>-->
-    </div>
-
   </div>
 </template>
 
 <script>
-import page from "@/mixin/page";
-import {sourceAll} from '@/api/rank'
-import {getUserInfo} from '@/api/user'
+import page from '@/mixin/page'
+import { sourceAll } from '@/api/rank'
+import { getUserInfo } from '@/api/user'
 
 export default {
-  name: "myWallet",
+  name: 'myWallet',
   mixins: [page],
-  data() {
+  data () {
     return {
       sourceType: [
         '第一佣金',
@@ -52,23 +63,23 @@ export default {
       account: {}
     }
   },
-  mounted() {
+  mounted () {
     getUserInfo({
       userId: this.userInfo.userId
     }).then(data => {
-      this.account = data.account;
+      this.account = data.account
     })
   },
   methods: {
-    getList() {
+    getList () {
       sourceAll({
         userId: this.userInfo.userId,
         page: this.currPage,
         rows: this.pageSize
       }).then(data => {
-        this.currPage++;
-        this.list = [...this.list, ...data.sourceList];
-        this.total = data.totalCount;
+        this.currPage++
+        this.list = [...this.list, ...data.sourceList]
+        this.total = data.totalCount
       })
     }
   },
@@ -99,6 +110,71 @@ export default {
   .back {
     display: block;
     width: 100%;
+  }
+
+  .body {
+    position: relative;
+    top: -100px;
+    display: flex;
+    flex-direction: column;
+
+    .withdrawalRecord {
+      font-size: 12px;
+      color: #fff;
+      text-align: right;
+      margin-right: 10px;
+    }
+
+    .commission {
+      background: #fff;
+      position: relative;
+
+      .currMoneyTitle {
+        margin: 0;
+        font-size: 15px;
+      }
+
+      .currMoney {
+        color: #ed4014;
+        font-weight: bold;
+        font-size: 18px
+      }
+
+      .ziP {
+        flex: 1;
+        font-size: 14px;
+      }
+
+      .withdraw {
+        position: absolute;
+        right: 0;
+        top: 30px;
+        width: 70px;
+        font-size: 13px;
+        text-align: center;
+        padding: 5px;
+        border-radius: 70px 0 0 70px;
+
+        background: #ff9900;
+      }
+    }
+
+    .tab {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+
+      .tabItem {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        p {
+          margin-top: 5px;
+          font-size: 15px
+        }
+      }
+    }
   }
 
   .title {
