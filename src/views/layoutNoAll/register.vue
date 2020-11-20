@@ -10,45 +10,45 @@
         </fileUpload>
 
         <van-field
-            style="margin-top: 15px"
+            style="margin-top: 10px"
             v-model="tel"
             placeholder="请输入手机号"
             :rules="[{ pattern:/^1[3456789]\d{9}$/, message: '手机号格式不正确' }]"/>
         <van-field
-            style="margin-top: 15px"
+            style="margin-top: 10px"
             v-model="password"
             type="password"
             placeholder="请输入密码"
             :rules="[{ required: true, message: '请填写密码' }]"/>
 
         <van-field
-            style="margin-top: 15px"
+            style="margin-top: 10px"
             v-model="realName"
             placeholder="请输入姓名"
             :rules="[{ required: true, message: '请输入姓名' }]"/>
 
         <van-field
-            style="margin-top: 15px"
+            style="margin-top: 10px"
             v-model="userName"
             placeholder="请输入昵称"
             :rules="[{ required: true, message: '请填写昵称' }]"/>
 
         <van-field
             @click="isShowArea=true"
-            style="margin-top: 15px"
+            style="margin-top: 10px"
             :value="province + province===city?'':city + county"
             placeholder="省市区"
             disabled
             :rules="[{ required: true, message: '请选择省市区' }]"/>
 
         <van-field
-            style="margin-top: 15px"
+            style="margin-top: 10px"
             v-model="addDesc"
             placeholder="详细地址"
             :rules="[{ required: true, message: '请选择详细地址' }]"/>
 
         <van-field
-            style="margin-top: 15px"
+            style="margin-top: 10px"
             v-model="code"
             type="text"
             placeholder="请输入验证码"
@@ -188,6 +188,7 @@ export default {
   position: absolute;
   width: 100%;
   height: 100%;
+  overflow: auto;
 
   .back {
     z-index: 1;
@@ -205,7 +206,7 @@ export default {
     padding: 30px;
 
     .form {
-      margin-top: 45px;
+      margin-top: 30px;
     }
   }
 }

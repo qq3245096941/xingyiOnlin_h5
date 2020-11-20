@@ -62,19 +62,26 @@ export default {
     },
     /*申请发货*/
     applyShipment(item) {
-      this.$router.push({
-        path: '/layoutNoTab/addressManager'
+
+      upOrderExp({
+        orderId: item.orderId
+      }).then(data => {
+        this.getList(true);
       })
 
-      this.$eventBus.$on('getAddress', (addressId) => {
-        //申请发货
-        upOrderExp({
-          orderId: item.orderId,
-          addressId
-        }).then(data => {
-          this.getList(true);
-        })
-      })
+      // this.$router.push({
+      //   path: '/layoutNoTab/addressManager'
+      // })
+      //
+      // this.$eventBus.$on('getAddress', (addressId) => {
+      //   //申请发货
+      //   upOrderExp({
+      //     orderId: item.orderId,
+      //     addressId
+      //   }).then(data => {
+      //     this.getList(true);
+      //   })
+      // })
     },
   }
 }

@@ -24,7 +24,7 @@ export default {
         headers: {'Content-Type': 'multipart/form-data'},
       }
       // 添加请求头
-      axios.post('http://shopen.mmdddd.com:8083/famous/file/uploadPicAjax', param, config).then(res => {
+      axios.post('http://www.yunyift.com:8083/famous/file/uploadPicAjax', param, config).then(res => {
         this.$emit('change', res.data.data.picPath.split('images/')[1]);
 
         this.Toast.clear();
