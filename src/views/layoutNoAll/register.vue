@@ -4,9 +4,6 @@
 
     <div class="login">
       <van-form class="form" @submit="onSubmit">
-        <fileUpload @change="getImgUrl">
-          <van-image width="40" height="40" round :src="avatar"/>
-        </fileUpload>
 
         <van-field
             style="margin-top: 15px"

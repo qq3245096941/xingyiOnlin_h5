@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {Toast} from "vant";
 
-const baseUrl = 'http://xyzaixin1.com:8083/famous';
+const baseUrl = 'http://8.208.97.125:8083/famous';
 
 export default function ({url, data, method = 'post'}) {
     Toast.loading({
