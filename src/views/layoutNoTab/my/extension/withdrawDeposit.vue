@@ -33,14 +33,14 @@
           <van-field
               v-model="phone"
               type="tel"
-              label="提现电话"
-              :rules="[{ required: true, message: '请输入提现电话' }]"
+              label="银行卡号"
+              :rules="[{ required: true, message: '请输入银行卡号' }]"
           />
           <van-field
               v-model="zifubao"
               type="text"
-              label="提现支付宝"
-              :rules="[{ required: true, message: '请输入提现支付宝' }]"
+              label="开户行"
+              :rules="[{ required: true, message: '请输入开户行' }]"
           />
 
           <div style="margin: 16px;">

@@ -42,7 +42,6 @@
             <p class="time" v-if="item.openStat==='0'">开启时间：{{item.openDate}} ~ {{item.closeDate}}</p>
             <p class="time" v-else>待开放</p>
           </div>
-
         </div>
       </div>
     </div>
